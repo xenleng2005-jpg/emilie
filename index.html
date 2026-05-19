@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KH Beauty Nail Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --gold-dark: #9c7a3c;
+      --rose: #e8b4b8;
+      --rose-dark: #c47a82;
+      --cream: #fdf8f3;
+      --dark: #1a1118;
+      --dark2: #2d1f2b;
+      --text: #4a3545;
+      --text-light: #7a6570;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR ── */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, opacity 0.3s;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 40px; height: 40px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(253, 248, 243, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 1rem 4rem;
+      box-shadow: 0 1px 20px rgba(201,169,110,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3d1f35 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated glitter particles */
+    .particles { position: absolute; inset: 0; overflow: hidden; }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: float linear infinite;
+      opacity: 0;
+    }
+    @keyframes float {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Animated rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.15);
+      animation: expand 6s ease-out infinite;
+    }
+    .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
+    .ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 2s; }
+    .ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 4s; }
+    @keyframes expand {
+      0%   { transform: scale(0.8); opacity: 0.5; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,169,110,0.4);
+      padding: 0.5rem 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1s ease 0.3s both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.3em;
+      animation: fadeInUp 1s ease 0.5s both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      display: block;
+    }
+    .hero-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(232,213,176,0.7);
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease 0.7s both;
+    }
+    .hero-cta {
+      display: inline-flex;
+      gap: 1.5rem;
+      animation: fadeInUp 1s ease 0.9s both;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(201,169,110,0.5);
+      color: var(--gold-light);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-outline:hover {
+      background: rgba(201,169,110,0.1);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeIn 1s ease 1.5s both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scrollPulse 1.5s ease infinite;
+    }
+    .scroll-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(201,169,110,0.6);
+      text-transform: uppercase;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold-dark); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      height: 520px;
+    }
+    .about-img-main {
+      width: 75%;
+      height: 420px;
+      background: linear-gradient(135deg, var(--dark2), #5c3050);
+      position: absolute;
+      top: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .about-img-main::after {
+      content: '💅';
+      font-size: 5rem;
+      animation: pulse 3s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .about-img-accent {
+      width: 50%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      position: absolute;
+      bottom: 0; left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--dark);
+      font-style: italic;
+    }
+    .about-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201,169,110,0.2);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-light); margin-top: 0.3rem; }
+    .about-text p {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--dark); }
+    #services .section-title { color: var(--cream); }
+    #services .section-label { color: var(--gold); }
+    .services-intro {
+      font-size: 0.9rem;
+      color: rgba(232,213,176,0.6);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 4rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(201,169,110,0.15);
+    }
+    .service-card {
+      background: var(--dark);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+    .service-card:hover { background: #221a20; }
+    .service-card:hover::before { transform: translateX(0); }
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+    }
+    .service-desc {
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: rgba(232,213,176,0.5);
+      margin-bottom: 1.5rem;
+    }
+    .service-price {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--cream); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 1rem;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--dark2), #4a2040);
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-placeholder {
+      width: 100%;
+      padding-top: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-item:nth-child(1) .gallery-placeholder { padding-top: 70%; }
+    .gallery-item:nth-child(4) .gallery-placeholder { padding-top: 50%; }
+    .gallery-emoji {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(2rem, 5vw, 4rem);
+      background: linear-gradient(135deg, var(--dark2) 0%, #5c3050 50%, var(--dark2) 100%);
+      background-size: 200% 200%;
+      animation: shimmer 4s ease infinite;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover .gallery-emoji { transform: scale(1.08); }
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,17,24,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* ── PROCESS ── */
+    #process { background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%); }
+    #process .section-title { color: var(--cream); }
+    #process .section-label { color: var(--gold); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
+      opacity: 0.3;
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 50px; height: 50px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+      background: var(--dark);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .step:hover .step-num {
+      background: var(--gold);
+      color: var(--dark);
+      transform: scale(1.1);
+    }
+    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .step-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+    }
+    .step-desc {
+      font-size: 0.75rem;
+      line-height: 1.8;
+      color: rgba(232,213,176,0.5);
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--cream); overflow: hidden; }
+    .testimonials-track-wrapper {
+      overflow: hidden;
+      margin: 3rem -2rem 0;
+      padding: 0 2rem;
+    }
+    .testimonials-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: scroll-left 30s linear infinite;
+      width: max-content;
+    }
+    .testimonials-track:hover { animation-play-state: paused; }
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      width: 340px;
+      flex-shrink: 0;
+      padding: 2.5rem;
+      background: white;
+      border: 1px solid rgba(201,169,110,0.15);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: rgba(201,169,110,0.1);
+      line-height: 1;
+    }
+    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .testimonial-text {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold-dark);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ── BOOKING ── */
+    #booking { background: var(--dark); }
+    #booking .section-title { color: var(--cream); }
+    #booking .section-label { color: var(--gold); }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .booking-info p {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: rgba(232,213,176,0.6);
+      margin-bottom: 2.5rem;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: rgba(232,213,176,0.7);
+    }
+    .contact-icon {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(201,169,110,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .booking-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.6);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,169,110,0.15);
+      color: var(--cream);
+      padding: 0.85rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      transition: border-color 0.3s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-select option { background: var(--dark2); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 1rem 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .form-submit:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #110c10;
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: rgba(201,169,110,0.4);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-divider {
+      width: 60px; height: 1px;
+      background: rgba(201,169,110,0.2);
+      margin: 0 auto 2rem;
+    }
+    .footer-copy {
+      font-size: 0.65rem;
+      color: rgba(201,169,110,0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav.scrolled { padding: 0.8rem 2rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-logo">KH <span>Beauty</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#booking">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="particles" id="particles"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Taman Putra, Malaysia ✦</div>
+      <h1 class="hero-title">
+        KH Beauty
+        <em>Nail Art</em>
+      </h1>
+      <p class="hero-subtitle">Where Every Nail Tells a Story</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn btn-primary">Book Appointment</a>
+        <a href="#services" class="btn btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-img-main"></div>
+          <div class="about-img-accent">Est. 2020</div>
+        </div>
+        <div class="about-text">
+          <p class="section-label reveal">Our Story</p>
+          <h2 class="section-title reveal">Crafting Beauty,<br><em>One Nail at a Time</em></h2>
+          <div class="reveal">
+            <p>Welcome to KH Beauty Nail Art — your premier destination for exquisite nail artistry in Taman Putra. We believe that beautiful nails are a form of self-expression, and our talented artists are dedicated to bringing your vision to life.</p>
+            <p>From classic manicures to elaborate nail art designs, every service is performed with precision, care, and the highest quality products. Your comfort and satisfaction are our top priorities.</p>
+          </div>
+          <div class="about-stats reveal">
+            <div>
+              <div class="stat-num" data-count="500">0</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+            <div>
+              <div class="stat-num" data-count="50">0</div>
+              <div class="stat-label">Nail Designs</div>
+            </div>
+            <div>
+              <div class="stat-num" data-count="5">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <p class="section-label reveal">What We Offer</p>
+      <h2 class="section-title reveal">Our <em>Services</em></h2>
+      <p class="services-intro reveal">Indulge in our comprehensive range of nail and beauty services, each tailored to perfection.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-icon">💅</span>
+          <h3 class="service-name">Classic Manicure</h3>
+          <p class="service-desc">A timeless treatment including nail shaping, cuticle care, hand massage, and your choice of polish.</p>
+          <span class="service-price">FROM RM 35</span>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">✨</span>
+          <h3 class="service-name">Gel Nails</h3>
+          <p class="service-desc">Long-lasting gel polish that stays chip-free for up to 3 weeks, available in hundreds of shades.</p>
+          <span class="service-price">FROM RM 60</span>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🌸</span>
+          <h3 class="service-name">Nail Art Design</h3>
+          <p class="service-desc">Custom hand-painted designs, patterns, florals, gems, and 3D art — limited only by your imagination.</p>
+          <span class="service-price">FROM RM 80</span>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">👑</span>
+          <h3 class="service-name">Acrylic Extensions</h3>
+          <p class="service-desc">Add length and strength with our premium acrylic nail extensions, perfectly sculpted to your desired shape.</p>
+          <span class="service-price">FROM RM 100</span>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🌿</span>
+          <h3 class="service-name">Pedicure Spa</h3>
+          <p class="service-desc">Luxurious foot soak, exfoliation, callus removal, and nail care for beautifully pampered feet.</p>
+          <span class="service-price">FROM RM 50</span>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">💎</span>
+          <h3 class="service-name">Luxury Nail Set</h3>
+          <p class="service-desc">Our premium package combining extensions, gel, and bespoke nail art for a complete transformation.</p>
+          <span class="service-price">FROM RM 180</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <p class="section-label reveal">Our Work</p>
+      <h2 class="section-title reveal">Nail Art <em>Gallery</em></h2>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">💅✨</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Floral Art</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">🌸</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Soft Pink</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">💎</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Crystal Set</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">🌟💅</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Glam Edition</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">🦋</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Butterfly Art</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder">
+            <div class="gallery-emoji">🌙</div>
+          </div>
+          <div class="gallery-overlay"><span class="gallery-overlay-text">Moon &amp; Stars</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <p class="section-label reveal">The Experience</p>
+      <h2 class="section-title reveal">Your Journey<br><em>With Us</em></h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-icon">📱</div>
+          <h3 class="step-name">Book Online</h3>
+          <p class="step-desc">Choose your service and preferred time slot through our booking form or WhatsApp.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-icon">🎨</div>
+          <h3 class="step-name">Design Consult</h3>
+          <p class="step-desc">Discuss your vision with our nail artist. Browse our look-book for inspiration.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-icon">✨</div>
+          <h3 class="step-name">The Treatment</h3>
+          <p class="step-desc">Sit back and relax while our expert transforms your nails with precision and care.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-icon">💅</div>
+          <h3 class="step-name">Show It Off</h3>
+          <p class="step-desc">Leave with stunning nails and share your look — tag us on Facebook!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <p class="section-label reveal">Client Love</p>
+      <h2 class="section-title reveal">What They <em>Say</em></h2>
+    </div>
+    <div class="testimonials-track-wrapper">
+      <div class="testimonials-track" id="testimonialsTrack">
+        <!-- Cards duplicated for seamless loop -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
+          <span class="testimonial-author">— Sarah L.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
+          <span class="testimonial-author">— Michelle T.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
+          <span class="testimonial-author">— Priya R.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
+          <span class="testimonial-author">— Aini B.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
+          <span class="testimonial-author">— Jennifer K.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
+          <span class="testimonial-author">— Rachel W.</span>
+        </div>
+        <!-- Duplicate set for seamless scroll -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
+          <span class="testimonial-author">— Sarah L.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
+          <span class="testimonial-author">— Michelle T.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
+          <span class="testimonial-author">— Priya R.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
+          <span class="testimonial-author">— Aini B.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
+          <span class="testimonial-author">— Jennifer K.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
+          <span class="testimonial-author">— Rachel W.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking">
+    <div class="container">
+      <div class="booking-grid">
+        <div class="booking-info">
+          <p class="section-label reveal">Get In Touch</p>
+          <h2 class="section-title reveal">Book Your<br><em>Appointment</em></h2>
+          <p class="reveal">Ready for beautiful nails? Book your appointment today and let our expert nail artists create something stunning just for you. Walk-ins are welcome, but appointments are recommended.</p>
+          <div class="contact-items reveal">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <span>Taman Putra, Malaysia</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📘</div>
+              <span>Nail Art KH (Facebook)</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <span>Mon – Sat: 10:00am – 8:00pm<br>Sunday: 11:00am – 6:00pm</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <form class="booking-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-input" placeholder="Jane Smith" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone / WhatsApp</label>
+                <input type="tel" class="form-input" placeholder="+60 1X-XXX XXXX" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service</label>
+              <select class="form-select">
+                <option value="">Select a service...</option>
+                <option>Classic Manicure — from RM 35</option>
+                <option>Gel Nails — from RM 60</option>
+                <option>Nail Art Design — from RM 80</option>
+                <option>Acrylic Extensions — from RM 100</option>
+                <option>Pedicure Spa — from RM 50</option>
+                <option>Luxury Nail Set — from RM 180</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Preferred Date</label>
+                <input type="date" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Preferred Time</label>
+                <input type="time" class="form-input" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Special Requests</label>
+              <textarea class="form-textarea" placeholder="Any design ideas or special requests..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Booking Request ✦</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">KH <span>Beauty</span> Nail Art</div>
+    <p class="footer-tagline">Where Every Nail Tells a Story</p>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#booking">Book Now</a></li>
+    </ul>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">© 2026 KH Beauty Nail Art · Taman Putra, Malaysia · All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateCursorRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursorRing);
+    }
+    animateCursorRing();
+
+    document.querySelectorAll('a, button, .service-card, .gallery-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorRing.style.width = '60px';
+        cursorRing.style.height = '60px';
+        cursorRing.style.borderColor = 'var(--gold)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorRing.style.width = '40px';
+        cursorRing.style.height = '40px';
+      });
+    });
+
+    // Sticky nav
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Floating particles
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        width: ${Math.random() * 4 + 1}px;
+        height: ${Math.random() * 4 + 1}px;
+        animation-duration: ${Math.random() * 10 + 8}s;
+        animation-delay: ${Math.random() * 10}s;
+        opacity: ${Math.random() * 0.5 + 0.2};
+      `;
+      particleContainer.appendChild(p);
+    }
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count);
+      const suffix = target >= 100 ? '+' : target >= 10 ? '+' : '';
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current) + suffix;
+        if (current >= target) clearInterval(timer);
+      }, 25);
+    }
+
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    // Form submit handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Request Sent! We\'ll contact you soon ✓';
+      btn.style.background = 'var(--gold-dark)';
+      btn.disabled = true;
+    }
+
+    // Smooth parallax on hero
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent && scrollY < window.innerHeight) {
+        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+        heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
+      }
+    });
+  </script>
+</body>
+</html>
