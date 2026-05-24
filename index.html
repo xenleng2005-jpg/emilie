@@ -3,1212 +3,723 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KH Beauty Nail Art</title>
+  <title>The Gathering Beast @ PJ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --gold: #c9a96e;
-      --gold-light: #e8d5b0;
-      --gold-dark: #9c7a3c;
-      --rose: #e8b4b8;
-      --rose-dark: #c47a82;
-      --cream: #fdf8f3;
-      --dark: #1a1118;
-      --dark2: #2d1f2b;
-      --text: #4a3545;
-      --text-light: #7a6570;
+      --red: #CC0000;
+      --red-dark: #8B0000;
+      --gold: #C9A84C;
+      --gold-light: #E8D5A0;
+      --dark: #080404;
+      --dark2: #120808;
+      --dark3: #1A0A0A;
+      --cream: #F5F0E8;
+      --dim: rgba(245,240,232,0.6);
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+    /* CURSOR */
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: screen; transition: transform .1s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,.55); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s; }
 
-    /* ── CURSOR ── */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, opacity 0.3s;
-      mix-blend-mode: multiply;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 40px; height: 40px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
-    }
-    nav.scrolled {
-      background: rgba(253, 248, 243, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1rem 4rem;
-      box-shadow: 0 1px 20px rgba(201,169,110,0.15);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: 0.05em;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text);
-      position: relative;
-      transition: color 0.3s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--gold);
-      transition: width 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold-dark); }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 4rem; transition: background .5s, padding .4s; }
+    nav.scrolled { background: rgba(8,4,4,.93); backdrop-filter: blur(18px); padding: 1rem 4rem; border-bottom: 1px solid rgba(201,168,76,.1); }
+    .nav-logo { font-family: 'Cinzel Decorative', serif; line-height: 1.3; }
+    .nav-logo .top { font-size: .65rem; color: var(--gold); letter-spacing: .2em; display: block; }
+    .nav-logo .bot { font-size: .95rem; color: var(--cream); letter-spacing: .1em; display: block; }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,240,232,.65); transition: color .3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
+    .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-cta { font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--dark); background: var(--gold); padding: .6rem 1.5rem; text-decoration: none; transition: background .3s, transform .3s; }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3d1f35 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Animated glitter particles */
-    .particles { position: absolute; inset: 0; overflow: hidden; }
-    .particle {
-      position: absolute;
-      width: 3px; height: 3px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: float linear infinite;
-      opacity: 0;
-    }
-    @keyframes float {
-      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    /* HERO */
+    #hero { min-height: 100vh; background: radial-gradient(ellipse at center bottom, #2A0808 0%, #120404 40%, #050101 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .embers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .ember { position: absolute; border-radius: 50%; animation: emberRise linear infinite; opacity: 0; }
+    @keyframes emberRise {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
       10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+      60%  { transform: translateY(-55vh) translateX(var(--dx)); opacity: .7; }
+      100% { transform: translateY(-105vh) translateX(calc(var(--dx)*1.6)); opacity: 0; }
     }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,.035) 1px, transparent 1px); background-size: 80px 80px; }
+    .hero-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,.07); animation: ringPulse 6s ease-in-out infinite; }
+    .hero-ring:nth-child(1) { width: 500px; height: 500px; }
+    .hero-ring:nth-child(2) { width: 750px; height: 750px; animation-delay: 2s; }
+    .hero-ring:nth-child(3) { width: 1000px; height: 1000px; animation-delay: 4s; }
+    @keyframes ringPulse { 0%,100% { transform: scale(.95); opacity: .3; } 50% { transform: scale(1.05); opacity: .8; } }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; }
+    .hero-eyebrow { font-size: .6rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem; animation: fadeInDown 1s ease .3s both; }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+    .hero-eyebrow::after { transform: scaleX(-1); }
+    .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.2rem,7vw,6.5rem); font-weight: 900; line-height: 1; letter-spacing: .04em; animation: fadeInUp 1s ease .5s both; }
+    .hero-title .the { font-size: .38em; color: var(--gold); display: block; letter-spacing: .3em; margin-bottom: .3em; }
+    .hero-title .gathering { color: var(--cream); display: block; text-shadow: 0 0 60px rgba(139,0,0,.4); }
+    .hero-title .beast { color: var(--red); display: block; text-shadow: 0 0 40px rgba(204,0,0,.9), 0 0 100px rgba(204,0,0,.4); animation: beastGlow 3s ease-in-out infinite; }
+    @keyframes beastGlow { 0%,100% { text-shadow: 0 0 40px rgba(204,0,0,.7), 0 0 90px rgba(204,0,0,.3); } 50% { text-shadow: 0 0 70px rgba(204,0,0,1), 0 0 140px rgba(204,0,0,.6); } }
+    .hero-sub { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(245,240,232,.45); margin: 1.5rem 0; animation: fadeInUp 1s ease .7s both; }
+    .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(.95rem,2.5vw,1.5rem); font-style: italic; color: var(--gold-light); font-weight: 300; margin-bottom: 3rem; animation: fadeInUp 1s ease .9s both; }
+    .hero-cta { display: flex; gap: 1.5rem; justify-content: center; animation: fadeInUp 1s ease 1.1s both; }
+    .btn { display: inline-block; padding: 1rem 2.5rem; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; transition: all .4s; }
+    .btn-red { background: var(--red-dark); color: var(--cream); border: 1px solid var(--red); }
+    .btn-red:hover { background: var(--red); transform: translateY(-3px); box-shadow: 0 12px 35px rgba(204,0,0,.4); }
+    .btn-outline { border: 1px solid rgba(201,168,76,.45); color: var(--gold-light); }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.08); transform: translateY(-3px); }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; animation: fadeIn 1s 1.5s both; }
+    .hero-scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, transparent, var(--gold)); animation: scrollPulse 1.6s ease-in-out infinite; }
+    .hero-scroll-text { font-size: .52rem; letter-spacing: .3em; color: rgba(201,168,76,.45); text-transform: uppercase; }
+    @keyframes scrollPulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
 
-    /* Animated rings */
-    .ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.15);
-      animation: expand 6s ease-out infinite;
-    }
-    .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
-    .ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 2s; }
-    .ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 4s; }
-    @keyframes expand {
-      0%   { transform: scale(0.8); opacity: 0.5; }
-      100% { transform: scale(1.4); opacity: 0; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem;
-    }
-    .hero-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201,169,110,0.4);
-      padding: 0.5rem 1.5rem;
-      margin-bottom: 2rem;
-      animation: fadeInDown 1s ease 0.3s both;
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 0.3em;
-      animation: fadeInUp 1s ease 0.5s both;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      display: block;
-    }
-    .hero-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(232,213,176,0.7);
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease 0.7s both;
-    }
-    .hero-cta {
-      display: inline-flex;
-      gap: 1.5rem;
-      animation: fadeInUp 1s ease 0.9s both;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.4s;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--dark);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
-    .btn-outline {
-      border: 1px solid rgba(201,169,110,0.5);
-      color: var(--gold-light);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .btn-outline:hover {
-      background: rgba(201,169,110,0.1);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      animation: fadeIn 1s ease 1.5s both;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
-      animation: scrollPulse 1.5s ease infinite;
-    }
-    .scroll-text {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(201,169,110,0.6);
-      text-transform: uppercase;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* ── SECTION BASE ── */
-    section { padding: 7rem 0; }
+    /* SECTIONS */
+    section { padding: 8rem 0; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .section-label::before {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--gold);
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    .section-title em { font-style: italic; color: var(--gold-dark); }
+    .label { font-size: .58rem; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+    .label::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,5vw,3.8rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; color: var(--cream); }
+    .title em { font-style: italic; color: var(--red); }
 
-    /* ── ABOUT ── */
-    #about { background: var(--cream); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-    .about-visual {
-      position: relative;
-      height: 520px;
-    }
-    .about-img-main {
-      width: 75%;
-      height: 420px;
-      background: linear-gradient(135deg, var(--dark2), #5c3050);
-      position: absolute;
-      top: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .about-img-main::after {
-      content: '💅';
-      font-size: 5rem;
-      animation: pulse 3s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    .about-img-accent {
-      width: 50%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      position: absolute;
-      bottom: 0; left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--dark);
-      font-style: italic;
-    }
-    .about-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(201,169,110,0.2);
-    }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--gold-dark);
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-light); margin-top: 0.3rem; }
-    .about-text p {
-      font-size: 0.9rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      margin-bottom: 1.2rem;
-    }
+    /* ABOUT */
+    #about { background: linear-gradient(180deg, var(--dark) 0%, #120808 50%, var(--dark) 100%); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-art { width: 100%; height: 480px; background: linear-gradient(135deg, #1C0808, #300A0A, #1C0808); position: relative; overflow: hidden; border: 1px solid rgba(201,168,76,.1); }
+    .about-art-char { position: absolute; font-size: 22rem; font-weight: 700; color: rgba(139,0,0,.07); top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; animation: charPulse 4s ease-in-out infinite; pointer-events: none; }
+    @keyframes charPulse { 0%,100% { opacity: .5; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); } }
+    .about-art-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; animation: floatY 6s ease-in-out infinite; }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    .about-badge { position: absolute; bottom: 2rem; right: 2rem; background: var(--red-dark); border: 1px solid var(--gold); padding: 1.2rem 1.5rem; text-align: center; }
+    .about-badge .num { font-family: 'Cinzel Decorative', serif; font-size: 2rem; color: var(--gold); line-height: 1; }
+    .about-badge .sub { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+    .about-text p { font-size: .88rem; line-height: 1.9; color: var(--dim); margin-bottom: 1.3rem; }
+    .about-features { display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(201,168,76,.1); }
+    .feat { display: flex; align-items: flex-start; gap: .8rem; }
+    .feat-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .feat-name { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+    .feat-desc { font-size: .73rem; color: var(--dim); line-height: 1.6; }
 
-    /* ── SERVICES ── */
-    #services { background: var(--dark); }
-    #services .section-title { color: var(--cream); }
-    #services .section-label { color: var(--gold); }
-    .services-intro {
-      font-size: 0.9rem;
-      color: rgba(232,213,176,0.6);
-      max-width: 500px;
-      line-height: 1.8;
-      margin-bottom: 4rem;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(201,169,110,0.15);
-    }
-    .service-card {
-      background: var(--dark);
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s;
-      cursor: default;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    .service-card:hover { background: #221a20; }
-    .service-card:hover::before { transform: translateX(0); }
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      display: block;
-      transition: transform 0.3s;
-    }
-    .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
-    .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-    }
-    .service-desc {
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-      margin-bottom: 1.5rem;
-    }
-    .service-price {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-    }
+    /* MENU */
+    #menu { background: #0D0505; }
+    .menu-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; }
+    .menu-intro p { font-size: .88rem; line-height: 1.8; color: var(--dim); max-width: 480px; }
+    .menu-tabs { display: flex; gap: .4rem; }
+    .tab { padding: .6rem 1.4rem; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid rgba(201,168,76,.2); color: var(--dim); cursor: pointer; background: transparent; font-family: 'DM Sans', sans-serif; transition: all .3s; }
+    .tab.active, .tab:hover { background: var(--red-dark); border-color: var(--red); color: var(--cream); }
+    .dishes { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,.07); }
+    .dish { background: #0D0505; padding: 3rem 2.5rem; position: relative; overflow: hidden; transition: background .4s; }
+    .dish:hover { background: #180A0A; }
+    .dish-num { position: absolute; top: 1.8rem; right: 2rem; font-family: 'Cinzel Decorative', serif; font-size: .6rem; color: rgba(201,168,76,.25); }
+    .steam-wrap { position: relative; display: inline-block; margin-bottom: 1.3rem; }
+    .dish-emoji { font-size: 3.2rem; display: block; transition: transform .4s; }
+    .dish:hover .dish-emoji { transform: scale(1.15) rotate(-5deg); }
+    .sp { position: absolute; bottom: 105%; width: 7px; background: linear-gradient(to top, rgba(255,255,255,.12), transparent); border-radius: 50%; filter: blur(3px); animation: steamUp 2.5s ease-in-out infinite; }
+    .sp:nth-child(1) { left: 25%; animation-delay: 0s; }
+    .sp:nth-child(2) { left: 50%; animation-delay: .6s; }
+    .sp:nth-child(3) { left: 70%; animation-delay: 1.2s; }
+    @keyframes steamUp { 0% { height: 0; opacity: 0; transform: translateY(0) scaleX(1); } 40% { opacity: .8; } 100% { height: 28px; opacity: 0; transform: translateY(-8px) scaleX(1.6); } }
+    .dish-tag { display: inline-block; font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); border: 1px solid rgba(204,0,0,.3); padding: .22rem .65rem; margin-bottom: .75rem; }
+    .dish-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--gold-light); margin-bottom: .7rem; line-height: 1.2; }
+    .dish-line { width: 28px; height: 1px; background: rgba(201,168,76,.3); margin-bottom: 1rem; }
+    .dish-desc { font-size: .77rem; line-height: 1.85; color: var(--dim); }
 
-    /* ── GALLERY ── */
-    #gallery { background: var(--cream); }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      gap: 1rem;
-    }
-    .gallery-item {
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--dark2), #4a2040);
-    }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gallery-item:nth-child(4) { grid-column: span 2; }
-    .gallery-placeholder {
-      width: 100%;
-      padding-top: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-item:nth-child(1) .gallery-placeholder { padding-top: 70%; }
-    .gallery-item:nth-child(4) .gallery-placeholder { padding-top: 50%; }
-    .gallery-emoji {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(2rem, 5vw, 4rem);
-      background: linear-gradient(135deg, var(--dark2) 0%, #5c3050 50%, var(--dark2) 100%);
-      background-size: 200% 200%;
-      animation: shimmer 4s ease infinite;
-      transition: transform 0.5s;
-    }
-    .gallery-item:hover .gallery-emoji { transform: scale(1.08); }
-    @keyframes shimmer {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26,17,24,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay-text {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-    }
+    /* PHILOSOPHY */
+    #philosophy { background: var(--dark); position: relative; overflow: hidden; }
+    .phil-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 45vw; color: rgba(139,0,0,.03); pointer-events: none; line-height: 1; animation: charPulse 6s ease-in-out infinite; }
+    .phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; position: relative; z-index: 1; }
+    .phil-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,3vw,2.2rem); font-style: italic; color: var(--cream); line-height: 1.5; font-weight: 300; margin-bottom: 2rem; }
+    .phil-quote em { color: var(--red); font-style: normal; }
+    .phil-text p { font-size: .88rem; line-height: 1.9; color: var(--dim); margin-bottom: 1.2rem; }
+    .sig-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sig-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.8rem 2rem; border: 1px solid rgba(201,168,76,.08); background: rgba(201,168,76,.02); transition: border-color .4s, background .4s; }
+    .sig-item:hover { border-color: rgba(201,168,76,.22); background: rgba(139,0,0,.08); }
+    .sig-emoji { font-size: 2.2rem; flex-shrink: 0; }
+    .sig-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-light); margin-bottom: .35rem; }
+    .sig-desc { font-size: .75rem; line-height: 1.7; color: var(--dim); }
 
-    /* ── PROCESS ── */
-    #process { background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%); }
-    #process .section-title { color: var(--cream); }
-    #process .section-label { color: var(--gold); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 4rem;
-      position: relative;
-    }
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 2.5rem;
-      left: 12.5%;
-      right: 12.5%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
-      opacity: 0.3;
-    }
-    .step { text-align: center; }
-    .step-num {
-      width: 50px; height: 50px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      position: relative;
-      z-index: 1;
-      background: var(--dark);
-      transition: background 0.3s, transform 0.3s;
-    }
-    .step:hover .step-num {
-      background: var(--gold);
-      color: var(--dark);
-      transform: scale(1.1);
-    }
-    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .step-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-    }
-    .step-desc {
-      font-size: 0.75rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-    }
+    /* ATMOSPHERE */
+    #atmosphere { background: #070303; }
+    .atmo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,.05); margin-top: 4rem; }
+    .atmo-card { background: #070303; padding: 3.5rem 2.5rem; text-align: center; transition: background .4s; }
+    .atmo-card:hover { background: #120808; }
+    .atmo-card:nth-child(2) { background: #0D0505; }
+    .atmo-icon { font-size: 3rem; display: block; margin-bottom: 1.5rem; animation: floatSlow 5s ease-in-out infinite; }
+    .atmo-card:nth-child(2) .atmo-icon { animation-delay: 1.8s; }
+    .atmo-card:nth-child(3) .atmo-icon { animation-delay: 3.2s; }
+    @keyframes floatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .atmo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); margin-bottom: .8rem; }
+    .atmo-desc { font-size: .78rem; line-height: 1.85; color: var(--dim); }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--cream); overflow: hidden; }
-    .testimonials-track-wrapper {
-      overflow: hidden;
-      margin: 3rem -2rem 0;
-      padding: 0 2rem;
-    }
-    .testimonials-track {
-      display: flex;
-      gap: 1.5rem;
-      animation: scroll-left 30s linear infinite;
-      width: max-content;
-    }
-    .testimonials-track:hover { animation-play-state: paused; }
-    @keyframes scroll-left {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .testimonial-card {
-      width: 340px;
-      flex-shrink: 0;
-      padding: 2.5rem;
-      background: white;
-      border: 1px solid rgba(201,169,110,0.15);
-      position: relative;
-    }
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: rgba(201,169,110,0.1);
-      line-height: 1;
-    }
-    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-    .testimonial-text {
-      font-size: 0.82rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .testimonial-author {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold-dark);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
+    /* REVIEWS */
+    #reviews { background: #0A0A0A; overflow: hidden; }
+    .reviews-wrap { overflow: hidden; margin: 3rem -2rem 0; }
+    .reviews-track { display: flex; gap: 1.5rem; animation: scrollLeft 38s linear infinite; width: max-content; }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .rev-card { width: 350px; flex-shrink: 0; padding: 2.5rem; background: #120808; border: 1px solid rgba(201,168,76,.1); position: relative; }
+    .rev-card::before { content: '❝'; position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem; color: rgba(139,0,0,.18); line-height: 1; font-family: serif; }
+    .rev-stars { color: var(--gold); font-size: .8rem; margin-bottom: 1rem; }
+    .rev-text { font-size: .8rem; line-height: 1.9; color: var(--dim); font-style: italic; margin-bottom: 1.5rem; }
+    .rev-author { font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+    .rating-bar { display: flex; align-items: center; gap: 4rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(201,168,76,.1); justify-content: center; flex-wrap: wrap; gap: 3rem; }
+    .rating-big { text-align: center; }
+    .rating-num { font-family: 'Cinzel Decorative', serif; font-size: 4rem; color: var(--gold); line-height: 1; }
+    .rating-stars { color: var(--gold); font-size: 1.4rem; margin: .4rem 0; }
+    .rating-sub { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+    .rating-sep { width: 1px; height: 60px; background: rgba(201,168,76,.18); }
+    .rating-txt strong { color: var(--gold-light); display: block; font-size: .95rem; margin-bottom: .4rem; }
+    .rating-txt { font-size: .82rem; color: var(--dim); line-height: 1.7; }
 
-    /* ── BOOKING ── */
-    #booking { background: var(--dark); }
-    #booking .section-title { color: var(--cream); }
-    #booking .section-label { color: var(--gold); }
-    .booking-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-    .booking-info p {
-      font-size: 0.85rem;
-      line-height: 1.9;
-      color: rgba(232,213,176,0.6);
-      margin-bottom: 2.5rem;
-    }
-    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: rgba(232,213,176,0.7);
-    }
-    .contact-icon {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(201,169,110,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .booking-form { display: flex; flex-direction: column; gap: 1rem; }
+    /* CONTACT */
+    #contact { background: linear-gradient(180deg, #0D0505, var(--dark)); }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 6rem; align-items: start; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.6);
-    }
-    .form-input, .form-select, .form-textarea {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,169,110,0.15);
-      color: var(--cream);
-      padding: 0.85rem 1rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      transition: border-color 0.3s;
-      outline: none;
-      width: 100%;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--gold);
-    }
-    .form-select option { background: var(--dark2); }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-label { font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(201,168,76,.55); }
+    .form-input, .form-select, .form-textarea { background: rgba(255,255,255,.03); border: none; border-bottom: 1px solid rgba(201,168,76,.25); color: var(--cream); padding: .85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: .82rem; outline: none; width: 100%; transition: border-color .3s, background .3s; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(204,0,0,.6); background: rgba(204,0,0,.04); }
+    .form-select option { background: #1a0808; }
     .form-textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      background: var(--gold);
-      color: var(--dark);
-      padding: 1rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      margin-top: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .form-submit:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .form-submit { background: var(--red-dark); color: var(--cream); padding: 1rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; border: 1px solid var(--red); cursor: pointer; transition: all .4s; margin-top: .5rem; align-self: flex-start; }
+    .form-submit:hover { background: var(--red); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(204,0,0,.4); }
+    .info-blocks { display: flex; flex-direction: column; gap: 2.5rem; }
+    .info-title { font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); padding-bottom: .8rem; border-bottom: 1px solid rgba(201,168,76,.13); margin-bottom: 1rem; }
+    .info-row { display: flex; align-items: flex-start; gap: 1rem; font-size: .83rem; color: var(--dim); line-height: 1.6; margin-bottom: .9rem; }
+    .info-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+    .hrs { display: flex; flex-direction: column; gap: .55rem; }
+    .hr-row { display: flex; justify-content: space-between; font-size: .78rem; color: var(--dim); }
+    .hr-row .day { color: rgba(245,240,232,.45); }
+    .hr-row.closed { color: rgba(204,0,0,.55); }
+    .wa-btn { display: inline-flex; align-items: center; gap: .8rem; background: #075E54; color: #fff; padding: .85rem 1.7rem; text-decoration: none; font-size: .73rem; letter-spacing: .1em; transition: background .3s, transform .3s; margin-top: .8rem; margin-right: .5rem; }
+    .wa-btn:hover { background: #128C7E; transform: translateY(-2px); }
+    .map-btn { background: #1a3a5c; }
+    .map-btn:hover { background: #1f4a78; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #110c10;
-      padding: 4rem 0 2rem;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--gold-light);
-      margin-bottom: 1rem;
-    }
-    .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: rgba(201,169,110,0.4);
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      list-style: none;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links a {
-      text-decoration: none;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.5);
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-divider {
-      width: 60px; height: 1px;
-      background: rgba(201,169,110,0.2);
-      margin: 0 auto 2rem;
-    }
-    .footer-copy {
-      font-size: 0.65rem;
-      color: rgba(201,169,110,0.3);
-      letter-spacing: 0.1em;
-    }
+    /* FOOTER */
+    footer { background: #050101; padding: 5rem 0 2.5rem; text-align: center; border-top: 1px solid rgba(201,168,76,.07); }
+    .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: .1em; margin-bottom: .4rem; }
+    .footer-sub { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(245,240,232,.25); margin-bottom: 2.5rem; }
+    .footer-nav { display: flex; justify-content: center; gap: 2.5rem; list-style: none; margin-bottom: 2.5rem; }
+    .footer-nav a { text-decoration: none; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(201,168,76,.35); transition: color .3s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-div { width: 40px; height: 1px; background: rgba(201,168,76,.14); margin: 0 auto 2rem; }
+    .footer-copy { font-size: .6rem; color: rgba(201,168,76,.22); letter-spacing: .1em; }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(35px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-l { opacity: 0; transform: translateX(-50px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-l.in { opacity: 1; transform: translateX(0); }
+    .reveal-r { opacity: 0; transform: translateX(50px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-r.in { opacity: 1; transform: translateX(0); }
+    @keyframes fadeInDown { from { opacity:0; transform: translateY(-25px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeInUp   { from { opacity:0; transform: translateY(25px);  } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      nav.scrolled { padding: 0.8rem 2rem; }
-      .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(4) { grid-column: span 2; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .steps::before { display: none; }
-      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: .8rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .about-grid, .phil-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .dishes { grid-template-columns: 1fr 1fr; }
+      .atmo-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
+      .rating-sep { display: none; }
+      .menu-head { flex-direction: column; }
+    }
+    @media (max-width: 580px) {
+      .dishes { grid-template-columns: 1fr; }
+      .about-features { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Navigation -->
-  <nav id="nav">
-    <div class="nav-logo">KH <span>Beauty</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <span class="top">The Gathering</span>
+    <span class="bot">Beast @ PJ</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#atmosphere">Ambiance</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Reserve</a></li>
+  </ul>
+  <a href="tel:+60196899336" class="nav-cta">+60 19-689 9336</a>
+</nav>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="particles" id="particles"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="hero-content">
-      <div class="hero-badge">✦ Taman Putra, Malaysia ✦</div>
-      <h1 class="hero-title">
-        KH Beauty
-        <em>Nail Art</em>
-      </h1>
-      <p class="hero-subtitle">Where Every Nail Tells a Story</p>
-      <div class="hero-cta">
-        <a href="#booking" class="btn btn-primary">Book Appointment</a>
-        <a href="#services" class="btn btn-outline">Our Services</a>
-      </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="embers" id="embers"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Aman Suria · Petaling Jaya · Chinese Fusion</div>
+    <h1 class="hero-title">
+      <span class="the">The</span>
+      <span class="gathering">Gathering</span>
+      <span class="beast">Beast</span>
+    </h1>
+    <p class="hero-sub">@ Petaling Jaya · Non-Halal · Est. 2025</p>
+    <p class="hero-tagline">"Where bold Chinese heritage meets modern culinary imagination"</p>
+    <div class="hero-cta">
+      <a href="#menu" class="btn btn-red">Explore Menu</a>
+      <a href="#contact" class="btn btn-outline">Make Reservation</a>
     </div>
-    <div class="scroll-indicator">
-      <span class="scroll-text">Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-text">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal-left">
-          <div class="about-img-main"></div>
-          <div class="about-img-accent">Est. 2020</div>
-        </div>
-        <div class="about-text">
-          <p class="section-label reveal">Our Story</p>
-          <h2 class="section-title reveal">Crafting Beauty,<br><em>One Nail at a Time</em></h2>
-          <div class="reveal">
-            <p>Welcome to KH Beauty Nail Art — your premier destination for exquisite nail artistry in Taman Putra. We believe that beautiful nails are a form of self-expression, and our talented artists are dedicated to bringing your vision to life.</p>
-            <p>From classic manicures to elaborate nail art designs, every service is performed with precision, care, and the highest quality products. Your comfort and satisfaction are our top priorities.</p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-l">
+        <div class="about-art">
+          <div class="about-art-char">獸</div>
+          <div class="about-art-center">🐉</div>
+          <div class="about-badge">
+            <div class="num">4.9</div>
+            <div class="sub">★ Google Rating</div>
           </div>
-          <div class="about-stats reveal">
+        </div>
+      </div>
+      <div>
+        <p class="label reveal">Our Story</p>
+        <h2 class="title reveal">A Hidden <em>Beast</em><br>Awakened in PJ</h2>
+        <div class="reveal">
+          <p>Tucked beneath a massage spa in Aman Suria, The Gathering Beast is Petaling Jaya's most exciting culinary secret. What appears unassuming from the outside transforms into an extraordinary dining experience — a chic, warmly-lit space where Chinese tradition meets bold, modern imagination.</p>
+          <p>Our chefs breathe new life into beloved Malaysian Chinese flavours, crafting dishes that honour their roots while daring to surprise. From 24-hour slow-cooked beef tongue to golden crispy kuey teow in triple-fish broth, every plate is a conversation.</p>
+          <p>Round tables with lazy Susans, antique earthenware, calligraphy on brick walls, and an open kitchen — this is where the table becomes the gathering point for unforgettable moments.</p>
+        </div>
+        <div class="about-features reveal">
+          <div class="feat">
+            <span class="feat-icon">🏮</span>
             <div>
-              <div class="stat-num" data-count="500">0</div>
-              <div class="stat-label">Happy Clients</div>
+              <div class="feat-name">Chinese Fusion</div>
+              <div class="feat-desc">Modern takes on Malaysian Chinese fare</div>
             </div>
+          </div>
+          <div class="feat">
+            <span class="feat-icon">🍽️</span>
             <div>
-              <div class="stat-num" data-count="50">0</div>
-              <div class="stat-label">Nail Designs</div>
+              <div class="feat-name">Open Kitchen</div>
+              <div class="feat-desc">Watch the craft unfold before your eyes</div>
             </div>
+          </div>
+          <div class="feat">
+            <span class="feat-icon">🎉</span>
             <div>
-              <div class="stat-num" data-count="5">0</div>
-              <div class="stat-label">Years Experience</div>
+              <div class="feat-name">Event Venue</div>
+              <div class="feat-desc">Private dining &amp; group celebrations</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <p class="section-label reveal">What We Offer</p>
-      <h2 class="section-title reveal">Our <em>Services</em></h2>
-      <p class="services-intro reveal">Indulge in our comprehensive range of nail and beauty services, each tailored to perfection.</p>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <span class="service-icon">💅</span>
-          <h3 class="service-name">Classic Manicure</h3>
-          <p class="service-desc">A timeless treatment including nail shaping, cuticle care, hand massage, and your choice of polish.</p>
-          <span class="service-price">FROM RM 35</span>
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-head">
+      <div class="menu-intro">
+        <p class="label reveal">Culinary Creations</p>
+        <h2 class="title reveal">The <em>Menu</em></h2>
+        <p class="reveal">Bold, creative, and deeply rooted in Chinese culinary tradition — signature dishes that have become legends among regulars.</p>
+      </div>
+      <div class="menu-tabs reveal">
+        <button class="tab active">Signatures</button>
+        <button class="tab">Mains</button>
+        <button class="tab">Desserts</button>
+      </div>
+    </div>
+    <div class="dishes">
+
+      <div class="dish reveal">
+        <span class="dish-num">01</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🥩</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">✨</span>
-          <h3 class="service-name">Gel Nails</h3>
-          <p class="service-desc">Long-lasting gel polish that stays chip-free for up to 3 weeks, available in hundreds of shades.</p>
-          <span class="service-price">FROM RM 60</span>
+        <span class="dish-tag">Signature</span>
+        <h3 class="dish-name">Beef Tongue Steak</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Slow-cooked at 75°C for a full 24 hours, glazed with Huangjiu rice wine, garnished with pickled nangka and sengkuang. Meltingly tender, deeply complex.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">02</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🫕</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌸</span>
-          <h3 class="service-name">Nail Art Design</h3>
-          <p class="service-desc">Custom hand-painted designs, patterns, florals, gems, and 3D art — limited only by your imagination.</p>
-          <span class="service-price">FROM RM 80</span>
+        <span class="dish-tag">Signature</span>
+        <h3 class="dish-name">Three Kingdom Beef</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">An offal lover's triumph — silken tripe and tendon with celeriac and roasted cashews, dressed in a bold balsamic vinegar reduction.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">03</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🍜</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">👑</span>
-          <h3 class="service-name">Acrylic Extensions</h3>
-          <p class="service-desc">Add length and strength with our premium acrylic nail extensions, perfectly sculpted to your desired shape.</p>
-          <span class="service-price">FROM RM 100</span>
+        <span class="dish-tag">Chef's Pick</span>
+        <h3 class="dish-name">Golden Crispy Fried Kuey Teow</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Lacquered crispy kuey teow submerged in a rich, steamy broth built from three varieties of fish, crowned with fresh crab meat and sliced snapper.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">04</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🍗</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌿</span>
-          <h3 class="service-name">Pedicure Spa</h3>
-          <p class="service-desc">Luxurious foot soak, exfoliation, callus removal, and nail care for beautifully pampered feet.</p>
-          <span class="service-price">FROM RM 50</span>
+        <span class="dish-tag">Fan Favourite</span>
+        <h3 class="dish-name">Dry-Aged Chicken &amp; Quail</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Expertly dry-aged poultry showcasing the beauty of patience and precision in Chinese cooking — exceptional depth of flavour in every bite.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">05</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🥚</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">💎</span>
-          <h3 class="service-name">Luxury Nail Set</h3>
-          <p class="service-desc">Our premium package combining extensions, gel, and bespoke nail art for a complete transformation.</p>
-          <span class="service-price">FROM RM 180</span>
+        <span class="dish-tag">Must-Try</span>
+        <h3 class="dish-name">Fermented Pork Balls</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Delicately fermented pork served with a luscious creamy century egg sauce that brings nostalgia and novelty together in each mouthful.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">06</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🦑</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        </div>
+        <span class="dish-tag">From the Grill</span>
+        <h3 class="dish-name">Grilled Argentinian Squid</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Premium Argentinian squid expertly grilled over high heat for the perfect char — tender, smoky, elegantly presented with the chef's secret accompaniments.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">07</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🍚</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        </div>
+        <span class="dish-tag">Fusion Classic</span>
+        <h3 class="dish-name">Paella Chicken Rice</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">A bold East-meets-West creation — Chinese chicken rice reimagined with Spanish paella technique, producing a socarrat-base rice of stunning complexity.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">08</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🥬</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        </div>
+        <span class="dish-tag">Comfort Bowl</span>
+        <h3 class="dish-name">Braised Cabbage Soup</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">Slow-braised cabbage in a deeply savoury, long-simmered broth — soul-warming, elevated with precision, like grandmother's kitchen remembered perfectly.</p>
+      </div>
+
+      <div class="dish reveal">
+        <span class="dish-num">09</span>
+        <div class="steam-wrap">
+          <span class="dish-emoji">🍰</span>
+          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        </div>
+        <span class="dish-tag">Sweet Finish</span>
+        <h3 class="dish-name">Sesame Cake &amp; Sugar Cane Granita</h3>
+        <div class="dish-line"></div>
+        <p class="dish-desc">A delicate sesame cake paired with hand-made sugar cane granita — the perfect ending that cleanses and lingers with warm, roasted sweetness.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="phil-bg">獸</div>
+  <div class="container">
+    <div class="phil-grid">
+      <div>
+        <p class="label reveal">The Philosophy</p>
+        <h2 class="title reveal">Cooking That<br><em>Dares</em> to Feel</h2>
+        <div class="phil-text reveal">
+          <p class="phil-quote">"Brilliant, sometimes bizarre —<br><em>always</em> worth it."</p>
+          <p>The Gathering Beast is not just a restaurant. It is a statement — that Malaysian Chinese cuisine has infinite frontiers yet to be explored. Our chefs take familiar comfort foods and transform them through modern technique, unexpected pairings, and an obsession with flavour.</p>
+          <p>With a 4.9/5 Google rating from over 386 reviews, the word is out. But to truly understand The Gathering Beast, you have to come to the table.</p>
+          <a href="#contact" class="btn btn-red" style="margin-top:1.5rem; display:inline-block">Reserve Your Seat →</a>
+        </div>
+      </div>
+      <div class="sig-list">
+        <div class="sig-item reveal">
+          <span class="sig-emoji">🥩</span>
+          <div>
+            <div class="sig-name">24-Hour Slow Cook</div>
+            <div class="sig-desc">Our beef tongue cooks at a precise 75°C for an entire day — time is the secret ingredient.</div>
+          </div>
+        </div>
+        <div class="sig-item reveal">
+          <span class="sig-emoji">🐟</span>
+          <div>
+            <div class="sig-name">Triple-Fish Broth</div>
+            <div class="sig-desc">Three varieties of fish form the soul of our famous kuey teow broth. Layers of flavour in every sip.</div>
+          </div>
+        </div>
+        <div class="sig-item reveal">
+          <span class="sig-emoji">🏺</span>
+          <div>
+            <div class="sig-name">Chinese Heritage</div>
+            <div class="sig-desc">Antique earthenware, calligraphy walls, round tables and lazy Susans — tradition in every detail.</div>
+          </div>
+        </div>
+        <div class="sig-item reveal">
+          <span class="sig-emoji">👨‍🍳</span>
+          <div>
+            <div class="sig-name">Open Kitchen</div>
+            <div class="sig-desc">Watch our chefs at work. Every dish crafted with visible passion and meticulous care.</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <p class="section-label reveal">Our Work</p>
-      <h2 class="section-title reveal">Nail Art <em>Gallery</em></h2>
-      <div class="gallery-grid">
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💅✨</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Floral Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌸</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Soft Pink</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💎</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Crystal Set</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌟💅</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Glam Edition</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🦋</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Butterfly Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌙</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Moon &amp; Stars</span></div>
-        </div>
+<!-- ATMOSPHERE -->
+<section id="atmosphere">
+  <div class="container">
+    <p class="label reveal">The Space</p>
+    <h2 class="title reveal">An <em>Atmosphere</em><br>Unlike Any Other</h2>
+    <div class="atmo-grid">
+      <div class="atmo-card reveal">
+        <span class="atmo-icon">🧱</span>
+        <h3 class="atmo-name">Exposed Brick &amp; Glass</h3>
+        <p class="atmo-desc">A sweeping exposed-brick facade with towering glass windows and lush potted plants — The Gathering Beast looks like a chic downtown darling that wandered into the suburbs.</p>
+      </div>
+      <div class="atmo-card reveal">
+        <span class="atmo-icon">🏺</span>
+        <h3 class="atmo-name">Chinese Heritage Interior</h3>
+        <p class="atmo-desc">Antique earthenware, ornate figurines, and calligraphy on the walls celebrate Chinese tradition with warmth and depth. Round tables with lazy Susans invite sharing.</p>
+      </div>
+      <div class="atmo-card reveal">
+        <span class="atmo-icon">🔥</span>
+        <h3 class="atmo-name">Live Open Kitchen</h3>
+        <p class="atmo-desc">The kitchen is your entertainment. Watch the fire, hear the sizzle, see the craft in real time. The Gathering Beast is theatre and feast combined.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Process -->
-  <section id="process">
-    <div class="container">
-      <p class="section-label reveal">The Experience</p>
-      <h2 class="section-title reveal">Your Journey<br><em>With Us</em></h2>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-icon">📱</div>
-          <h3 class="step-name">Book Online</h3>
-          <p class="step-desc">Choose your service and preferred time slot through our booking form or WhatsApp.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <div class="step-icon">🎨</div>
-          <h3 class="step-name">Design Consult</h3>
-          <p class="step-desc">Discuss your vision with our nail artist. Browse our look-book for inspiration.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <div class="step-icon">✨</div>
-          <h3 class="step-name">The Treatment</h3>
-          <p class="step-desc">Sit back and relax while our expert transforms your nails with precision and care.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <div class="step-icon">💅</div>
-          <h3 class="step-name">Show It Off</h3>
-          <p class="step-desc">Leave with stunning nails and share your look — tag us on Facebook!</p>
-        </div>
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <p class="label reveal">What Guests Say</p>
+    <h2 class="title reveal">Critically <em>Acclaimed</em>,<br>Locally Loved</h2>
+  </div>
+  <div class="reviews-wrap">
+    <div class="reviews-track" id="revTrack">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Beautifully presented and full of flavour. Real creativity and passion in every dish — the beef tongue steak is unlike anything I've had in PJ."</p><span class="rev-author">— Google Review</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Warm, modern, and classy. The service is incredibly attentive and the food just keeps getting better. The kuey teow broth is life-changing."</p><span class="rev-author">— Google Review</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Hidden under a massage spa — which makes finding it all the more satisfying! The Three Kingdom Beef blew my mind. Already planning my return."</p><span class="rev-author">— Grazia Malaysia</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brilliant, sometimes bizarre Chinese fusion cooking. This is the kind of creative confidence you rarely see in the suburbs. Every dish tells a story."</p><span class="rev-author">— Malay Mail</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The paella chicken rice is genius. The dry-aged chicken was exceptional. Please pre-book — this place fills up fast and for very good reason."</p><span class="rev-author">— Eat Drink KL</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I've been three times in two months. The fermented pork balls with century egg sauce is the dish of the year. Cannot recommend this place enough."</p><span class="rev-author">— Google Review</span></div>
+      <!-- duplicates for seamless scroll -->
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Beautifully presented and full of flavour. Real creativity and passion in every dish — the beef tongue steak is unlike anything I've had in PJ."</p><span class="rev-author">— Google Review</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Warm, modern, and classy. The service is incredibly attentive and the food just keeps getting better. The kuey teow broth is life-changing."</p><span class="rev-author">— Google Review</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Hidden under a massage spa — which makes finding it all the more satisfying! The Three Kingdom Beef blew my mind. Already planning my return."</p><span class="rev-author">— Grazia Malaysia</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brilliant, sometimes bizarre Chinese fusion cooking. This is the kind of creative confidence you rarely see in the suburbs. Every dish tells a story."</p><span class="rev-author">— Malay Mail</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The paella chicken rice is genius. The dry-aged chicken was exceptional. Please pre-book — this place fills up fast and for very good reason."</p><span class="rev-author">— Eat Drink KL</span></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I've been three times in two months. The fermented pork balls with century egg sauce is the dish of the year. Cannot recommend this place enough."</p><span class="rev-author">— Google Review</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="rating-bar reveal">
+      <div class="rating-big">
+        <div class="rating-num">4.9</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-sub">Google Rating</div>
       </div>
+      <div class="rating-sep"></div>
+      <div class="rating-txt"><strong>386+ Reviews</strong>One of Petaling Jaya's highest-rated<br>dining destinations for 2025.</div>
+      <div class="rating-sep"></div>
+      <div class="rating-txt"><strong>Book in Advance</strong>High demand — reservations<br>strongly recommended.</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <div class="container">
-      <p class="section-label reveal">Client Love</p>
-      <h2 class="section-title reveal">What They <em>Say</em></h2>
-    </div>
-    <div class="testimonials-track-wrapper">
-      <div class="testimonials-track" id="testimonialsTrack">
-        <!-- Cards duplicated for seamless loop -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-        <!-- Duplicate set for seamless scroll -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Booking -->
-  <section id="booking">
-    <div class="container">
-      <div class="booking-grid">
-        <div class="booking-info">
-          <p class="section-label reveal">Get In Touch</p>
-          <h2 class="section-title reveal">Book Your<br><em>Appointment</em></h2>
-          <p class="reveal">Ready for beautiful nails? Book your appointment today and let our expert nail artists create something stunning just for you. Walk-ins are welcome, but appointments are recommended.</p>
-          <div class="contact-items reveal">
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <span>Taman Putra, Malaysia</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📘</div>
-              <span>Nail Art KH (Facebook)</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🕐</div>
-              <span>Mon – Sat: 10:00am – 8:00pm<br>Sunday: 11:00am – 6:00pm</span>
-            </div>
-          </div>
-        </div>
-        <div class="reveal-right">
-          <form class="booking-form" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Jane Smith" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Phone / WhatsApp</label>
-                <input type="tel" class="form-input" placeholder="+60 1X-XXX XXXX" required />
-              </div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="label reveal">Reservations</p>
+        <h2 class="title reveal">Come Feast<br>with the <em>Beast</em></h2>
+        <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="Full name" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Service</label>
+              <label class="form-label">Phone / WhatsApp</label>
+              <input type="tel" class="form-input" placeholder="+60 1X-XXX XXXX" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Preferred Date</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Party Size</label>
               <select class="form-select">
-                <option value="">Select a service...</option>
-                <option>Classic Manicure — from RM 35</option>
-                <option>Gel Nails — from RM 60</option>
-                <option>Nail Art Design — from RM 80</option>
-                <option>Acrylic Extensions — from RM 100</option>
-                <option>Pedicure Spa — from RM 50</option>
-                <option>Luxury Nail Set — from RM 180</option>
+                <option>2 Guests</option>
+                <option>3–4 Guests</option>
+                <option>5–6 Guests</option>
+                <option>7–10 Guests</option>
+                <option>Large Group (10+)</option>
               </select>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Preferred Date</label>
-                <input type="date" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Preferred Time</label>
-                <input type="time" class="form-input" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Special Requests</label>
-              <textarea class="form-textarea" placeholder="Any design ideas or special requests..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Send Booking Request ✦</button>
-          </form>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Special Requests</label>
+            <textarea class="form-textarea" placeholder="Dietary requirements, celebrations, any special notes..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request Reservation →</button>
+        </form>
+      </div>
+      <div class="info-blocks reveal-r">
+        <div>
+          <div class="info-title">Find Us</div>
+          <div class="info-row"><span class="info-icon">📍</span><span>29A-G, Jalan PJU 1/43,<br>Aman Suria, 47301<br>Petaling Jaya, Selangor</span></div>
+          <div class="info-row"><span class="info-icon">📞</span><span>+60 19-689 9336</span></div>
+          <div class="info-row"><span class="info-icon">🅿️</span><span>Street parking available nearby</span></div>
+        </div>
+        <div>
+          <div class="info-title">Opening Hours</div>
+          <div class="hrs">
+            <div class="hr-row"><span class="day">Monday</span><span>5:30 PM – 12:00 AM</span></div>
+            <div class="hr-row closed"><span class="day">Tuesday</span><span>Closed</span></div>
+            <div class="hr-row"><span class="day">Wednesday</span><span>5:30 PM – 12:00 AM</span></div>
+            <div class="hr-row"><span class="day">Thursday</span><span>5:30 PM – 12:00 AM</span></div>
+            <div class="hr-row"><span class="day">Friday</span><span>4:30 PM – 12:00 AM</span></div>
+            <div class="hr-row"><span class="day">Saturday</span><span>4:30 PM – 12:00 AM</span></div>
+            <div class="hr-row"><span class="day">Sunday</span><span>4:30 PM – 12:00 AM</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="info-title">Quick Contact</div>
+          <a href="https://wa.me/60196899336" class="wa-btn" target="_blank"><span>💬</span> WhatsApp Us Now</a>
+          <a href="https://maps.google.com/?q=29A-G+Jalan+PJU+1/43+Aman+Suria+Petaling+Jaya" class="wa-btn map-btn" target="_blank"><span>🗺️</span> Get Directions</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-logo">KH <span>Beauty</span> Nail Art</div>
-    <p class="footer-tagline">Where Every Nail Tells a Story</p>
-    <ul class="footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-    <div class="footer-divider"></div>
-    <p class="footer-copy">© 2026 KH Beauty Nail Art · Taman Putra, Malaysia · All Rights Reserved</p>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">The Gathering Beast</div>
+  <p class="footer-sub">@ Petaling Jaya · Aman Suria · Non-Halal</p>
+  <ul class="footer-nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#atmosphere">Ambiance</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Reserve</a></li>
+  </ul>
+  <div class="footer-div"></div>
+  <p class="footer-copy">© 2026 The Gathering Beast @ PJ · 29A-G Jalan PJU 1/43, Aman Suria · All Rights Reserved</p>
+</footer>
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+<script>
+  // Cursor
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  (function anim(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+  document.querySelectorAll('a,button,.dish,.sig-item').forEach(el => {
+    el.addEventListener('mouseenter', ()=>{ ring.style.width='54px'; ring.style.height='54px'; });
+    el.addEventListener('mouseleave', ()=>{ ring.style.width='36px'; ring.style.height='36px'; });
+  });
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
+  // Nav
+  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY>60));
+
+  // Embers
+  const ec = document.getElementById('embers');
+  const colors = ['#CC0000','#FF4400','#FFB300','#FF6600'];
+  for(let i=0;i<55;i++){
+    const e=document.createElement('div');
+    e.className='ember';
+    const s=Math.random()*4+2;
+    const c=colors[Math.floor(Math.random()*colors.length)];
+    e.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${Math.random()*30}%;--dx:${(Math.random()-.5)*200}px;animation-duration:${Math.random()*7+5}s;animation-delay:${Math.random()*9}s;background:${c};box-shadow:0 0 ${s*2}px ${c};`;
+    ec.appendChild(e);
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((entry,i) => {
+      if(entry.isIntersecting) setTimeout(()=>entry.target.classList.add('in'), i*70);
     });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
 
-    function animateCursorRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateCursorRing);
-    }
-    animateCursorRing();
+  // Hero parallax
+  window.addEventListener('scroll', () => {
+    const y=window.scrollY, hc=document.querySelector('.hero-content');
+    if(hc && y<window.innerHeight){ hc.style.transform=`translateY(${y*.22}px)`; hc.style.opacity=1-y/(window.innerHeight*.75); }
+  });
 
-    document.querySelectorAll('a, button, .service-card, .gallery-item').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorRing.style.width = '60px';
-        cursorRing.style.height = '60px';
-        cursorRing.style.borderColor = 'var(--gold)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorRing.style.width = '40px';
-        cursorRing.style.height = '40px';
-      });
-    });
+  // Menu tabs
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click', function(){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); this.classList.add('active'); });
+  });
 
-    // Sticky nav
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
-    });
-
-    // Floating particles
-    const particleContainer = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.cssText = `
-        left: ${Math.random() * 100}%;
-        width: ${Math.random() * 4 + 1}px;
-        height: ${Math.random() * 4 + 1}px;
-        animation-duration: ${Math.random() * 10 + 8}s;
-        animation-delay: ${Math.random() * 10}s;
-        opacity: ${Math.random() * 0.5 + 0.2};
-      `;
-      particleContainer.appendChild(p);
-    }
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // Counter animation
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.count);
-      const suffix = target >= 100 ? '+' : target >= 10 ? '+' : '';
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current) + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 25);
-    }
-
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-    // Form submit handler
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Request Sent! We\'ll contact you soon ✓';
-      btn.style.background = 'var(--gold-dark)';
-      btn.disabled = true;
-    }
-
-    // Smooth parallax on hero
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroContent = document.querySelector('.hero-content');
-      if (heroContent && scrollY < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-        heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
-      }
-    });
-  </script>
+  // Form
+  function handleSubmit(e){
+    e.preventDefault();
+    const btn=e.target.querySelector('.form-submit');
+    btn.textContent='Reservation Requested — We\'ll contact you soon ✓';
+    btn.style.background='#1a4a1a';
+    btn.style.borderColor='#2d6a2d';
+    btn.disabled=true;
+  }
+</script>
 </body>
 </html>
