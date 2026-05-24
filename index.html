@@ -16,7 +16,6 @@
       --gold-light: #E8D5A0;
       --dark: #080404;
       --dark2: #120808;
-      --dark3: #1A0A0A;
       --cream: #F5F0E8;
       --dim: rgba(245,240,232,0.6);
     }
@@ -24,34 +23,29 @@
     body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
 
     /* CURSOR */
-    .cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: screen; transition: transform .1s; }
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: screen; }
     .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,.55); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 4rem; transition: background .5s, padding .4s; }
-    nav.scrolled { background: rgba(8,4,4,.93); backdrop-filter: blur(18px); padding: 1rem 4rem; border-bottom: 1px solid rgba(201,168,76,.1); }
+    nav.scrolled { background: rgba(8,4,4,.94); backdrop-filter: blur(18px); padding: 1rem 4rem; border-bottom: 1px solid rgba(201,168,76,.1); }
     .nav-logo { font-family: 'Cinzel Decorative', serif; line-height: 1.3; }
-    .nav-logo .top { font-size: .65rem; color: var(--gold); letter-spacing: .2em; display: block; }
-    .nav-logo .bot { font-size: .95rem; color: var(--cream); letter-spacing: .1em; display: block; }
+    .nav-logo .top { font-size: .62rem; color: var(--gold); letter-spacing: .2em; display: block; }
+    .nav-logo .bot { font-size: .92rem; color: var(--cream); letter-spacing: .1em; display: block; }
     .nav-links { display: flex; gap: 2.8rem; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,240,232,.65); transition: color .3s; position: relative; }
+    .nav-links a { text-decoration: none; font-size: .67rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,240,232,.65); transition: color .3s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width .3s; }
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
-    .nav-cta { font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--dark); background: var(--gold); padding: .6rem 1.5rem; text-decoration: none; transition: background .3s, transform .3s; }
+    .nav-cta { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--dark); background: var(--gold); padding: .6rem 1.5rem; text-decoration: none; transition: background .3s, transform .3s; }
     .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
     /* HERO */
     #hero { min-height: 100vh; background: radial-gradient(ellipse at center bottom, #2A0808 0%, #120404 40%, #050101 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .embers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     .ember { position: absolute; border-radius: 50%; animation: emberRise linear infinite; opacity: 0; }
-    @keyframes emberRise {
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      10%  { opacity: 1; }
-      60%  { transform: translateY(-55vh) translateX(var(--dx)); opacity: .7; }
-      100% { transform: translateY(-105vh) translateX(calc(var(--dx)*1.6)); opacity: 0; }
-    }
-    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,.035) 1px, transparent 1px); background-size: 80px 80px; }
+    @keyframes emberRise { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 60% { transform: translateY(-55vh) translateX(var(--dx)); opacity: .7; } 100% { transform: translateY(-105vh) translateX(calc(var(--dx)*1.6)); opacity: 0; } }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,.032) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,.032) 1px, transparent 1px); background-size: 80px 80px; }
     .hero-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,.07); animation: ringPulse 6s ease-in-out infinite; }
     .hero-ring:nth-child(1) { width: 500px; height: 500px; }
     .hero-ring:nth-child(2) { width: 750px; height: 750px; animation-delay: 2s; }
@@ -64,7 +58,7 @@
     .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.2rem,7vw,6.5rem); font-weight: 900; line-height: 1; letter-spacing: .04em; animation: fadeInUp 1s ease .5s both; }
     .hero-title .the { font-size: .38em; color: var(--gold); display: block; letter-spacing: .3em; margin-bottom: .3em; }
     .hero-title .gathering { color: var(--cream); display: block; text-shadow: 0 0 60px rgba(139,0,0,.4); }
-    .hero-title .beast { color: var(--red); display: block; text-shadow: 0 0 40px rgba(204,0,0,.9), 0 0 100px rgba(204,0,0,.4); animation: beastGlow 3s ease-in-out infinite; }
+    .hero-title .beast { color: var(--red); display: block; animation: beastGlow 3s ease-in-out infinite; }
     @keyframes beastGlow { 0%,100% { text-shadow: 0 0 40px rgba(204,0,0,.7), 0 0 90px rgba(204,0,0,.3); } 50% { text-shadow: 0 0 70px rgba(204,0,0,1), 0 0 140px rgba(204,0,0,.6); } }
     .hero-sub { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(245,240,232,.45); margin: 1.5rem 0; animation: fadeInUp 1s ease .7s both; }
     .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(.95rem,2.5vw,1.5rem); font-style: italic; color: var(--gold-light); font-weight: 300; margin-bottom: 3rem; animation: fadeInUp 1s ease .9s both; }
@@ -89,21 +83,22 @@
 
     /* ABOUT */
     #about { background: linear-gradient(180deg, var(--dark) 0%, #120808 50%, var(--dark) 100%); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .about-art { width: 100%; height: 480px; background: linear-gradient(135deg, #1C0808, #300A0A, #1C0808); position: relative; overflow: hidden; border: 1px solid rgba(201,168,76,.1); }
-    .about-art-char { position: absolute; font-size: 22rem; font-weight: 700; color: rgba(139,0,0,.07); top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; animation: charPulse 4s ease-in-out infinite; pointer-events: none; }
-    @keyframes charPulse { 0%,100% { opacity: .5; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); } }
-    .about-art-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; animation: floatY 6s ease-in-out infinite; }
-    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-    .about-badge { position: absolute; bottom: 2rem; right: 2rem; background: var(--red-dark); border: 1px solid var(--gold); padding: 1.2rem 1.5rem; text-align: center; }
-    .about-badge .num { font-family: 'Cinzel Decorative', serif; font-size: 2rem; color: var(--gold); line-height: 1; }
-    .about-badge .sub { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-photos { position: relative; height: 520px; }
+    .about-photo-main { position: absolute; top: 0; right: 0; width: 80%; height: 400px; overflow: hidden; border: 1px solid rgba(201,168,76,.12); }
+    .about-photo-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+    .about-photos:hover .about-photo-main img { transform: scale(1.05); }
+    .about-photo-accent { position: absolute; bottom: 0; left: 0; width: 55%; height: 200px; overflow: hidden; border: 1px solid rgba(201,168,76,.18); }
+    .about-photo-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge { position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(8,4,4,.88); border: 1px solid var(--gold); padding: 1rem 1.3rem; text-align: center; backdrop-filter: blur(8px); }
+    .about-badge .num { font-family: 'Cinzel Decorative', serif; font-size: 1.8rem; color: var(--gold); line-height: 1; }
+    .about-badge .sub { font-size: .55rem; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
     .about-text p { font-size: .88rem; line-height: 1.9; color: var(--dim); margin-bottom: 1.3rem; }
-    .about-features { display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(201,168,76,.1); }
+    .about-features { display: flex; gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(201,168,76,.1); }
     .feat { display: flex; align-items: flex-start; gap: .8rem; }
-    .feat-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .feat-name { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
-    .feat-desc { font-size: .73rem; color: var(--dim); line-height: 1.6; }
+    .feat-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .feat-name { font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+    .feat-desc { font-size: .72rem; color: var(--dim); line-height: 1.6; }
 
     /* MENU */
     #menu { background: #0D0505; }
@@ -112,26 +107,44 @@
     .menu-tabs { display: flex; gap: .4rem; }
     .tab { padding: .6rem 1.4rem; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid rgba(201,168,76,.2); color: var(--dim); cursor: pointer; background: transparent; font-family: 'DM Sans', sans-serif; transition: all .3s; }
     .tab.active, .tab:hover { background: var(--red-dark); border-color: var(--red); color: var(--cream); }
+
+    /* DISH CARDS WITH REAL PHOTOS */
     .dishes { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,.07); }
-    .dish { background: #0D0505; padding: 3rem 2.5rem; position: relative; overflow: hidden; transition: background .4s; }
+    .dish { background: #0D0505; position: relative; overflow: hidden; transition: background .4s; display: flex; flex-direction: column; }
     .dish:hover { background: #180A0A; }
-    .dish-num { position: absolute; top: 1.8rem; right: 2rem; font-family: 'Cinzel Decorative', serif; font-size: .6rem; color: rgba(201,168,76,.25); }
-    .steam-wrap { position: relative; display: inline-block; margin-bottom: 1.3rem; }
-    .dish-emoji { font-size: 3.2rem; display: block; transition: transform .4s; }
-    .dish:hover .dish-emoji { transform: scale(1.15) rotate(-5deg); }
-    .sp { position: absolute; bottom: 105%; width: 7px; background: linear-gradient(to top, rgba(255,255,255,.12), transparent); border-radius: 50%; filter: blur(3px); animation: steamUp 2.5s ease-in-out infinite; }
-    .sp:nth-child(1) { left: 25%; animation-delay: 0s; }
-    .sp:nth-child(2) { left: 50%; animation-delay: .6s; }
-    .sp:nth-child(3) { left: 70%; animation-delay: 1.2s; }
-    @keyframes steamUp { 0% { height: 0; opacity: 0; transform: translateY(0) scaleX(1); } 40% { opacity: .8; } 100% { height: 28px; opacity: 0; transform: translateY(-8px) scaleX(1.6); } }
+
+    /* Photo area */
+    .dish-img { position: relative; height: 230px; overflow: hidden; flex-shrink: 0; }
+    .dish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; display: block; }
+    .dish:hover .dish-img img { transform: scale(1.08); }
+    .dish-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,4,4,0) 30%, #0D0505 100%); pointer-events: none; }
+    .dish-img-top-gradient { position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, rgba(8,4,4,.5), transparent); pointer-events: none; }
+
+    /* No-photo fallback */
+    .dish-nophoto { height: 160px; background: linear-gradient(135deg, #1C0808 0%, #2A0A0A 50%, #1C0808 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
+    .dish-nophoto-emoji { font-size: 4rem; animation: floatY 5s ease-in-out infinite; }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* Steam on photos */
+    .dish-steam { position: absolute; bottom: 0; left: 0; right: 0; pointer-events: none; display: flex; justify-content: center; gap: 20px; padding-bottom: 4px; }
+    .sp { width: 8px; background: linear-gradient(to top, rgba(255,255,255,.14), transparent); border-radius: 50%; filter: blur(4px); animation: steamUp 2.5s ease-in-out infinite; }
+    .sp:nth-child(1) { animation-delay: 0s; }
+    .sp:nth-child(2) { animation-delay: .65s; }
+    .sp:nth-child(3) { animation-delay: 1.3s; }
+    @keyframes steamUp { 0% { height: 0; opacity: 0; transform: translateY(0) scaleX(1); } 40% { opacity: .9; } 100% { height: 35px; opacity: 0; transform: translateY(-12px) scaleX(1.7); } }
+
+    /* Dish text body */
+    .dish-body { padding: 1.8rem 2.2rem 2.5rem; flex: 1; }
+    .dish-num { position: absolute; top: .9rem; right: 1.2rem; font-family: 'Cinzel Decorative', serif; font-size: .58rem; color: rgba(201,168,76,.55); background: rgba(8,4,4,.7); padding: .2rem .6rem; border-radius: 2px; }
     .dish-tag { display: inline-block; font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); border: 1px solid rgba(204,0,0,.3); padding: .22rem .65rem; margin-bottom: .75rem; }
-    .dish-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--gold-light); margin-bottom: .7rem; line-height: 1.2; }
-    .dish-line { width: 28px; height: 1px; background: rgba(201,168,76,.3); margin-bottom: 1rem; }
-    .dish-desc { font-size: .77rem; line-height: 1.85; color: var(--dim); }
+    .dish-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--gold-light); margin-bottom: .6rem; line-height: 1.2; }
+    .dish-line { width: 28px; height: 1px; background: rgba(201,168,76,.3); margin-bottom: .9rem; }
+    .dish-desc { font-size: .76rem; line-height: 1.85; color: var(--dim); }
 
     /* PHILOSOPHY */
     #philosophy { background: var(--dark); position: relative; overflow: hidden; }
     .phil-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 45vw; color: rgba(139,0,0,.03); pointer-events: none; line-height: 1; animation: charPulse 6s ease-in-out infinite; }
+    @keyframes charPulse { 0%,100% { opacity: .5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.04); } }
     .phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; position: relative; z-index: 1; }
     .phil-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,3vw,2.2rem); font-style: italic; color: var(--cream); line-height: 1.5; font-weight: 300; margin-bottom: 2rem; }
     .phil-quote em { color: var(--red); font-style: normal; }
@@ -146,15 +159,15 @@
     /* ATMOSPHERE */
     #atmosphere { background: #070303; }
     .atmo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,.05); margin-top: 4rem; }
-    .atmo-card { background: #070303; padding: 3.5rem 2.5rem; text-align: center; transition: background .4s; }
-    .atmo-card:hover { background: #120808; }
-    .atmo-card:nth-child(2) { background: #0D0505; }
-    .atmo-icon { font-size: 3rem; display: block; margin-bottom: 1.5rem; animation: floatSlow 5s ease-in-out infinite; }
-    .atmo-card:nth-child(2) .atmo-icon { animation-delay: 1.8s; }
-    .atmo-card:nth-child(3) .atmo-icon { animation-delay: 3.2s; }
-    @keyframes floatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    .atmo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); margin-bottom: .8rem; }
-    .atmo-desc { font-size: .78rem; line-height: 1.85; color: var(--dim); }
+    .atmo-card { position: relative; overflow: hidden; height: 340px; }
+    .atmo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; display: block; }
+    .atmo-card:hover img { transform: scale(1.06); }
+    .atmo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,3,3,.92) 0%, rgba(7,3,3,.4) 50%, rgba(7,3,3,.1) 100%); transition: background .4s; }
+    .atmo-card:hover .atmo-overlay { background: linear-gradient(to top, rgba(7,3,3,.85) 0%, rgba(7,3,3,.3) 50%, rgba(7,3,3,.05) 100%); }
+    .atmo-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem; }
+    .atmo-icon { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
+    .atmo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); margin-bottom: .7rem; }
+    .atmo-desc { font-size: .77rem; line-height: 1.8; color: var(--dim); }
 
     /* REVIEWS */
     #reviews { background: #0A0A0A; overflow: hidden; }
@@ -229,6 +242,7 @@
       nav.scrolled { padding: .8rem 1.5rem; }
       .nav-links, .nav-cta { display: none; }
       .about-grid, .phil-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photos { height: 320px; }
       .dishes { grid-template-columns: 1fr 1fr; }
       .atmo-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
@@ -238,6 +252,7 @@
     @media (max-width: 580px) {
       .dishes { grid-template-columns: 1fr; }
       .about-features { flex-direction: column; }
+      .about-photos { height: 260px; }
     }
   </style>
 </head>
@@ -293,14 +308,24 @@
 <section id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="reveal-l">
-        <div class="about-art">
-          <div class="about-art-char">獸</div>
-          <div class="about-art-center">🐉</div>
-          <div class="about-badge">
-            <div class="num">4.9</div>
-            <div class="sub">★ Google Rating</div>
-          </div>
+      <div class="about-photos reveal-l">
+        <div class="about-photo-main">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/V_GgJ3CPpPV_c6pxH1vFjw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/e0796da2547e58891102af57c784cc08"
+            alt="The Gathering Beast interior dining room"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-photo-accent">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/rIvBfWhA3YW4owAC79CRww--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD02OTg7Y2Y9d2VicA--/https://media.zenfs.com/en/mmail.com.my/dc0fb5814ebad8537b589628d8aabcb4"
+            alt="The Gathering Beast facade exterior"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-badge">
+          <div class="num">4.9★</div>
+          <div class="sub">Google Rating</div>
         </div>
       </div>
       <div>
@@ -356,112 +381,190 @@
     </div>
     <div class="dishes">
 
+      <!-- 01 Beef Tongue Steak -->
       <div class="dish reveal">
         <span class="dish-num">01</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🥩</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://chiefeater.com/wp-content/uploads/2026/03/the_gathering_beast_mar2026_vk_06.jpeg"
+            alt="Beef Tongue Steak at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Signature</span>
-        <h3 class="dish-name">Beef Tongue Steak</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Slow-cooked at 75°C for a full 24 hours, glazed with Huangjiu rice wine, garnished with pickled nangka and sengkuang. Meltingly tender, deeply complex.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🥩</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Signature</span>
+          <h3 class="dish-name">Beef Tongue Steak</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Slow-cooked at 75°C for a full 24 hours, glazed with Huangjiu rice wine, garnished with pickled nangka and sengkuang. Meltingly tender, deeply complex.</p>
+        </div>
       </div>
 
+      <!-- 02 Three Kingdom Beef -->
       <div class="dish reveal">
         <span class="dish-num">02</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🫕</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/h411vkSEt6A.aXAejuIE8A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/44b724f260616d4a64eb8131be598c28"
+            alt="Three Kingdom Beef at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Signature</span>
-        <h3 class="dish-name">Three Kingdom Beef</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">An offal lover's triumph — silken tripe and tendon with celeriac and roasted cashews, dressed in a bold balsamic vinegar reduction.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🫕</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Signature</span>
+          <h3 class="dish-name">Three Kingdom Beef</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">An offal lover's triumph — silken tripe and tendon with celeriac and roasted cashews, dressed in a bold balsamic vinegar reduction. Bold, balanced, unforgettable.</p>
+        </div>
       </div>
 
+      <!-- 03 Golden Crispy Fried Kuey Teow -->
       <div class="dish reveal">
         <span class="dish-num">03</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🍜</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/BGaF3vTeWpF2m5uNInZZpA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/c9a6e216347800b31ab75534df07bbdf"
+            alt="Golden Crispy Fried Kuey Teow at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Chef's Pick</span>
-        <h3 class="dish-name">Golden Crispy Fried Kuey Teow</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Lacquered crispy kuey teow submerged in a rich, steamy broth built from three varieties of fish, crowned with fresh crab meat and sliced snapper.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🍜</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Chef's Pick</span>
+          <h3 class="dish-name">Golden Crispy Fried Kuey Teow</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Lacquered crispy kuey teow submerged in a rich, steamy broth built from three varieties of fish, crowned with fresh crab meat and sliced snapper.</p>
+        </div>
       </div>
 
+      <!-- 04 Dry-Aged Chicken & Quail -->
       <div class="dish reveal">
         <span class="dish-num">04</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🍗</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/Vk_VIGII6BBbnjdiFqfing--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/ed5afc71672a9c912844092d74d0a804"
+            alt="Dry-Aged Chicken and Quail at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Fan Favourite</span>
-        <h3 class="dish-name">Dry-Aged Chicken &amp; Quail</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Expertly dry-aged poultry showcasing the beauty of patience and precision in Chinese cooking — exceptional depth of flavour in every bite.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🍗</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Fan Favourite</span>
+          <h3 class="dish-name">Dry-Aged Chicken &amp; Quail</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Expertly dry-aged poultry showcasing the beauty of patience and precision in Chinese cooking — exceptional depth of flavour in every bite.</p>
+        </div>
       </div>
 
+      <!-- 05 Fermented Pork Balls -->
       <div class="dish reveal">
         <span class="dish-num">05</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🥚</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-nophoto"><span class="dish-nophoto-emoji">🥚</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Must-Try</span>
+          <h3 class="dish-name">Fermented Pork Balls</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Delicately fermented pork served with a luscious creamy century egg sauce that brings nostalgia and novelty together in each mouthful.</p>
         </div>
-        <span class="dish-tag">Must-Try</span>
-        <h3 class="dish-name">Fermented Pork Balls</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Delicately fermented pork served with a luscious creamy century egg sauce that brings nostalgia and novelty together in each mouthful.</p>
       </div>
 
+      <!-- 06 Grilled Argentinian Squid -->
       <div class="dish reveal">
         <span class="dish-num">06</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🦑</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-nophoto"><span class="dish-nophoto-emoji">🦑</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">From the Grill</span>
+          <h3 class="dish-name">Grilled Argentinian Squid</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Premium Argentinian squid expertly grilled over high heat for the perfect char — tender, smoky, and elegantly presented with the chef's secret accompaniments.</p>
         </div>
-        <span class="dish-tag">From the Grill</span>
-        <h3 class="dish-name">Grilled Argentinian Squid</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Premium Argentinian squid expertly grilled over high heat for the perfect char — tender, smoky, elegantly presented with the chef's secret accompaniments.</p>
       </div>
 
+      <!-- 07 Paella Chicken Rice -->
       <div class="dish reveal">
         <span class="dish-num">07</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🍚</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-nophoto"><span class="dish-nophoto-emoji">🍚</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Fusion Classic</span>
+          <h3 class="dish-name">Paella Chicken Rice</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">A bold East-meets-West creation — Chinese chicken rice reimagined with Spanish paella technique, producing a socarrat-base rice of stunning complexity.</p>
         </div>
-        <span class="dish-tag">Fusion Classic</span>
-        <h3 class="dish-name">Paella Chicken Rice</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">A bold East-meets-West creation — Chinese chicken rice reimagined with Spanish paella technique, producing a socarrat-base rice of stunning complexity.</p>
       </div>
 
+      <!-- 08 Braised Cabbage Soup -->
       <div class="dish reveal">
         <span class="dish-num">08</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🥬</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/vO3aaYteEORnsZujrM6RqQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/213731ff17007f6d9b0abc456ca5798f"
+            alt="Braised dish at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Comfort Bowl</span>
-        <h3 class="dish-name">Braised Cabbage Soup</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">Slow-braised cabbage in a deeply savoury, long-simmered broth — soul-warming, elevated with precision, like grandmother's kitchen remembered perfectly.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🥬</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Comfort Bowl</span>
+          <h3 class="dish-name">Braised Cabbage Soup</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">Slow-braised cabbage in a deeply savoury, long-simmered broth — soul-warming, elevated with precision, like grandmother's kitchen remembered perfectly.</p>
+        </div>
       </div>
 
+      <!-- 09 Sesame Cake -->
       <div class="dish reveal">
         <span class="dish-num">09</span>
-        <div class="steam-wrap">
-          <span class="dish-emoji">🍰</span>
-          <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+        <div class="dish-img">
+          <img
+            src="https://s.yimg.com/ny/api/res/1.2/NKYTZ41pAWeAXoLreR8hvQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/c693d76771c5c6d729070e70912686ae"
+            alt="Black Sesame Cake at The Gathering Beast"
+            loading="lazy"
+            onerror="this.closest('.dish-img').style.display='none'; this.closest('.dish').querySelector('.dish-nophoto-fallback').style.display='flex';"
+          />
+          <div class="dish-img-top-gradient"></div>
+          <div class="dish-img-overlay"></div>
+          <div class="dish-steam">
+            <div class="sp"></div><div class="sp"></div><div class="sp"></div>
+          </div>
         </div>
-        <span class="dish-tag">Sweet Finish</span>
-        <h3 class="dish-name">Sesame Cake &amp; Sugar Cane Granita</h3>
-        <div class="dish-line"></div>
-        <p class="dish-desc">A delicate sesame cake paired with hand-made sugar cane granita — the perfect ending that cleanses and lingers with warm, roasted sweetness.</p>
+        <div class="dish-nophoto dish-nophoto-fallback" style="display:none"><span class="dish-nophoto-emoji">🍰</span></div>
+        <div class="dish-body">
+          <span class="dish-tag">Sweet Finish</span>
+          <h3 class="dish-name">Sesame Cake &amp; Sugar Cane Granita</h3>
+          <div class="dish-line"></div>
+          <p class="dish-desc">A delicate sesame cake paired with hand-made sugar cane granita — the perfect ending that cleanses and lingers with warm, roasted sweetness.</p>
+        </div>
       </div>
 
     </div>
@@ -522,21 +625,48 @@
   <div class="container">
     <p class="label reveal">The Space</p>
     <h2 class="title reveal">An <em>Atmosphere</em><br>Unlike Any Other</h2>
-    <div class="atmo-grid">
-      <div class="atmo-card reveal">
+  </div>
+  <div class="atmo-grid" style="margin-top:3rem">
+    <div class="atmo-card reveal">
+      <img
+        src="https://s.yimg.com/ny/api/res/1.2/IjMBeEHsCNEb8NUMRmpj0A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/ecb07065623ad7bac9f64a50106f983f"
+        alt="The Gathering Beast exterior facade"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+      <div class="atmo-overlay"></div>
+      <div class="atmo-content">
         <span class="atmo-icon">🧱</span>
         <h3 class="atmo-name">Exposed Brick &amp; Glass</h3>
-        <p class="atmo-desc">A sweeping exposed-brick facade with towering glass windows and lush potted plants — The Gathering Beast looks like a chic downtown darling that wandered into the suburbs.</p>
+        <p class="atmo-desc">A sweeping brick facade with towering glass windows and lush potted plants — looks like a chic downtown darling that wandered into the suburbs.</p>
       </div>
-      <div class="atmo-card reveal">
+    </div>
+    <div class="atmo-card reveal">
+      <img
+        src="https://s.yimg.com/ny/api/res/1.2/V_GgJ3CPpPV_c6pxH1vFjw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/mmail.com.my/e0796da2547e58891102af57c784cc08"
+        alt="The Gathering Beast dining room interior"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+      <div class="atmo-overlay"></div>
+      <div class="atmo-content">
         <span class="atmo-icon">🏺</span>
         <h3 class="atmo-name">Chinese Heritage Interior</h3>
-        <p class="atmo-desc">Antique earthenware, ornate figurines, and calligraphy on the walls celebrate Chinese tradition with warmth and depth. Round tables with lazy Susans invite sharing.</p>
+        <p class="atmo-desc">Antique earthenware, ornate figurines, and calligraphy on the walls. Round tables with lazy Susans invite sharing — tradition lives here.</p>
       </div>
-      <div class="atmo-card reveal">
+    </div>
+    <div class="atmo-card reveal">
+      <img
+        src="https://s.yimg.com/ny/api/res/1.2/rIvBfWhA3YW4owAC79CRww--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD02OTg7Y2Y9d2VicA--/https://media.zenfs.com/en/mmail.com.my/dc0fb5814ebad8537b589628d8aabcb4"
+        alt="The Gathering Beast restaurant"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+      <div class="atmo-overlay"></div>
+      <div class="atmo-content">
         <span class="atmo-icon">🔥</span>
         <h3 class="atmo-name">Live Open Kitchen</h3>
-        <p class="atmo-desc">The kitchen is your entertainment. Watch the fire, hear the sizzle, see the craft in real time. The Gathering Beast is theatre and feast combined.</p>
+        <p class="atmo-desc">Watch the fire, hear the sizzle, see the craft in real time. The Gathering Beast is theatre and feast combined in one extraordinary space.</p>
       </div>
     </div>
   </div>
@@ -556,7 +686,7 @@
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brilliant, sometimes bizarre Chinese fusion cooking. This is the kind of creative confidence you rarely see in the suburbs. Every dish tells a story."</p><span class="rev-author">— Malay Mail</span></div>
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The paella chicken rice is genius. The dry-aged chicken was exceptional. Please pre-book — this place fills up fast and for very good reason."</p><span class="rev-author">— Eat Drink KL</span></div>
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I've been three times in two months. The fermented pork balls with century egg sauce is the dish of the year. Cannot recommend this place enough."</p><span class="rev-author">— Google Review</span></div>
-      <!-- duplicates for seamless scroll -->
+      <!-- duplicates for seamless loop -->
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Beautifully presented and full of flavour. Real creativity and passion in every dish — the beef tongue steak is unlike anything I've had in PJ."</p><span class="rev-author">— Google Review</span></div>
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Warm, modern, and classy. The service is incredibly attentive and the food just keeps getting better. The kuey teow broth is life-changing."</p><span class="rev-author">— Google Review</span></div>
       <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Hidden under a massage spa — which makes finding it all the more satisfying! The Three Kingdom Beef blew my mind. Already planning my return."</p><span class="rev-author">— Grazia Malaysia</span></div>
