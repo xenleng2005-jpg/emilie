@@ -722,9 +722,240 @@
       .about-highlights { grid-template-columns: 1fr; }
       .feat-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── ANNOUNCE BAR ── */
+    #announce {
+      background: linear-gradient(90deg, var(--red), var(--dark3) 40%, var(--red2) 70%, var(--orange));
+      background-size: 200% 100%;
+      animation: gradShift 6s ease infinite;
+      padding: 9px 0;
+      text-align: center;
+      font-size: .78rem;
+      color: #fff;
+      letter-spacing: .5px;
+      position: relative; z-index: 300;
+      overflow: hidden;
+    }
+    @keyframes gradShift { 0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%} }
+    .announce-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
+    }
+    .announce-inner span { display: flex; align-items: center; gap: 7px; }
+    .announce-inner span i { font-size: .8rem; opacity: .85; }
+    .announce-sep { opacity: .4; }
+
+    /* ── THIRUVILA SAAPADU (Signature Feast) ── */
+    #signature {
+      background: var(--dark);
+      position: relative; overflow: hidden;
+    }
+    #signature::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(168,30,30,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,152,14,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sig-wrap {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 72px; align-items: center; max-width: 1180px; margin: 0 auto;
+      position: relative;
+    }
+    .sig-content { }
+    .sig-content .sh-tag { text-align: left; }
+    .sig-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 900; color: var(--white); line-height: 1.15;
+      margin: 14px 0 20px;
+    }
+    .sig-content h2 em { color: var(--gold2); font-style: normal; }
+    .sig-content > p { color: var(--text2); line-height: 1.95; font-size: .9rem; margin-bottom: 32px; }
+    .sig-items { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .sig-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 14px 18px; border-radius: 12px;
+      transition: border-color .3s;
+    }
+    .sig-item:hover { border-color: rgba(200,152,14,.3); }
+    .sig-item i { color: var(--gold); font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
+    .sig-item span { font-size: .84rem; color: var(--text); }
+    .sig-price-box {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      background: rgba(200,152,14,.08);
+      border: 1px solid rgba(200,152,14,.3);
+      padding: 14px 28px; border-radius: 14px; margin-bottom: 28px;
+    }
+    .sig-price-box .from { font-size: .8rem; color: var(--text2); }
+    .sig-price-box .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold2);
+    }
+    .sig-price-box .per { font-size: .78rem; color: var(--text2); }
+    .sig-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; padding: 15px 34px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 28px rgba(168,30,30,.4);
+      transition: all .3s;
+    }
+    .sig-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(168,30,30,.5); }
+    .sig-imgs {
+      position: relative;
+    }
+    .sig-img-main {
+      width: 100%; height: 480px; object-fit: cover;
+      border-radius: 20px; display: block;
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+    }
+    .sig-img-mini {
+      position: absolute; bottom: -24px; left: -24px;
+      width: 160px; height: 160px; object-fit: cover;
+      border-radius: 14px;
+      border: 4px solid var(--dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .sig-label {
+      position: absolute; top: 22px; left: 22px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; font-size: .74rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 50px;
+    }
+    .sig-flame {
+      position: absolute; top: -18px; right: 28px;
+      font-size: 3rem;
+      animation: flameFlicker 1.2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 12px rgba(255,120,0,.6));
+    }
+    @keyframes flameFlicker {
+      from { transform: scaleY(1) rotate(-3deg); }
+      to   { transform: scaleY(1.12) rotate(3deg); }
+    }
+    @media(max-width:860px){
+      .sig-wrap { grid-template-columns: 1fr; }
+      .sig-img-main { height: 300px; }
+      .sig-img-mini { display: none; }
+    }
+
+    /* ── DELIVERY SECTION ── */
+    #delivery { background: var(--dark2); }
+    .del-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+    .del-platforms {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; margin-top: 44px;
+    }
+    .del-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px; padding: 30px 36px;
+      text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      min-width: 180px;
+      transition: all .35s;
+    }
+    .del-card:hover {
+      border-color: rgba(200,152,14,.3);
+      transform: translateY(-7px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    }
+    .del-icon { font-size: 2.4rem; }
+    .del-name { font-size: .88rem; font-weight: 600; color: var(--white); }
+    .del-sub  { font-size: .72rem; color: var(--text2); }
+    .del-card.wa  { border-color: rgba(37,211,102,.2); }
+    .del-card.wa:hover  { border-color: rgba(37,211,102,.5); box-shadow: 0 18px 44px rgba(37,211,102,.15); }
+    .del-card.fp  { border-color: rgba(255,90,130,.2); }
+    .del-card.fp:hover  { border-color: rgba(255,90,130,.5); box-shadow: 0 18px 44px rgba(255,90,130,.15); }
+    .del-card.bp  { border-color: rgba(80,120,255,.2); }
+    .del-card.bp:hover  { border-color: rgba(80,120,255,.5); box-shadow: 0 18px 44px rgba(80,120,255,.15); }
+    .del-card.ph  { border-color: rgba(200,152,14,.2); }
+    .del-card.ph:hover  { border-color: rgba(200,152,14,.5); box-shadow: 0 18px 44px rgba(200,152,14,.15); }
+    .del-or {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 36px; color: var(--text2); font-size: .8rem;
+    }
+    .del-or::before, .del-or::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    #wa-float {
+      position: fixed; bottom: 82px; right: 26px;
+      z-index: 600;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    }
+    .wa-bubble {
+      background: #1a1a1a;
+      border: 1px solid rgba(37,211,102,.3);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px 12px 0 12px;
+      font-size: .78rem; line-height: 1.5;
+      max-width: 200px; text-align: right;
+      opacity: 0; transform: translateX(10px);
+      transition: all .35s;
+      pointer-events: none;
+    }
+    #wa-float:hover .wa-bubble { opacity: 1; transform: translateX(0); }
+    .wa-float-btn {
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(37,211,102,.45);
+      animation: waPulse 2.5s ease-in-out infinite;
+      transition: transform .3s;
+    }
+    .wa-float-btn:hover { transform: scale(1.1); }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.5), 0 6px 22px rgba(37,211,102,.45); }
+      50%      { box-shadow: 0 0 0 14px rgba(37,211,102,0), 0 6px 22px rgba(37,211,102,.45); }
+    }
+
+    /* ── GALLERY GRID FIX FOR 5 ITEMS ── */
+    .gal-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 14px; max-width: 1200px; margin: 0 auto;
+    }
+    .gal-grid .gi:nth-child(4) { grid-column: span 1; }
+    .gal-grid .gi:nth-child(5) { grid-column: span 1; }
+    @media(max-width:860px){
+      .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gal-grid .gi:first-child { grid-column: span 2; }
+    }
+    @media(max-width:480px){
+      .gal-grid { grid-template-columns: 1fr; }
+      .gal-grid .gi:first-child { grid-column: span 1; }
+    }
+
+    /* ── COUNTER ANIMATION ── */
+    .count-up { display: inline-block; }
   </style>
 </head>
 <body>
+
+<!-- ANNOUNCE BAR -->
+<div id="announce">
+  <div class="announce-inner">
+    <span><i class="fas fa-fire-alt"></i> Now Open Daily — 11:30 AM to 10:00 PM</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-check-circle"></i> 100% Halal Certified</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-phone-alt"></i> +60 3-3382 0872</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-map-marker-alt"></i> No. 3 Jalan Istana, 41000 Klang</span>
+  </div>
+</div>
 
 <!-- PRELOADER -->
 <div id="preloader">
@@ -743,9 +974,10 @@
   </a>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#about">About</a></li>
+    <li><a href="#signature">Signature</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#delivery">Order</a></li>
     <li><a href="#contact" class="nav-cta">Visit Us</a></li>
   </ul>
   <div class="burger" id="burger">
@@ -782,19 +1014,19 @@
 <!-- STATS -->
 <div class="stats-bar">
   <div data-aos="fade-up">
-    <div class="stat-num">7+</div>
+    <div class="stat-num">0+</div>
     <div class="stat-lbl">Outlets Nationwide</div>
   </div>
   <div data-aos="fade-up" data-aos-delay="80">
-    <div class="stat-num">5.0</div>
+    <div class="stat-num">0.0</div>
     <div class="stat-lbl">Star Rating</div>
   </div>
   <div data-aos="fade-up" data-aos-delay="160">
-    <div class="stat-num">100%</div>
+    <div class="stat-num">0%</div>
     <div class="stat-lbl">Halal Certified</div>
   </div>
   <div data-aos="fade-up" data-aos-delay="240">
-    <div class="stat-num">15+</div>
+    <div class="stat-num">0+</div>
     <div class="stat-lbl">Spices Per Dish</div>
   </div>
 </div>
@@ -837,6 +1069,43 @@
         </div>
       </div>
       <div class="halal-strip"><i class="fas fa-check-circle"></i> 100% Halal Certified — Pork Free</div>
+    </div>
+  </div>
+</section>
+
+<!-- THIRUVILA SAAPADU -->
+<section id="signature">
+  <div class="sig-wrap">
+    <div class="sig-content" data-aos="fade-right">
+      <div class="sh-tag">Signature Experience</div>
+      <h2>Thiruvila <em>Saapadu</em><br>Banana Leaf Feast</h2>
+      <p>Our most celebrated dining experience — a generous spread of fragrant rice, fresh vegetables, pappadum, pickles and your choice of protein curry, all served on a traditional banana leaf. Perfect for sharing with family and friends.</p>
+      <div class="sig-items">
+        <div class="sig-item"><i class="fas fa-leaf"></i><span>Fresh banana leaf serving — the authentic South Indian way</span></div>
+        <div class="sig-item"><i class="fas fa-utensils"></i><span>Unlimited rice refills with 4 side vegetables</span></div>
+        <div class="sig-item"><i class="fas fa-pepper-hot"></i><span>Choice of Chicken, Mutton or Seafood curry</span></div>
+        <div class="sig-item"><i class="fas fa-users"></i><span>Ideal for 2–4 persons — great for celebrations</span></div>
+        <div class="sig-item"><i class="fas fa-star"></i><span>Includes pappadum, pickles &amp; dessert</span></div>
+      </div>
+      <div class="sig-price-box">
+        <span class="from">From</span>
+        <span class="price">RM 29</span>
+        <span class="per">/ person</span>
+      </div>
+      <br>
+      <a href="tel:+60333820872" class="sig-btn">
+        <i class="fas fa-phone-alt"></i> Reserve Your Table
+      </a>
+    </div>
+    <div class="sig-imgs" data-aos="fade-left">
+      <span class="sig-flame">🔥</span>
+      <span class="sig-label">Signature Feast</span>
+      <img class="sig-img-main"
+           src="https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg"
+           alt="Thiruvila Saapadu banana leaf feast">
+      <img class="sig-img-mini"
+           src="https://live.staticflickr.com/4830/32751267638_07925d2020.jpg"
+           alt="Seni Sattisorru claypot dish">
     </div>
   </div>
 </section>
@@ -1475,6 +1744,39 @@
   </div>
 </section>
 
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="del-wrap" data-aos="fade-up">
+    <div class="sh-tag">Order Online</div>
+    <h2 class="sh-title">Can't Come In? <em>Order Delivery</em></h2>
+    <div class="sh-line"></div>
+    <p class="sh-sub" style="margin-top:16px;">Get your Sattisorru fix delivered hot to your door, or call us directly for takeaway.</p>
+    <div class="del-platforms">
+      <a href="https://wa.me/60333820872" target="_blank" rel="noopener" class="del-card wa">
+        <div class="del-icon">💬</div>
+        <div class="del-name">WhatsApp Order</div>
+        <div class="del-sub">+60 3-3382 0872</div>
+      </a>
+      <a href="https://www.foodpanda.my/chain/co4bo/seni-sattisorru" target="_blank" rel="noopener" class="del-card fp">
+        <div class="del-icon">🐼</div>
+        <div class="del-name">Foodpanda</div>
+        <div class="del-sub">Order online now</div>
+      </a>
+      <a href="https://senisattisorruklang.beepit.com/" target="_blank" rel="noopener" class="del-card bp">
+        <div class="del-icon">🛵</div>
+        <div class="del-name">Beep Delivery</div>
+        <div class="del-sub">Direct from restaurant</div>
+      </a>
+      <a href="tel:+60333820872" class="del-card ph">
+        <div class="del-icon">📞</div>
+        <div class="del-name">Call to Order</div>
+        <div class="del-sub">Takeaway &amp; delivery</div>
+      </a>
+    </div>
+    <div class="del-or">Or dine in with us anytime — walk-ins always welcome!</div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="sh" data-aos="fade-up">
@@ -1591,6 +1893,15 @@
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<div id="wa-float">
+  <div class="wa-bubble">Chat with us on<br><strong>WhatsApp</strong> to order! 🍛</div>
+  <a href="https://wa.me/60333820872?text=Hi%2C%20I'd%20like%20to%20order%20from%20Seni%20Sattisorru%20Klang!"
+     target="_blank" rel="noopener" class="wa-float-btn" aria-label="Order via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
 <!-- LIGHTBOX -->
 <div id="lb" onclick="closeLB()">
   <button id="lb-close" onclick="closeLB()">✕</button>
@@ -1609,6 +1920,30 @@
 <script>
   // AOS
   AOS.init({ duration: 680, once: true, easing: 'ease-out-quad' });
+
+  // Animated number counters
+  function animateCount(el, target, suffix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      const val = Number.isInteger(target) ? Math.floor(start) : start.toFixed(1);
+      el.textContent = val + suffix;
+    }, 16);
+  }
+  const countEls = document.querySelectorAll('.stat-num');
+  const countTargets = [7, 5.0, 100, 15];
+  const countSuffixes = ['+', '.0', '%', '+'];
+  let counted = false;
+  const countObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      countEls.forEach((el, i) => animateCount(el, countTargets[i], countSuffixes[i], 1200));
+    }
+  }, { threshold: .5 });
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) countObs.observe(statsBar);
 
   // Preloader
   window.addEventListener('load', () => {
