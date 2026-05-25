@@ -3,1221 +3,2017 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Restoran Windmill – Premium Western & Asian Dining in Bandar Baru Klang since 1999. Sizzling steaks, lamb chops, seafood & more.">
-  <title>Restoran Windmill | Bandar Baru Klang</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Seni Sattisorru Klang Branch | House of Claypot Rice, Curry &amp; Soup</title>
+  <meta name="description" content="Seni Sattisorru Klang Branch – Authentic South Indian claypot rice, curry and soup. Halal certified. Open daily 11:30am–10pm. No.3 Jalan Istana, Klang.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg:    #0b0804;
-      --bg2:   #141009;
-      --bg3:   #1d160f;
-      --gold:  #c8902e;
-      --gold2: #e8c06a;
-      --gold3: #9c6c1a;
-      --cream: #f4e8d0;
-      --txt:   #c8b49a;
-      --muted: #7a6550;
-      --border: rgba(200,144,46,.18);
+      --dark:    #080503;
+      --dark2:   #120c07;
+      --dark3:   #1e1208;
+      --dark4:   #2a1a0d;
+      --red:     #a81e1e;
+      --red2:    #cc2828;
+      --gold:    #c8980e;
+      --gold2:   #e8b830;
+      --gold3:   #f5d060;
+      --orange:  #d95e22;
+      --cream:   #f0e8d8;
+      --text:    #ddd0be;
+      --text2:   #9e8e7a;
+      --white:   #ffffff;
     }
+
     html { scroll-behavior: smooth; }
-    body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--txt); overflow-x: hidden; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
     /* ── PRELOADER ── */
     #preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transition: opacity .6s ease;
+      position: fixed; inset: 0;
+      background: var(--dark);
+      z-index: 9999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 24px;
+      transition: opacity .7s ease, visibility .7s ease;
     }
-    #preloader.hide { opacity: 0; pointer-events: none; }
-    .pre-windmill { width: 80px; height: 80px; position: relative; margin-bottom: 1.5rem; }
-    .pre-blades {
-      position: absolute; top: 50%; left: 50%; width: 70px; height: 70px;
-      transform: translate(-50%,-50%);
-      animation: spin 1.4s linear infinite;
-      transform-origin: 35px 35px;
+    #preloader.hide { opacity: 0; visibility: hidden; }
+    .pre-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 3px solid rgba(200,152,14,.15);
+      border-top-color: var(--gold);
+      animation: spin 1s linear infinite;
     }
-    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
-    .pre-label { font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: .3em; color: var(--gold2); text-transform: uppercase; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pre-brand {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+    }
+    .pre-brand span:first-child {
+      display: block;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      animation: glowText 1.8s ease-in-out infinite;
+    }
+    .pre-brand span:last-child {
+      display: block; font-size: .72rem; letter-spacing: 5px;
+      color: var(--orange); text-transform: uppercase; margin-top: 4px;
+    }
+    @keyframes glowText { 0%,100%{opacity:.5;} 50%{opacity:1;} }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 4rem;
-      transition: background .4s, padding .4s, box-shadow .4s;
+      padding: 26px 7%;
+      transition: all .4s ease;
     }
     nav.scrolled {
-      background: rgba(11,8,4,.92); backdrop-filter: blur(14px);
-      padding: .9rem 4rem;
-      box-shadow: 0 2px 30px rgba(0,0,0,.5);
+      background: rgba(8,5,3,.95);
+      padding: 16px 7%;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 30px rgba(0,0,0,.6);
+      border-bottom: 1px solid rgba(200,152,14,.08);
     }
-    .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
-    .nav-logo-svg { width: 38px; height: 38px; }
-    .nav-logo-blade { transform-origin: 19px 19px; animation: spin 4s linear infinite; }
-    .nav-logo-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold2); letter-spacing: .05em; }
-    .nav-logo-text span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--txt); position: relative; transition: color .3s;
+    .nav-logo {
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
     }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1px; background: var(--gold); transition: width .3s;
+    .nav-logo .name {
+      display: block; font-size: 1.3rem; font-weight: 700;
+      color: var(--gold); letter-spacing: .5px;
     }
-    .nav-links a:hover { color: var(--gold2); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-logo .branch {
+      display: block; font-size: .62rem; letter-spacing: 4px;
+      color: var(--orange); text-transform: uppercase;
+      font-family: 'Poppins', sans-serif; font-weight: 400;
+    }
+    .nav-menu { display: flex; list-style: none; gap: 34px; align-items: center; }
+    .nav-menu a {
+      color: var(--text); text-decoration: none;
+      font-size: .82rem; letter-spacing: 1.5px; text-transform: uppercase;
+      font-weight: 500; transition: color .3s; position: relative;
+    }
+    .nav-menu a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 100%;
+      height: 1px; background: var(--gold); transition: right .3s;
+    }
+    .nav-menu a:hover { color: var(--gold); }
+    .nav-menu a:hover::after { right: 0; }
     .nav-cta {
-      padding: .55rem 1.5rem; border: 1px solid var(--gold); color: var(--gold);
-      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none;
-      transition: all .3s;
+      background: linear-gradient(135deg, var(--red), var(--orange)) !important;
+      color: #fff !important; padding: 9px 22px;
+      border-radius: 50px; font-size: .78rem !important;
+      box-shadow: 0 4px 16px rgba(168,30,30,.4);
     }
-    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { box-shadow: 0 8px 24px rgba(217,94,34,.5) !important; transform: translateY(-2px); }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger span { width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: .3s; }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
     /* ── HERO ── */
     #hero {
-      min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80');
+      background-image: url('https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg');
       background-size: cover; background-position: center;
-      animation: heroZoom 20s ease-in-out infinite alternate;
+      animation: kb 22s ease-in-out infinite alternate;
+      filter: brightness(.55);
     }
-    @keyframes heroZoom {
-      from { transform: scale(1); }
-      to   { transform: scale(1.06); }
+    @keyframes kb { from{transform:scale(1) translateX(0);} to{transform:scale(1.12) translateX(-2%);} }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at center, transparent 30%, rgba(8,5,3,.7) 100%),
+        linear-gradient(to bottom, rgba(8,5,3,.3) 0%, rgba(8,5,3,.5) 55%, rgba(8,5,3,1) 100%);
     }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(5,3,1,.88) 0%,rgba(10,7,3,.75) 60%,rgba(20,12,5,.82) 100%); }
-    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .pt {
-      position: absolute; border-radius: 50%; background: var(--gold);
-      animation: ptFloat linear infinite; opacity: 0;
+    /* floating spice emojis */
+    .fp {
+      position: absolute; pointer-events: none;
+      animation: floatUp linear infinite;
+      opacity: .13; font-size: 1.6rem;
     }
-    @keyframes ptFloat {
-      0%   { transform: translateY(100vh) scale(.5); opacity: 0; }
-      8%   { opacity: .7; }
-      92%  { opacity: .3; }
-      100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: .18; }
+      90%  { opacity: .12; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
-    .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 860px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .8rem;
-      font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(200,144,46,.35); padding: .5rem 1.6rem; margin-bottom: 2rem;
-      animation: fadeUp 1s .2s both;
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 820px; padding: 0 24px;
     }
-    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); animation: blink 1.4s ease infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-    .hero-windmill { width: 90px; height: 90px; margin: 0 auto 1.5rem; animation: fadeUp 1s .3s both; }
-    .hero-wm-blade { transform-origin: 45px 45px; animation: spin 3s linear infinite; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,152,14,.12);
+      border: 1px solid rgba(200,152,14,.35);
+      color: var(--gold2); font-size: .72rem;
+      letter-spacing: 3px; text-transform: uppercase;
+      padding: 7px 20px; border-radius: 50px; margin-bottom: 26px;
+      animation: fadeDown .9s ease both;
+    }
+    .hero-pill i { font-size: .65rem; }
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 700;
-      color: var(--cream); line-height: 1.05; margin-bottom: .4em;
-      animation: fadeUp 1s .45s both;
+      font-size: clamp(3rem, 6.5vw, 5.8rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.05;
+      animation: fadeUp .9s .15s ease both;
     }
-    .hero-title em { font-style: italic; color: var(--gold2); display: block; font-weight: 400; }
+    .hero-title em { color: var(--gold2); font-style: normal; }
     .hero-sub {
-      font-size: .78rem; letter-spacing: .28em; text-transform: uppercase;
-      color: rgba(244,232,208,.6); margin-bottom: .8rem;
-      animation: fadeUp 1s .6s both;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      color: var(--orange); margin: 20px 0 12px;
+      animation: fadeUp .9s .28s ease both;
     }
-    .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 1.2rem auto; animation: fadeUp 1s .65s both; }
-    .hero-desc { font-size: .92rem; line-height: 1.8; color: rgba(244,232,208,.7); max-width: 520px; margin: 0 auto 2.5rem; animation: fadeUp 1s .75s both; }
-    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; animation: fadeUp 1s .9s both; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; padding: .9rem 2.4rem; font-size: .7rem; letter-spacing: .2em;
-      text-transform: uppercase; text-decoration: none; transition: all .35s; cursor: pointer;
-      font-family: 'Raleway', sans-serif; border: none;
+    .hero-desc {
+      font-size: .92rem; color: rgba(221,208,190,.75);
+      max-width: 520px; margin: 0 auto 38px;
+      line-height: 1.9;
+      animation: fadeUp .9s .4s ease both;
     }
-    .btn-gold { background: var(--gold); color: var(--bg); }
-    .btn-gold:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(200,144,46,.4); }
-    .btn-outline { border: 1px solid rgba(200,144,46,.5); color: var(--gold2); }
-    .btn-outline:hover { background: rgba(200,144,46,.12); border-color: var(--gold); transform: translateY(-3px); }
-    .scroll-down {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      animation: fadeUp 1s 1.3s both; z-index: 2;
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp .9s .52s ease both; }
+    .btn-pri {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; padding: 16px 38px;
+      border-radius: 50px; text-decoration: none;
+      font-weight: 600; font-size: .9rem; letter-spacing: .5px;
+      box-shadow: 0 8px 28px rgba(168,30,30,.45);
+      transition: all .3s;
     }
-    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom,transparent,var(--gold)); animation: scrollBob 1.6s ease infinite; }
-    @keyframes scrollBob { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
-    .scroll-lbl { font-size: .55rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(200,144,46,.55); }
+    .btn-pri:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(217,94,34,.5); }
+    .btn-out {
+      border: 1.5px solid rgba(200,152,14,.55); color: var(--gold2);
+      padding: 14px 38px; border-radius: 50px; text-decoration: none;
+      font-weight: 500; font-size: .9rem;
+      transition: all .3s;
+    }
+    .btn-out:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); transform: translateY(-4px); }
+    .hero-scroll {
+      position: absolute; bottom: 38px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: var(--text2); font-size: .68rem; letter-spacing: 3px; text-transform: uppercase;
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+    .hero-scroll i { color: var(--gold); }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 55%{transform:translateX(-50%) translateY(9px);} }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-22px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(28px);}  to{opacity:1;transform:translateY(0);} }
 
-    /* ── SHARED SECTION ── */
-    section { padding: 7rem 0; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .sec-label {
-      font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
-      display: flex; align-items: center; gap: .9rem; margin-bottom: .8rem;
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--dark2);
+      border-top: 1px solid rgba(200,152,14,.1);
+      border-bottom: 1px solid rgba(200,152,14,.1);
+      padding: 40px 7%;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 16px; text-align: center;
     }
-    .sec-label::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
-    .sec-title {
+    .stat-num {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 600;
-      color: var(--cream); line-height: 1.2; margin-bottom: 1.4rem;
+      font-size: 2.8rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
     }
-    .sec-title em { font-style: italic; color: var(--gold2); }
-    .sec-title.dark { color: var(--bg2); }
-    .sec-label.dark { color: var(--gold3); }
-    .sec-label.dark::before { background: var(--gold3); }
+    .stat-lbl { font-size: .72rem; color: var(--text2); letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
+
+    /* ── SHARED ── */
+    section { padding: 96px 7%; }
+    .sh { text-align: center; margin-bottom: 64px; }
+    .sh-tag {
+      display: inline-block;
+      background: rgba(200,152,14,.08);
+      border: 1px solid rgba(200,152,14,.28);
+      color: var(--gold2); font-size: .7rem;
+      letter-spacing: 4px; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 50px; margin-bottom: 18px;
+    }
+    .sh-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; color: var(--white); line-height: 1.18;
+    }
+    .sh-title em { color: var(--gold2); font-style: normal; }
+    .sh-line {
+      width: 54px; height: 3px; margin: 18px auto 0;
+      background: linear-gradient(to right, var(--red), var(--orange));
+      border-radius: 2px;
+    }
+    .sh-sub { color: var(--text2); margin-top: 16px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.9; font-size: .9rem; }
 
     /* ── ABOUT ── */
-    #about { background: var(--bg2); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-visual { position: relative; }
-    .about-main-img {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover;
-      display: block; position: relative; z-index: 1;
+    #about { background: var(--dark2); }
+    .about-wrap {
+      display: grid; grid-template-columns: 1fr 1.05fr;
+      gap: 72px; align-items: center; max-width: 1180px; margin: 0 auto;
     }
-    .about-accent {
-      position: absolute; bottom: -2rem; right: -2rem; z-index: 2;
-      width: 55%; background: var(--gold); padding: 2rem;
-      font-family: 'Playfair Display', serif;
+    .about-imgs {
+      position: relative;
     }
-    .about-accent-num { font-size: 3rem; font-weight: 700; color: var(--bg); line-height: 1; }
-    .about-accent-lbl { font-size: .72rem; letter-spacing: .15em; color: rgba(11,8,4,.7); text-transform: uppercase; margin-top: .3rem; }
-    .about-text p { font-size: .88rem; line-height: 1.95; color: var(--muted); margin-bottom: 1.2rem; }
-    .about-text p strong { color: var(--gold2); font-weight: 600; }
-    .about-stats { display: flex; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
-    .astat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .astat-lbl { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
-
-    /* ── SPECIALS (6 signature dishes) ── */
-    #specials { background: var(--bg); }
-    .specials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-    .dish-card {
-      position: relative; overflow: hidden; cursor: default;
-      border: 1px solid var(--border);
-      transition: border-color .4s, transform .4s;
-    }
-    .dish-card:hover { border-color: var(--gold); transform: translateY(-6px); }
-    .dish-img-wrap {
-      position: relative; overflow: hidden; aspect-ratio: 4/3;
-    }
-    .dish-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+    .about-img-main {
+      width: 100%; height: 500px;
+      object-fit: cover; border-radius: 18px;
       display: block;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
     }
-    .dish-card:hover .dish-img { transform: scale(1.08); }
-    /* Steam animation */
-    .steam-wrap {
-      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 10px; pointer-events: none;
+    .about-img-float {
+      position: absolute; bottom: -28px; right: -28px;
+      width: 190px; height: 190px;
+      object-fit: cover; border-radius: 14px;
+      border: 4px solid var(--dark2);
+      box-shadow: 0 12px 36px rgba(0,0,0,.5);
     }
-    .steam-wisp {
-      width: 6px; border-radius: 50% 50% 30% 30%;
-      background: linear-gradient(to top, rgba(255,255,255,.35), transparent);
-      animation: steamRise 2.2s ease-in-out infinite;
+    .about-badge-box {
+      position: absolute; top: 28px; left: -22px;
+      background: rgba(8,5,3,.88);
+      border: 1px solid rgba(200,152,14,.35);
+      backdrop-filter: blur(10px);
+      padding: 14px 20px; border-radius: 14px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
     }
-    .steam-wisp:nth-child(1) { height: 45px; animation-delay: 0s; }
-    .steam-wisp:nth-child(2) { height: 60px; animation-delay: .5s; }
-    .steam-wisp:nth-child(3) { height: 40px; animation-delay: 1s; }
-    @keyframes steamRise {
-      0%   { transform: translateY(0) scaleX(1); opacity: 0; }
-      20%  { opacity: .8; }
-      80%  { opacity: .3; }
-      100% { transform: translateY(-50px) scaleX(1.6); opacity: 0; }
+    .about-badge-box i { font-size: 1.8rem; color: var(--gold); }
+    .about-badge-box p:first-of-type { font-size: .82rem; font-weight: 600; color: var(--white); }
+    .about-badge-box p:last-of-type  { font-size: .7rem; color: var(--text2); }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 2.8vw, 2.7rem);
+      font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 22px;
     }
-    /* Sizzle shimmer on card */
-    .dish-img-wrap::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg,rgba(200,144,46,.0) 40%,rgba(200,144,46,.18) 60%,rgba(200,144,46,.0) 80%);
-      background-size: 200% 200%; opacity: 0;
-      animation: sizzle 3s ease infinite;
-      transition: opacity .4s;
+    .about-text h2 em { color: var(--gold2); font-style: normal; }
+    .about-text p { color: var(--text2); line-height: 1.95; font-size: .91rem; margin-bottom: 18px; }
+    .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+    .ah {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.05);
+      padding: 18px; border-radius: 12px;
+      transition: border-color .3s;
     }
-    .dish-card:hover .dish-img-wrap::after { opacity: 1; }
-    @keyframes sizzle {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .ah:hover { border-color: rgba(200,152,14,.28); }
+    .ah i { color: var(--gold); font-size: 1.3rem; margin-top: 2px; flex-shrink: 0; }
+    .ah h4 { font-size: .82rem; color: var(--white); font-weight: 600; margin-bottom: 4px; }
+    .ah p  { font-size: .75rem; color: var(--text2); line-height: 1.65; margin: 0; }
+    .halal-strip {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(22,163,74,.1);
+      border: 1px solid rgba(22,163,74,.28);
+      color: #4ade80; font-size: .8rem; font-weight: 600;
+      padding: 10px 22px; border-radius: 50px; margin-top: 28px;
     }
-    .dish-badge {
-      position: absolute; top: 1rem; left: 1rem;
-      background: var(--gold); color: var(--bg);
-      font-size: .58rem; letter-spacing: .15em; text-transform: uppercase;
-      padding: .3rem .8rem;
-    }
-    .dish-body { padding: 1.5rem; background: var(--bg3); }
-    .dish-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--cream); margin-bottom: .5rem; }
-    .dish-desc { font-size: .76rem; line-height: 1.7; color: var(--muted); margin-bottom: 1rem; }
-    .dish-footer { display: flex; align-items: center; justify-content: space-between; }
-    .dish-price { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
-    .dish-tag { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: .2rem .6rem; }
 
     /* ── MENU ── */
-    #menu { background: var(--bg2); }
-    .menu-tabs { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 3rem; border-bottom: 1px solid var(--border); }
-    .mtab {
-      padding: .85rem 1.6rem; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent;
-      transition: all .3s; background: none; border-top: none; border-left: none; border-right: none;
-      font-family: 'Raleway', sans-serif;
+    #menu { background: var(--dark3); }
+    .tab-bar {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 52px;
     }
-    .mtab:hover { color: var(--gold2); }
-    .mtab.active { color: var(--gold); border-bottom-color: var(--gold); }
-    .menu-panel { display: none; }
-    .menu-panel.active { display: block; }
-    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-    .menu-item {
-      display: flex; gap: 1rem; align-items: center;
-      padding: 1rem; border: 1px solid var(--border);
-      transition: border-color .3s, background .3s; background: var(--bg3);
+    .tab-btn {
+      background: transparent;
+      border: 1px solid rgba(200,152,14,.22);
+      color: var(--text2);
+      padding: 11px 26px; border-radius: 50px;
+      font-size: .8rem; letter-spacing: .5px;
+      cursor: pointer; font-family: 'Poppins', sans-serif;
+      font-weight: 500; transition: all .3s;
     }
-    .menu-item:hover { border-color: var(--gold); background: rgba(200,144,46,.04); }
-    .menu-item-img {
-      width: 72px; height: 72px; object-fit: cover; flex-shrink: 0;
-      transition: transform .5s;
+    .tab-btn:hover, .tab-btn.on {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border-color: transparent; color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(168,30,30,.38);
     }
-    .menu-item:hover .menu-item-img { transform: scale(1.06); }
-    .menu-item-info { flex: 1; min-width: 0; }
-    .menu-item-name { font-size: .84rem; color: var(--cream); font-weight: 600; margin-bottom: .25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .menu-item-desc { font-size: .7rem; color: var(--muted); line-height: 1.5; }
-    .menu-item-price { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); flex-shrink: 0; }
+    .tab-panel { display: none; }
+    .tab-panel.on { display: block; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 26px; max-width: 1200px; margin: 0 auto;
+    }
+
+    /* ── FOOD CARD ── */
+    .fc {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 18px; overflow: hidden;
+      transition: transform .35s, box-shadow .35s, border-color .35s;
+      position: relative;
+    }
+    .fc:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 22px 55px rgba(0,0,0,.55);
+      border-color: rgba(200,152,14,.22);
+    }
+    .fc-img {
+      position: relative; height: 224px; overflow: hidden;
+      background: var(--dark3);
+    }
+    .fc-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .65s ease;
+      display: block;
+    }
+    .fc:hover .fc-img img { transform: scale(1.1); }
+    .fc-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,5,3,.85) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* steam */
+    .steam {
+      position: absolute; top: 8px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 10px; z-index: 2;
+      pointer-events: none;
+    }
+    .sl {
+      width: 4px; border-radius: 2px;
+      background: linear-gradient(to top, rgba(255,255,255,.3), transparent);
+      animation: steamrise 1.8s ease-in-out infinite;
+    }
+    .sl:nth-child(1){height:26px;}
+    .sl:nth-child(2){height:20px;animation-delay:.35s;}
+    .sl:nth-child(3){height:26px;animation-delay:.7s;}
+    @keyframes steamrise {
+      0%   {transform:scaleX(1) translateY(0);opacity:.6;}
+      100% {transform:scaleX(1.6) translateY(-22px);opacity:0;}
+    }
+    .fc-label {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; font-size: .64rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 50px;
+    }
+    .fc-body { padding: 20px 22px 22px; }
+    .fc-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem; font-weight: 600; color: var(--white); margin-bottom: 9px;
+    }
+    .fc-desc { font-size: .77rem; color: var(--text2); line-height: 1.75; margin-bottom: 18px; }
+    .fc-foot { display: flex; align-items: center; justify-content: space-between; }
+    .fc-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.22rem; font-weight: 700; color: var(--gold2);
+    }
+    .fc-price sub { font-size: .7rem; color: var(--text2); font-family: 'Poppins',sans-serif; font-weight:400; }
+    .fc-order {
+      border: 1px solid rgba(200,152,14,.32); color: var(--gold2);
+      background: transparent; padding: 7px 18px; border-radius: 50px;
+      font-size: .74rem; cursor: pointer; font-family: 'Poppins',sans-serif;
+      font-weight: 500; transition: all .3s;
+    }
+    .fc-order:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
 
     /* ── GALLERY ── */
-    #gallery { background: var(--bg); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: auto; gap: .7rem; margin-top: 2.5rem; }
-    .gal-item { overflow: hidden; position: relative; cursor: pointer; }
-    .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gal-item:nth-child(6) { grid-column: span 2; }
-    .gal-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.25,.46,.45,.94); }
-    .gal-item:hover .gal-img { transform: scale(1.1); }
-    .gal-item:nth-child(1) .gal-img { min-height: 380px; }
-    .gal-item:not(:nth-child(1)) .gal-img { min-height: 185px; }
-    .gal-overlay {
-      position: absolute; inset: 0;
-      background: rgba(5,3,1,.65);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .4s;
+    #gallery { background: var(--dark2); }
+    .gal-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 14px; max-width: 1200px; margin: 0 auto;
     }
-    .gal-item:hover .gal-overlay { opacity: 1; }
-    .gal-lbl { font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold2); border: 1px solid rgba(232,192,106,.4); padding: .4rem 1rem; }
+    .gi {
+      border-radius: 14px; overflow: hidden;
+      position: relative; cursor: pointer;
+      background: var(--dark3);
+    }
+    .gi:first-child { grid-row: span 2; }
+    .gi img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease; display: block;
+    }
+    .gi:hover img { transform: scale(1.08); }
+    .gi::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(8,5,3,.35); opacity: 0;
+      transition: opacity .3s; z-index: 1;
+    }
+    .gi:hover::before { opacity: 1; }
+    .gi-icon {
+      position: absolute; top:50%; left:50%;
+      transform: translate(-50%,-50%) scale(0);
+      color:#fff; font-size:1.7rem; z-index:2;
+      transition: transform .3s ease;
+    }
+    .gi:hover .gi-icon { transform: translate(-50%,-50%) scale(1); }
+    .gi-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,5,3,.85), transparent);
+      padding: 22px 16px 14px;
+      color: var(--cream); font-size: .8rem; font-weight: 500;
+      z-index: 2; transform: translateY(4px);
+      opacity: 0; transition: all .3s;
+    }
+    .gi:hover .gi-cap { opacity: 1; transform: translateY(0); }
 
     /* ── REVIEWS ── */
-    #reviews { background: var(--bg2); overflow: hidden; }
-    .reviews-track-wrap { overflow: hidden; margin-top: 3rem; }
-    .reviews-track { display: flex; gap: 1.4rem; animation: scrollLeft 35s linear infinite; width: max-content; }
-    .reviews-track:hover { animation-play-state: paused; }
-    @keyframes scrollLeft { to { transform: translateX(-50%); } }
-    .rev-card { width: 340px; flex-shrink: 0; padding: 2.2rem; background: var(--bg3); border: 1px solid var(--border); position: relative; }
-    .rev-card::before { content: '"'; position: absolute; top: .8rem; right: 1.2rem; font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(200,144,46,.08); line-height: 1; }
-    .rev-stars { color: var(--gold); font-size: .85rem; letter-spacing: .1em; margin-bottom: .8rem; }
-    .rev-text { font-size: .8rem; line-height: 1.85; color: var(--muted); font-style: italic; margin-bottom: 1.2rem; }
-    .rev-author { font-size: .68rem; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
-
-    /* ── VISIT ── */
-    #visit { background: var(--bg3); }
-    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .info-blocks { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
-    .info-block { display: flex; gap: 1.2rem; align-items: flex-start; }
-    .info-icon { width: 44px; height: 44px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-    .info-block h4 { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
-    .info-block p { font-size: .84rem; line-height: 1.75; color: var(--muted); }
-    .map-embed {
-      width: 100%; aspect-ratio: 4/3;
-      border: 1px solid var(--border);
-      overflow: hidden;
+    #reviews { background: var(--dark); }
+    .rev-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 26px; max-width: 1180px; margin: 0 auto;
     }
-    .map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(80%) invert(5%); }
+    .rv {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: 18px; padding: 32px 28px;
+      transition: all .35s;
+      position: relative;
+    }
+    .rv:hover { border-color: rgba(200,152,14,.25); transform: translateY(-5px); box-shadow: 0 18px 45px rgba(0,0,0,.4); }
+    .rv::before {
+      content: '"'; position: absolute; top: 20px; right: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; color: rgba(200,152,14,.08);
+      line-height: 1;
+    }
+    .rv-stars { color: var(--gold2); font-size: .88rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .rv-text { font-size: .88rem; color: var(--text2); line-height: 1.85; margin-bottom: 24px; font-style: italic; }
+    .rv-author { display: flex; align-items: center; gap: 12px; }
+    .rv-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #fff; font-weight: 700;
+      font-family: 'Playfair Display', serif; flex-shrink: 0;
+    }
+    .rv-name { font-size: .84rem; font-weight: 600; color: var(--white); }
+    .rv-src  { font-size: .72rem; color: var(--text2); }
+
+    /* ── FEATURES ── */
+    #features { background: var(--dark2); }
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 26px; max-width: 1180px; margin: 0 auto;
+    }
+    .fcard {
+      text-align: center; padding: 44px 26px;
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,.045);
+      border-radius: 18px; transition: all .35s;
+    }
+    .fcard:hover { border-color: rgba(200,152,14,.25); transform: translateY(-6px); box-shadow: 0 18px 44px rgba(0,0,0,.4); }
+    .fcard-icon {
+      width: 72px; height: 72px;
+      background: rgba(168,30,30,.12);
+      border: 1px solid rgba(200,152,14,.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 26px;
+      font-size: 1.8rem; color: var(--gold);
+      transition: all .35s;
+    }
+    .fcard:hover .fcard-icon {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border-color: transparent; color: #fff;
+      box-shadow: 0 8px 24px rgba(168,30,30,.4);
+    }
+    .fcard h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--white); margin-bottom: 12px;
+    }
+    .fcard p { font-size: .82rem; color: var(--text2); line-height: 1.85; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--dark3); }
+    .ct-grid {
+      display: grid; grid-template-columns: 1fr 1.35fr;
+      gap: 60px; align-items: start; max-width: 1180px; margin: 0 auto;
+    }
+    .ct-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+      color: var(--white); margin-bottom: 14px;
+    }
+    .ct-info h2 em { color: var(--gold2); font-style: normal; }
+    .ct-info > p { color: var(--text2); line-height: 1.9; font-size: .9rem; margin-bottom: 38px; }
+    .ct-items { display: flex; flex-direction: column; gap: 22px; }
+    .ci {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .ci-ic {
+      width: 48px; height: 48px;
+      background: rgba(168,30,30,.12);
+      border: 1px solid rgba(200,152,14,.22);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.1rem; flex-shrink: 0;
+    }
+    .ci-tx h4 { font-size: .75rem; color: var(--text2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+    .ci-tx p, .ci-tx a { font-size: .9rem; color: var(--white); text-decoration: none; line-height: 1.65; }
+    .ci-tx a:hover { color: var(--gold2); }
+    .hr-table { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin-top: 6px; }
+    .hr-day { font-size: .83rem; color: var(--text2); }
+    .hr-time { font-size: .83rem; color: var(--white); }
+    .map-box {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.06);
+      min-height: 440px;
+    }
+    .map-box iframe { width: 100%; min-height: 440px; border: none; display: block; filter: grayscale(25%) brightness(.82); }
 
     /* ── FOOTER ── */
-    footer { background: #060402; padding: 4rem 0 2rem; text-align: center; }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold2); margin-bottom: .6rem; }
-    .footer-logo span { color: var(--gold); }
-    .footer-tag { font-size: .62rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
-    .footer-links a { text-decoration: none; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-hr { width: 50px; height: 1px; background: var(--border); margin: 0 auto 1.5rem; }
-    .footer-copy { font-size: .62rem; color: rgba(122,101,80,.5); letter-spacing: .1em; }
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid rgba(200,152,14,.08);
+      padding: 64px 7% 32px;
+    }
+    .ft-grid {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 50px; max-width: 1200px; margin: 0 auto;
+      padding-bottom: 52px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .ft-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+    .ft-brand .sub { font-size: .65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); font-family: 'Poppins',sans-serif; margin-bottom: 14px; }
+    .ft-brand p { font-size: .82rem; color: var(--text2); line-height: 1.85; margin-bottom: 22px; }
+    .socials { display: flex; gap: 11px; }
+    .socials a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--text2); text-decoration: none; font-size: .88rem;
+      transition: all .3s;
+    }
+    .socials a:hover { background: linear-gradient(135deg,var(--red),var(--orange)); border-color: transparent; color: #fff; transform: translateY(-3px); }
+    .ft-col h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem; color: var(--white); margin-bottom: 20px;
+      position: relative; padding-bottom: 12px;
+    }
+    .ft-col h5::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 28px; height: 2px;
+      background: linear-gradient(to right, var(--red), var(--orange));
+      border-radius: 2px;
+    }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-col ul li a {
+      color: var(--text2); text-decoration: none; font-size: .82rem;
+      transition: color .3s; display: flex; align-items: center; gap: 8px;
+    }
+    .ft-col ul li a::before { content: '›'; color: var(--orange); font-size: 1rem; }
+    .ft-col ul li a:hover { color: var(--gold2); }
+    .ft-hr { display: flex; flex-direction: column; gap: 9px; }
+    .ft-hr-row {
+      display: flex; justify-content: space-between;
+      font-size: .8rem; padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .ft-hr-row span:first-child { color: var(--text2); }
+    .ft-hr-row span:last-child  { color: var(--white); }
+    .ft-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 28px auto 0; flex-wrap: wrap; gap: 14px;
+    }
+    .ft-bottom p { font-size: .78rem; color: var(--text2); }
+    .halal-mini {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(22,163,74,.1); border: 1px solid rgba(22,163,74,.25);
+      color: #4ade80; padding: 6px 16px; border-radius: 50px;
+      font-size: .72rem; font-weight: 600;
+    }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-l { opacity: 0; transform: translateX(-35px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal-l.visible { opacity: 1; transform: none; }
-    .reveal-r { opacity: 0; transform: translateX(35px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal-r.visible { opacity: 1; transform: none; }
+    /* ── LIGHTBOX ── */
+    #lb {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.94); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; visibility: hidden; transition: all .3s;
+    }
+    #lb.open { opacity: 1; visibility: visible; }
+    #lb img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 10px; }
+    #lb-close {
+      position: absolute; top: 22px; right: 28px;
+      background: none; border: none; color: #fff;
+      font-size: 2rem; cursor: pointer; line-height: 1;
+      transition: color .2s;
+    }
+    #lb-close:hover { color: var(--gold2); }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    /* ── SCROLL TOP ── */
+    #st {
+      position: fixed; bottom: 26px; right: 26px;
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; border: none; border-radius: 50%; cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 22px rgba(168,30,30,.45);
+      opacity: 0; visibility: hidden; transition: all .3s;
+    }
+    #st.show { opacity: 1; visibility: visible; }
+    #st:hover { transform: translateY(-4px); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 82px; right: 26px;
+      background: var(--dark2);
+      border: 1px solid rgba(200,152,14,.3);
+      color: var(--white); padding: 14px 22px;
+      border-radius: 12px; font-size: .83rem; z-index: 800;
+      opacity: 0; visibility: hidden; transform: translateY(8px);
+      transition: all .3s; box-shadow: 0 8px 30px rgba(0,0,0,.5);
+      display: flex; align-items: center; gap: 10px;
+    }
+    #toast.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    #toast i { color: var(--gold2); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      nav { padding: 1rem 1.5rem; }
-      nav.scrolled { padding: .7rem 1.5rem; }
-      .nav-links, .nav-cta { display: none; }
-      .about-grid, .visit-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-accent { right: 0; bottom: -1.5rem; }
-      .specials-grid { grid-template-columns: repeat(2,1fr); }
-      .gallery-grid { grid-template-columns: repeat(2,1fr); }
-      .gal-item:nth-child(1) { grid-column: span 2; }
-      .gal-item:nth-child(6) { grid-column: span 2; }
+    @media(max-width:1024px){
+      .about-img-float { display: none; }
+      .feat-grid { grid-template-columns: repeat(2,1fr); }
+      .gal-grid  { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gal-grid .gi:first-child { grid-row: span 1; }
     }
-    @media (max-width: 580px) {
-      .specials-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .menu-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.8rem; }
+    @media(max-width:860px){
+      .about-wrap, .ct-grid { grid-template-columns: 1fr; }
+      .about-img-main { height: 320px; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      .ft-grid { grid-template-columns: 1fr 1fr; }
+      .rev-grid { grid-template-columns: 1fr; }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
     }
+    @media(max-width:600px){
+      nav { padding: 18px 5%; }
+      .nav-menu { display: none; }
+      .nav-menu.open {
+        display: flex; flex-direction: column;
+        position: fixed; inset: 0;
+        background: rgba(8,5,3,.98);
+        align-items: center; justify-content: center;
+        gap: 30px; z-index: 199;
+      }
+      .burger { display: flex; }
+      section { padding: 72px 5%; }
+      .gal-grid { grid-template-columns: 1fr; }
+      .ft-grid { grid-template-columns: 1fr; }
+      .about-highlights { grid-template-columns: 1fr; }
+      .feat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANNOUNCE BAR ── */
+    #announce {
+      background: linear-gradient(90deg, var(--red), var(--dark3) 40%, var(--red2) 70%, var(--orange));
+      background-size: 200% 100%;
+      animation: gradShift 6s ease infinite;
+      padding: 9px 0;
+      text-align: center;
+      font-size: .78rem;
+      color: #fff;
+      letter-spacing: .5px;
+      position: relative; z-index: 300;
+      overflow: hidden;
+    }
+    @keyframes gradShift { 0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%} }
+    .announce-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
+    }
+    .announce-inner span { display: flex; align-items: center; gap: 7px; }
+    .announce-inner span i { font-size: .8rem; opacity: .85; }
+    .announce-sep { opacity: .4; }
+
+    /* ── THIRUVILA SAAPADU (Signature Feast) ── */
+    #signature {
+      background: var(--dark);
+      position: relative; overflow: hidden;
+    }
+    #signature::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(168,30,30,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,152,14,.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sig-wrap {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 72px; align-items: center; max-width: 1180px; margin: 0 auto;
+      position: relative;
+    }
+    .sig-content { }
+    .sig-content .sh-tag { text-align: left; }
+    .sig-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 900; color: var(--white); line-height: 1.15;
+      margin: 14px 0 20px;
+    }
+    .sig-content h2 em { color: var(--gold2); font-style: normal; }
+    .sig-content > p { color: var(--text2); line-height: 1.95; font-size: .9rem; margin-bottom: 32px; }
+    .sig-items { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .sig-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 14px 18px; border-radius: 12px;
+      transition: border-color .3s;
+    }
+    .sig-item:hover { border-color: rgba(200,152,14,.3); }
+    .sig-item i { color: var(--gold); font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
+    .sig-item span { font-size: .84rem; color: var(--text); }
+    .sig-price-box {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      background: rgba(200,152,14,.08);
+      border: 1px solid rgba(200,152,14,.3);
+      padding: 14px 28px; border-radius: 14px; margin-bottom: 28px;
+    }
+    .sig-price-box .from { font-size: .8rem; color: var(--text2); }
+    .sig-price-box .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold2);
+    }
+    .sig-price-box .per { font-size: .78rem; color: var(--text2); }
+    .sig-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; padding: 15px 34px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 28px rgba(168,30,30,.4);
+      transition: all .3s;
+    }
+    .sig-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(168,30,30,.5); }
+    .sig-imgs {
+      position: relative;
+    }
+    .sig-img-main {
+      width: 100%; height: 480px; object-fit: cover;
+      border-radius: 20px; display: block;
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+    }
+    .sig-img-mini {
+      position: absolute; bottom: -24px; left: -24px;
+      width: 160px; height: 160px; object-fit: cover;
+      border-radius: 14px;
+      border: 4px solid var(--dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .sig-label {
+      position: absolute; top: 22px; left: 22px;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: #fff; font-size: .74rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 50px;
+    }
+    .sig-flame {
+      position: absolute; top: -18px; right: 28px;
+      font-size: 3rem;
+      animation: flameFlicker 1.2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 12px rgba(255,120,0,.6));
+    }
+    @keyframes flameFlicker {
+      from { transform: scaleY(1) rotate(-3deg); }
+      to   { transform: scaleY(1.12) rotate(3deg); }
+    }
+    @media(max-width:860px){
+      .sig-wrap { grid-template-columns: 1fr; }
+      .sig-img-main { height: 300px; }
+      .sig-img-mini { display: none; }
+    }
+
+    /* ── DELIVERY SECTION ── */
+    #delivery { background: var(--dark2); }
+    .del-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+    .del-platforms {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; margin-top: 44px;
+    }
+    .del-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px; padding: 30px 36px;
+      text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      min-width: 180px;
+      transition: all .35s;
+    }
+    .del-card:hover {
+      border-color: rgba(200,152,14,.3);
+      transform: translateY(-7px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    }
+    .del-icon { font-size: 2.4rem; }
+    .del-name { font-size: .88rem; font-weight: 600; color: var(--white); }
+    .del-sub  { font-size: .72rem; color: var(--text2); }
+    .del-card.wa  { border-color: rgba(37,211,102,.2); }
+    .del-card.wa:hover  { border-color: rgba(37,211,102,.5); box-shadow: 0 18px 44px rgba(37,211,102,.15); }
+    .del-card.fp  { border-color: rgba(255,90,130,.2); }
+    .del-card.fp:hover  { border-color: rgba(255,90,130,.5); box-shadow: 0 18px 44px rgba(255,90,130,.15); }
+    .del-card.bp  { border-color: rgba(80,120,255,.2); }
+    .del-card.bp:hover  { border-color: rgba(80,120,255,.5); box-shadow: 0 18px 44px rgba(80,120,255,.15); }
+    .del-card.ph  { border-color: rgba(200,152,14,.2); }
+    .del-card.ph:hover  { border-color: rgba(200,152,14,.5); box-shadow: 0 18px 44px rgba(200,152,14,.15); }
+    .del-or {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 36px; color: var(--text2); font-size: .8rem;
+    }
+    .del-or::before, .del-or::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    #wa-float {
+      position: fixed; bottom: 82px; right: 26px;
+      z-index: 600;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    }
+    .wa-bubble {
+      background: #1a1a1a;
+      border: 1px solid rgba(37,211,102,.3);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 12px 12px 0 12px;
+      font-size: .78rem; line-height: 1.5;
+      max-width: 200px; text-align: right;
+      opacity: 0; transform: translateX(10px);
+      transition: all .35s;
+      pointer-events: none;
+    }
+    #wa-float:hover .wa-bubble { opacity: 1; transform: translateX(0); }
+    .wa-float-btn {
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(37,211,102,.45);
+      animation: waPulse 2.5s ease-in-out infinite;
+      transition: transform .3s;
+    }
+    .wa-float-btn:hover { transform: scale(1.1); }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.5), 0 6px 22px rgba(37,211,102,.45); }
+      50%      { box-shadow: 0 0 0 14px rgba(37,211,102,0), 0 6px 22px rgba(37,211,102,.45); }
+    }
+
+    /* ── GALLERY GRID FIX FOR 5 ITEMS ── */
+    .gal-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 14px; max-width: 1200px; margin: 0 auto;
+    }
+    .gal-grid .gi:nth-child(4) { grid-column: span 1; }
+    .gal-grid .gi:nth-child(5) { grid-column: span 1; }
+    @media(max-width:860px){
+      .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gal-grid .gi:first-child { grid-column: span 2; }
+    }
+    @media(max-width:480px){
+      .gal-grid { grid-template-columns: 1fr; }
+      .gal-grid .gi:first-child { grid-column: span 1; }
+    }
+
+    /* ── COUNTER ANIMATION ── */
+    .count-up { display: inline-block; }
   </style>
 </head>
 <body>
 
-<!-- Preloader -->
-<div id="preloader">
-  <div class="pre-windmill">
-    <svg class="pre-blades" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="35" cy="35" r="5" fill="#c8902e"/>
-      <!-- Blade 1 -->
-      <path d="M35 30 L30 8 L40 8 Z" fill="#c8902e" opacity=".9"/>
-      <!-- Blade 2 -->
-      <path d="M40 35 L62 30 L62 40 Z" fill="#c8902e" opacity=".9"/>
-      <!-- Blade 3 -->
-      <path d="M35 40 L40 62 L30 62 Z" fill="#c8902e" opacity=".9"/>
-      <!-- Blade 4 -->
-      <path d="M30 35 L8 40 L8 30 Z" fill="#c8902e" opacity=".9"/>
-    </svg>
+<!-- ANNOUNCE BAR -->
+<div id="announce">
+  <div class="announce-inner">
+    <span><i class="fas fa-fire-alt"></i> Now Open Daily — 11:30 AM to 10:00 PM</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-check-circle"></i> 100% Halal Certified</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-phone-alt"></i> +60 3-3382 0872</span>
+    <span class="announce-sep">|</span>
+    <span><i class="fas fa-map-marker-alt"></i> No. 3 Jalan Istana, 41000 Klang</span>
   </div>
-  <div class="pre-label">Restoran Windmill</div>
 </div>
 
-<!-- Navigation -->
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-ring"></div>
+  <div class="pre-brand">
+    <span>SENI SATTISORRU</span>
+    <span>Klang Branch</span>
+  </div>
+</div>
+
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <svg class="nav-logo-svg" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="19" cy="19" r="3.5" fill="#c8902e"/>
-      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform-origin="19 19" transform="rotate(0 19 19)"/>
-      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(90 19 19)"/>
-      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(180 19 19)"/>
-      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(270 19 19)"/>
-      <rect x="18.5" y="22" width="1" height="12" fill="#c8902e"/>
-    </svg>
-    <span class="nav-logo-text">Wind<span>mill</span></span>
+  <a href="#hero" class="nav-logo">
+    <span class="name">Seni Sattisorru</span>
+    <span class="branch">Klang Branch</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-menu" id="navMenu">
     <li><a href="#about">About</a></li>
-    <li><a href="#specials">Specials</a></li>
+    <li><a href="#signature">Signature</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#visit">Visit Us</a></li>
+    <li><a href="#delivery">Order</a></li>
+    <li><a href="#contact" class="nav-cta">Visit Us</a></li>
   </ul>
-  <a href="tel:+60333449780" class="nav-cta">Call Now</a>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
-<!-- Hero -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="particles" id="particles"></div>
+  <!-- floating spice particles -->
+  <span class="fp" style="left:6%;animation-duration:16s;animation-delay:0s;">🌶️</span>
+  <span class="fp" style="left:16%;animation-duration:20s;animation-delay:4s;font-size:1.2rem;">✦</span>
+  <span class="fp" style="left:28%;animation-duration:13s;animation-delay:7s;font-size:2rem;">🍃</span>
+  <span class="fp" style="left:52%;animation-duration:18s;animation-delay:2s;">🌿</span>
+  <span class="fp" style="left:68%;animation-duration:15s;animation-delay:5s;font-size:2rem;">🌶️</span>
+  <span class="fp" style="left:82%;animation-duration:22s;animation-delay:9s;font-size:1.2rem;">✦</span>
+  <span class="fp" style="left:92%;animation-duration:14s;animation-delay:11s;">🍂</span>
+
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> Halal Certified · Est. 1999 · Bandar Baru Klang <span class="hero-badge-dot"></span></div>
-    <svg class="hero-windmill" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="45" cy="45" r="7" fill="#c8902e"/>
-      <g class="hero-wm-blade">
-        <path d="M45 38 L39 10 L51 10 Z" fill="#e8c06a" opacity=".95"/>
-        <path d="M52 45 L80 39 L80 51 Z" fill="#e8c06a" opacity=".85"/>
-        <path d="M45 52 L51 80 L39 80 Z" fill="#e8c06a" opacity=".95"/>
-        <path d="M38 45 L10 51 L10 39 Z" fill="#e8c06a" opacity=".85"/>
-      </g>
-      <rect x="44" y="52" width="2" height="24" fill="#c8902e" opacity=".6"/>
-    </svg>
-    <h1 class="hero-title">
-      Restoran
-      <em>Windmill</em>
-    </h1>
-    <p class="hero-sub">Western &amp; Asian Fusion · Bandar Baru Klang</p>
-    <div class="hero-divider"></div>
-    <p class="hero-desc">Sizzling steaks, aromatic lamb chops, fresh seafood &amp; beloved Thai-Asian dishes. Over 25 years of flavour in every plate.</p>
+    <div class="hero-pill"><i class="fas fa-star"></i> Authentic South Indian Claypot Cuisine</div>
+    <h1 class="hero-title">Seni <em>Sattisorru</em><br>Klang Branch</h1>
+    <p class="hero-sub">The House of Claypot Rice, Curry &amp; Soup</p>
+    <p class="hero-desc">Slow-cooked in traditional clay pots with over 15 freshly ground spices. Every bite is a celebration of South Indian heritage.</p>
     <div class="hero-btns">
-      <a href="#menu" class="btn btn-gold">Explore Menu</a>
-      <a href="#specials" class="btn btn-outline">Our Specials</a>
+      <a href="#menu" class="btn-pri"><i class="fas fa-utensils" style="margin-right:9px"></i>See Our Menu</a>
+      <a href="#contact" class="btn-out"><i class="fas fa-map-marker-alt" style="margin-right:9px"></i>Find Us</a>
     </div>
   </div>
-  <div class="scroll-down">
-    <span class="scroll-lbl">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="hero-scroll"><span>Scroll</span><i class="fas fa-chevron-down"></i></div>
 </section>
 
-<!-- About -->
+<!-- STATS -->
+<div class="stats-bar">
+  <div data-aos="fade-up">
+    <div class="stat-num">0+</div>
+    <div class="stat-lbl">Outlets Nationwide</div>
+  </div>
+  <div data-aos="fade-up" data-aos-delay="80">
+    <div class="stat-num">0.0</div>
+    <div class="stat-lbl">Star Rating</div>
+  </div>
+  <div data-aos="fade-up" data-aos-delay="160">
+    <div class="stat-num">0%</div>
+    <div class="stat-lbl">Halal Certified</div>
+  </div>
+  <div data-aos="fade-up" data-aos-delay="240">
+    <div class="stat-num">0+</div>
+    <div class="stat-lbl">Spices Per Dish</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
 <section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-visual reveal-l">
-        <img class="about-main-img"
-          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80"
-          alt="Windmill Signature Lamb Chop"
-          onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80'">
-        <div class="about-accent">
-          <div class="about-accent-num">25+</div>
-          <div class="about-accent-lbl">Years of Flavour</div>
+  <div class="about-wrap">
+    <div class="about-imgs" data-aos="fade-right">
+      <div class="about-badge-box">
+        <i class="fas fa-fire-alt"></i>
+        <div>
+          <p>Clay Pot Cooking</p>
+          <p>Traditional South Indian Method</p>
         </div>
       </div>
-      <div class="about-text reveal-r">
-        <p class="sec-label">Our Story</p>
-        <h2 class="sec-title">A Klang <em>Institution</em><br>Since 1999</h2>
-        <p>Restoran Windmill has been a beloved landmark in <strong>Bandar Baru Klang</strong> since 1999. What started as a classic Western grill has grown into a full dining experience — blending bold sizzling favourites with Thai-Asian comfort food.</p>
-        <p>Located at <strong>18–20, Lorong Tiara 1A</strong>, we serve generous portions of ribeye steak, aromatic lamb chops, tiger prawns, creamy pastas and more — all at accessible prices that keep families coming back.</p>
-        <p>With a <strong>4.4 ★ rating</strong> from over 700 diners, our kitchen has earned its place as the go-to sizzling house of Klang. Fully <strong>Halal certified</strong>.</p>
-        <div class="about-stats">
-          <div><div class="astat-num" data-count="25">0</div><div class="astat-lbl">Years Open</div></div>
-          <div><div class="astat-num" data-count="4.4">0</div><div class="astat-lbl">Star Rating</div></div>
-          <div><div class="astat-num" data-count="700">0</div><div class="astat-lbl">Reviews</div></div>
-          <div><div class="astat-num" data-count="80">0</div><div class="astat-lbl">Menu Items</div></div>
+      <img class="about-img-main" src="https://media.timeout.com/images/105810587/750/422/image.jpg" alt="Seni Sattisorru claypot dish">
+      <img class="about-img-float" src="https://live.staticflickr.com/4844/32751267538_cfbbdc26d1.jpg" alt="Seni Sattisorru food">
+    </div>
+    <div class="about-text" data-aos="fade-left">
+      <div class="sh-tag">Our Story</div>
+      <h2>Born in <em>Brickfields</em>,<br>Now in Your Neighbourhood</h2>
+      <p>Senivasagam Manikam — known as "Seni" — spent nearly <strong>10 years</strong> perfecting his base recipe and cooking method before opening the original Seni Sattisorru in Brickfields, Kuala Lumpur. Today, Klang gets to enjoy the same legendary flavours.</p>
+      <p>What sets Seni Sattisorru apart is the method: onions, tomatoes, curry leaves and masala are sautéed first, then layered with your chosen protein and cooked rice in a traditional clay pot — creating a dish that is fragrant, robust and utterly unique.</p>
+      <div class="about-highlights">
+        <div class="ah">
+          <i class="fas fa-mortar-pestle"></i>
+          <div><h4>15+ Fresh Spices</h4><p>House-ground daily for maximum flavour and aroma</p></div>
+        </div>
+        <div class="ah">
+          <i class="fas fa-fire"></i>
+          <div><h4>Clay Pot Cooked</h4><p>Earthy pots seal in moisture and intensify depth</p></div>
+        </div>
+        <div class="ah">
+          <i class="fas fa-clock"></i>
+          <div><h4>Slow Cooked</h4><p>Never rushed — every dish deserves its time</p></div>
+        </div>
+        <div class="ah">
+          <i class="fas fa-award"></i>
+          <div><h4>10 Years of Craft</h4><p>A decade perfecting the recipe before opening</p></div>
         </div>
       </div>
+      <div class="halal-strip"><i class="fas fa-check-circle"></i> 100% Halal Certified — Pork Free</div>
     </div>
   </div>
 </section>
 
-<!-- Signature Dishes -->
-<section id="specials">
-  <div class="container">
-    <p class="sec-label reveal">Chef's Favourites</p>
-    <h2 class="sec-title reveal">Our <em>Signature</em> Dishes</h2>
-    <div class="specials-grid">
-
-      <!-- Lamb Chop -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80"
-            alt="Aromatic Lamb Chop"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">⭐ Best Seller</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Aromatic Lamb Chop</div>
-          <div class="dish-desc">Tender lamb chops grilled to perfection on a sizzling hot plate, served with garlic butter sauce and seasonal sides.</div>
-          <div class="dish-footer">
-            <div class="dish-price">from RM 67.83</div>
-            <div class="dish-tag">Sizzling</div>
-          </div>
-        </div>
+<!-- THIRUVILA SAAPADU -->
+<section id="signature">
+  <div class="sig-wrap">
+    <div class="sig-content" data-aos="fade-right">
+      <div class="sh-tag">Signature Experience</div>
+      <h2>Thiruvila <em>Saapadu</em><br>Banana Leaf Feast</h2>
+      <p>Our most celebrated dining experience — a generous spread of fragrant rice, fresh vegetables, pappadum, pickles and your choice of protein curry, all served on a traditional banana leaf. Perfect for sharing with family and friends.</p>
+      <div class="sig-items">
+        <div class="sig-item"><i class="fas fa-leaf"></i><span>Fresh banana leaf serving — the authentic South Indian way</span></div>
+        <div class="sig-item"><i class="fas fa-utensils"></i><span>Unlimited rice refills with 4 side vegetables</span></div>
+        <div class="sig-item"><i class="fas fa-pepper-hot"></i><span>Choice of Chicken, Mutton or Seafood curry</span></div>
+        <div class="sig-item"><i class="fas fa-users"></i><span>Ideal for 2–4 persons — great for celebrations</span></div>
+        <div class="sig-item"><i class="fas fa-star"></i><span>Includes pappadum, pickles &amp; dessert</span></div>
       </div>
-
-      <!-- Ribeye Steak -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=700&q=80"
-            alt="Sizzling Ribeye Steak"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">🔥 Hot Plate</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Sizzling Beef Steak</div>
-          <div class="dish-desc">Premium beef cut grilled to your liking, served on a scorching iron plate with mushroom or black pepper sauce.</div>
-          <div class="dish-footer">
-            <div class="dish-price">from RM 45.98</div>
-            <div class="dish-tag">Grilled</div>
-          </div>
-        </div>
+      <div class="sig-price-box">
+        <span class="from">From</span>
+        <span class="price">RM 29</span>
+        <span class="per">/ person</span>
       </div>
-
-      <!-- Grilled Chicken Chop -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=700&q=80"
-            alt="Windmill Chicken Chop"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">🍗 Crowd Fave</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Windmill Grilled Chicken</div>
-          <div class="dish-desc">Deep-fried or grilled chicken chop with Windmill's signature sweet & sour sauce. Crispy outside, juicy inside.</div>
-          <div class="dish-footer">
-            <div class="dish-price">from RM 26.43</div>
-            <div class="dish-tag">Western</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Surf & Turf -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80"
-            alt="Windmill Surf & Turf"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">👑 Premium</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Windmill's Surf &amp; Turf</div>
-          <div class="dish-desc">The best of land and sea — grilled beef with sizzling tiger prawns, sides included. A showstopper plate.</div>
-          <div class="dish-footer">
-            <div class="dish-price">RM 68.98</div>
-            <div class="dish-tag">Combo</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seafood -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=700&q=80"
-            alt="Seafood Platter"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">🦐 Fresh Daily</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Sizzling Seafood Platter</div>
-          <div class="dish-desc">A generous platter of mixed seafood — prawns, squid, fish — grilled and sizzled with Windmill's spice blend.</div>
-          <div class="dish-footer">
-            <div class="dish-price">RM 52.88</div>
-            <div class="dish-tag">Seafood</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pineapple Fried Rice -->
-      <div class="dish-card reveal">
-        <div class="dish-img-wrap">
-          <img class="dish-img"
-            src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=80"
-            alt="Pineapple Fried Rice"
-            onerror="this.style.background='#1d160f'">
-          <div class="steam-wrap">
-            <div class="steam-wisp"></div>
-            <div class="steam-wisp"></div>
-          </div>
-          <div class="dish-badge">🍍 Thai Style</div>
-        </div>
-        <div class="dish-body">
-          <div class="dish-name">Pineapple Fried Rice</div>
-          <div class="dish-desc">Fragrant Thai-style fried rice tossed with pineapple chunks, prawns and cashew nuts. A sweet-savoury classic.</div>
-          <div class="dish-footer">
-            <div class="dish-price">RM 21.83</div>
-            <div class="dish-tag">Asian</div>
-          </div>
-        </div>
-      </div>
-
+      <br>
+      <a href="tel:+60333820872" class="sig-btn">
+        <i class="fas fa-phone-alt"></i> Reserve Your Table
+      </a>
+    </div>
+    <div class="sig-imgs" data-aos="fade-left">
+      <span class="sig-flame">🔥</span>
+      <span class="sig-label">Signature Feast</span>
+      <img class="sig-img-main"
+           src="https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg"
+           alt="Thiruvila Saapadu banana leaf feast">
+      <img class="sig-img-mini"
+           src="https://live.staticflickr.com/4830/32751267638_07925d2020.jpg"
+           alt="Seni Sattisorru claypot dish">
     </div>
   </div>
 </section>
 
-<!-- Full Menu -->
+<!-- MENU -->
 <section id="menu">
-  <div class="container">
-    <p class="sec-label reveal">Full Menu</p>
-    <h2 class="sec-title reveal">Browse Our <em>Menu</em></h2>
-    <div class="menu-tabs reveal" id="menuTabs">
-      <button class="mtab active" data-tab="specials-tab">⭐ Specials</button>
-      <button class="mtab" data-tab="grill-tab">🔥 Grills &amp; Western</button>
-      <button class="mtab" data-tab="seafood-tab">🦐 Seafood</button>
-      <button class="mtab" data-tab="asian-tab">🍜 Thai &amp; Asian</button>
-      <button class="mtab" data-tab="pasta-tab">🍝 Pasta &amp; Burgers</button>
-      <button class="mtab" data-tab="sides-tab">🥗 Sides &amp; Snacks</button>
-    </div>
+  <div class="sh" data-aos="fade-up">
+    <div class="sh-tag">Our Menu</div>
+    <h2 class="sh-title">Claypot <em>Specialties</em></h2>
+    <div class="sh-line"></div>
+    <p class="sh-sub">Every dish served piping hot, straight from the clay pot. Choose your protein and style — we do the rest.</p>
+  </div>
 
-    <!-- SPECIALS tab -->
-    <div class="menu-panel active" id="specials-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=200&q=80" alt="Ultimate Mixed Grill">
-          <div class="menu-item-info"><div class="menu-item-name">Ultimate Mixed Grill</div><div class="menu-item-desc">Chicken, lamb &amp; beef with sides</div></div>
-          <div class="menu-item-price">RM 68.98</div>
+  <div class="tab-bar" data-aos="fade-up">
+    <button class="tab-btn on"  onclick="showTab('chicken',this)">🍗 Chicken</button>
+    <button class="tab-btn"     onclick="showTab('mutton',this)">🥩 Mutton</button>
+    <button class="tab-btn"     onclick="showTab('prawn',this)">🦐 Prawn</button>
+    <button class="tab-btn"     onclick="showTab('sotong',this)">🦑 Sotong</button>
+    <button class="tab-btn"     onclick="showTab('fish',this)">🐟 Fish</button>
+    <button class="tab-btn"     onclick="showTab('mix',this)">🍲 Mix</button>
+    <button class="tab-btn"     onclick="showTab('alacarte',this)">🍳 Ala Carte</button>
+    <button class="tab-btn"     onclick="showTab('beverages',this)">🥤 Beverages</button>
+  </div>
+
+  <!-- CHICKEN -->
+  <div id="tp-chicken" class="tab-panel on">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/chicken.webp" alt="Chicken Sattisorru" loading="lazy"
+               onerror="this.src='https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg'">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Signature</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80" alt="Surf & Turf">
-          <div class="menu-item-info"><div class="menu-item-name">Windmill's Surf &amp; Turf</div><div class="menu-item-desc">Grilled beef &amp; tiger prawns</div></div>
-          <div class="menu-item-price">RM 68.98</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken Sattisorru</div>
+          <div class="fc-desc">Tender chicken slow-cooked in our legendary clay pot with sautéed onions, tomatoes, curry leaves and 15+ ground spices. Thick, robust and deeply aromatic.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 15.30 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Chicken Sattisorru')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Sizzling Phoenix Neptune">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Phoenix Neptune</div><div class="menu-item-desc">Premium land &amp; sea sizzler</div></div>
-          <div class="menu-item-price">RM 45.98</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="80">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4844/32751267538_cfbbdc26d1.jpg" alt="Chicken Varuval" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Dry Fry</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=200&q=80" alt="Sizzling Favourites">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Favourites</div><div class="menu-item-desc">House special sizzling combo</div></div>
-          <div class="menu-item-price">RM 54.03</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken Varuval</div>
+          <div class="fc-desc">Dry-fried chicken pieces coated in a caramelised spice paste with curry leaves and dried chilli. Crispy, bold and irresistibly flavourful.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60</div>
+            <button class="fc-order" onclick="addOrder('Chicken Varuval')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Europe Delight">
-          <div class="menu-item-info"><div class="menu-item-name">Europe Delight</div><div class="menu-item-desc">Western classic platter</div></div>
-          <div class="menu-item-price">RM 29.88</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="160">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4836/39660599323_6f4513efa7_c.jpg" alt="Chicken Gravy" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Golden Combo">
-          <div class="menu-item-info"><div class="menu-item-name">Golden Combo</div><div class="menu-item-desc">Chef's choice combination set</div></div>
-          <div class="menu-item-price">RM 36.78</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken Gravy</div>
+          <div class="fc-desc">Succulent chicken simmered in a rich, spiced gravy with fresh tomatoes, ground coconut and our house masala blend.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 15.30 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Chicken Gravy')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Sizzling Seafood Platter">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Seafood Platter</div><div class="menu-item-desc">Mixed seafood sizzler</div></div>
-          <div class="menu-item-price">RM 52.88</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="240">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4815/39660599113_b5f9bd943b.jpg" alt="Chicken Soup" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Soup</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Signature Platter">
-          <div class="menu-item-info"><div class="menu-item-name">Signature Platter</div><div class="menu-item-desc">Windmill's signature starter spread</div></div>
-          <div class="menu-item-price">RM 40.23</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken Soup</div>
+          <div class="fc-desc">Light, deeply fragrant South Indian broth with tender chicken, ginger, black pepper and whole spices. Comforting and nourishing.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 15.30 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Chicken Soup')">Order</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- GRILLS tab -->
-    <div class="menu-panel" id="grill-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Grilled Chicken Chop">
-          <div class="menu-item-info"><div class="menu-item-name">Grilled Chicken Chop</div><div class="menu-item-desc">Classic western grilled chicken</div></div>
-          <div class="menu-item-price">RM 26.43</div>
+  <!-- MUTTON -->
+  <div id="tp-mutton" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/mutton.webp" alt="Mutton Sattisorru" loading="lazy"
+               onerror="this.src='https://live.staticflickr.com/4830/32751267638_07925d2020.jpg'">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Signature</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=200&q=80" alt="Sizzling Chicken Fillet">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Chicken Fillet</div><div class="menu-item-desc">Juicy fillet on hot plate</div></div>
-          <div class="menu-item-price">RM 29.88</div>
+        <div class="fc-body">
+          <div class="fc-name">Mutton Sattisorru</div>
+          <div class="fc-desc">The chef's favourite — "mutton is the best option." Slow-cooked until fall-off-the-bone tender in a rich, spiced claypot curry.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Mutton Sattisorru')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Windmill Chicken">
-          <div class="menu-item-info"><div class="menu-item-name">Windmill Chicken</div><div class="menu-item-desc">Signature deep-fried chicken chop</div></div>
-          <div class="menu-item-price">RM 29.88</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="80">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4842/39660599363_b26ef90aeb_c.jpg" alt="Mutton Varuval" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Dry Fry</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Cordon Bleu">
-          <div class="menu-item-info"><div class="menu-item-name">Chicken Cordon Bleu</div><div class="menu-item-desc">Stuffed with ham &amp; cheese</div></div>
-          <div class="menu-item-price">RM 31.03</div>
+        <div class="fc-body">
+          <div class="fc-name">Mutton Varuval</div>
+          <div class="fc-desc">Dry-fried mutton with aromatic curry leaves, dried chilli and a bold caramelised spice crust. A true South Indian classic.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00</div>
+            <button class="fc-order" onclick="addOrder('Mutton Varuval')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Sizzling Half Pepper Roaster">
-          <div class="menu-item-info"><div class="menu-item-name">Half Pepper Roaster</div><div class="menu-item-desc">Sizzling roast with pepper sauce</div></div>
-          <div class="menu-item-price">RM 31.03</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="160">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4830/32751267638_07925d2020.jpg" alt="Mutton Gravy" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="BBQ Pepper Roaster">
-          <div class="menu-item-info"><div class="menu-item-name">BBQ Pepper Roaster</div><div class="menu-item-desc">BBQ glazed roast chicken</div></div>
-          <div class="menu-item-price">RM 31.18</div>
+        <div class="fc-body">
+          <div class="fc-name">Mutton Gravy</div>
+          <div class="fc-desc">Tender mutton pieces cooked in a thick, fragrant curry gravy with tomatoes, onions and house masala. Perfect with rice.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Mutton Gravy')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Aromatic Lamb Chop">
-          <div class="menu-item-info"><div class="menu-item-name">Aromatic Lamb Chop</div><div class="menu-item-desc">Herb-marinated lamb chops</div></div>
-          <div class="menu-item-price">RM 67.83</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="240">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4831/39660599183_bdd4997afb.jpg" alt="Mutton Soup" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Soup</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Succulent Char-grilled Lamb">
-          <div class="menu-item-info"><div class="menu-item-name">Char-grilled Lamb</div><div class="menu-item-desc">Succulent char-grilled cuts</div></div>
-          <div class="menu-item-price">RM 87.38</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Lamb Shank">
-          <div class="menu-item-info"><div class="menu-item-name">Lamb Shank</div><div class="menu-item-desc">Slow-braised tender lamb shank</div></div>
-          <div class="menu-item-price">RM 80.48</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Sizzling Lamb">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Lamb</div><div class="menu-item-desc">Lamb on hot sizzling plate</div></div>
-          <div class="menu-item-price">RM 82.93</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Sizzling Beef">
-          <div class="menu-item-info"><div class="menu-item-name">Sizzling Beef</div><div class="menu-item-desc">Tender beef on hot plate</div></div>
-          <div class="menu-item-price">RM 45.98</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Beef Hot Basil">
-          <div class="menu-item-info"><div class="menu-item-name">Beef Hot Basil</div><div class="menu-item-desc">Spicy Thai basil beef stir-fry</div></div>
-          <div class="menu-item-price">RM 40.23</div>
+        <div class="fc-body">
+          <div class="fc-name">Mutton Soup</div>
+          <div class="fc-desc">Hearty bone-in mutton broth slow-simmered with aromatics and pepper. A warming, restorative bowl of South Indian comfort.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Mutton Soup')">Order</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- SEAFOOD tab -->
-    <div class="menu-panel" id="seafood-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1562802378-063ec186a863?auto=format&fit=crop&w=200&q=80" alt="Classic Fish & Chips">
-          <div class="menu-item-info"><div class="menu-item-name">Classic Fish &amp; Chips</div><div class="menu-item-desc">Beer-battered fish with thick-cut chips</div></div>
-          <div class="menu-item-price">RM 31.03</div>
+  <!-- PRAWN -->
+  <div id="tp-prawn" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/7853/39660599273_4f1147d486_c.jpg" alt="Prawn Sattisorru" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Signature</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Captain's Grilled Tiger Prawns">
-          <div class="menu-item-info"><div class="menu-item-name">Grilled Tiger Prawns</div><div class="menu-item-desc">Captain's grilled tiger prawns</div></div>
-          <div class="menu-item-price">RM 57.48</div>
+        <div class="fc-body">
+          <div class="fc-name">Prawn Sattisorru</div>
+          <div class="fc-desc">Plump, fresh prawns claypot-cooked with our signature spice paste. Sweet, juicy and packed with bold South Indian flavour.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Prawn Sattisorru')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Sizzling Spanish Prawns">
-          <div class="menu-item-info"><div class="menu-item-name">Spanish Style Prawns</div><div class="menu-item-desc">Sizzling Spanish-style tiger prawns</div></div>
-          <div class="menu-item-price">RM 66.68</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="80">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/7864/39660599223_505ee97e66.jpg" alt="Prawn Varuval" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Dry Fry</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Siakap Whole Fish">
-          <div class="menu-item-info"><div class="menu-item-name">Siakap Whole Fish</div><div class="menu-item-desc">Whole sea bass, steamed or fried</div></div>
-          <div class="menu-item-price">RM 74.73</div>
+        <div class="fc-body">
+          <div class="fc-name">Prawn Varuval</div>
+          <div class="fc-desc">Crispy dry-fried prawns coated in a bold spice crust. Crunchy shells, juicy flesh — a must-order seafood dish.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 38.70</div>
+            <button class="fc-order" onclick="addOrder('Prawn Varuval')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Green Curry Mixed Seafood">
-          <div class="menu-item-info"><div class="menu-item-name">Green Curry Seafood</div><div class="menu-item-desc">Aromatic Thai green curry</div></div>
-          <div class="menu-item-price">RM 37.93</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="160">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4809/39660599043_4d94f63963.jpg" alt="Prawn Gravy" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Chili Paste Seafood">
-          <div class="menu-item-info"><div class="menu-item-name">Chili Paste Seafood</div><div class="menu-item-desc">Spicy sambal mixed seafood</div></div>
-          <div class="menu-item-price">RM 37.93</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Steamed Prawn">
-          <div class="menu-item-info"><div class="menu-item-name">Steamed Prawn</div><div class="menu-item-desc">Fresh steamed prawns</div></div>
-          <div class="menu-item-price">RM 39.08</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Butter Prawn">
-          <div class="menu-item-info"><div class="menu-item-name">Butter Prawn</div><div class="menu-item-desc">Creamy butter-glazed prawns</div></div>
-          <div class="menu-item-price">RM 54.03</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?auto=format&fit=crop&w=200&q=80" alt="Crispy Honey Baby Squid">
-          <div class="menu-item-info"><div class="menu-item-name">Honey Baby Squid</div><div class="menu-item-desc">Crispy calamari with honey glaze</div></div>
-          <div class="menu-item-price">RM 26.43</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?auto=format&fit=crop&w=200&q=80" alt="Deep-fried Squid">
-          <div class="menu-item-info"><div class="menu-item-name">Deep-fried Squid</div><div class="menu-item-desc">Golden crispy calamari rings</div></div>
-          <div class="menu-item-price">RM 22.98</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Butter Soft Shell Crab">
-          <div class="menu-item-info"><div class="menu-item-name">Butter Soft Shell Crab</div><div class="menu-item-desc">Creamy buttered soft shell crab</div></div>
-          <div class="menu-item-price">RM 63.23</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Salted Egg Soft Shell Crab">
-          <div class="menu-item-info"><div class="menu-item-name">Salted Egg Soft Shell Crab</div><div class="menu-item-desc">Rich salted egg yolk crab</div></div>
-          <div class="menu-item-price">RM 57.48</div>
+        <div class="fc-body">
+          <div class="fc-name">Prawn Gravy</div>
+          <div class="fc-desc">Sweet fresh prawns simmered in a tangy, fragrant gravy with tamarind, tomato and freshly ground coconut.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Prawn Gravy')">Order</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ASIAN tab -->
-    <div class="menu-panel" id="asian-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Thai Seafood Tomyam">
-          <div class="menu-item-info"><div class="menu-item-name">Thai Seafood Tomyam</div><div class="menu-item-desc">Spicy &amp; sour Thai seafood soup</div></div>
-          <div class="menu-item-price">RM 16.08</div>
+  <!-- SOTONG -->
+  <div id="tp-sotong" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://media.timeout.com/images/105810588/750/422/image.jpg" alt="Sotong Sattisorru" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Signature</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Seafood Tomyam Soup">
-          <div class="menu-item-info"><div class="menu-item-name">Seafood Tomyam Soup</div><div class="menu-item-desc">Classic Thai tomyam broth</div></div>
-          <div class="menu-item-price">RM 31.03</div>
+        <div class="fc-body">
+          <div class="fc-name">Sotong Sattisorru</div>
+          <div class="fc-desc">Tender fresh squid claypot-cooked with our signature blend of South Indian spices. Slightly chewy, bold and wonderfully aromatic.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Sotong Sattisorru')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Pineapple Fried Rice">
-          <div class="menu-item-info"><div class="menu-item-name">Pineapple Fried Rice</div><div class="menu-item-desc">Thai-style sweet &amp; savoury rice</div></div>
-          <div class="menu-item-price">RM 21.83</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="100">
+        <div class="fc-img">
+          <img src="https://media.timeout.com/images/105810589/750/422/image.jpg" alt="Sotong Gravy" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Belacan Fried Rice">
-          <div class="menu-item-info"><div class="menu-item-name">Belacan Fried Rice</div><div class="menu-item-desc">Fragrant shrimp paste fried rice</div></div>
-          <div class="menu-item-price">RM 19.53</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Thai Fried Rice">
-          <div class="menu-item-info"><div class="menu-item-name">Thai Fried Rice</div><div class="menu-item-desc">Classic Thai-style wok fried rice</div></div>
-          <div class="menu-item-price">RM 19.53</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=200&q=80" alt="Phad Thai">
-          <div class="menu-item-info"><div class="menu-item-name">Phad Thai</div><div class="menu-item-desc">Stir-fried rice noodles Thai style</div></div>
-          <div class="menu-item-price">RM 24.13</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=200&q=80" alt="Thai Fried Glass Noodle">
-          <div class="menu-item-info"><div class="menu-item-name">Thai Fried Glass Noodle</div><div class="menu-item-desc">Wok-tossed glass noodles Thai style</div></div>
-          <div class="menu-item-price">RM 22.98</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Seafood Tomyam Mee Hoon">
-          <div class="menu-item-info"><div class="menu-item-name">Seafood Tomyam Mee Hoon</div><div class="menu-item-desc">Rice vermicelli in tomyam broth</div></div>
-          <div class="menu-item-price">RM 21.83</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=200&q=80" alt="Minced Chicken Hot Basil">
-          <div class="menu-item-info"><div class="menu-item-name">Minced Chicken Hot Basil</div><div class="menu-item-desc">Thai basil stir-fry over rice</div></div>
-          <div class="menu-item-price">RM 22.98</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Thai Roasted Spring Chicken">
-          <div class="menu-item-info"><div class="menu-item-name">Thai Roasted Spring Chicken</div><div class="menu-item-desc">Fragrant Thai herb roast chicken</div></div>
-          <div class="menu-item-price">RM 26.43</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=200&q=80" alt="Golden Chicken Salted Egg">
-          <div class="menu-item-info"><div class="menu-item-name">Salted Egg Chicken</div><div class="menu-item-desc">Crispy chicken in salted egg sauce</div></div>
-          <div class="menu-item-price">RM 34.48</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Dried Chili Beef">
-          <div class="menu-item-info"><div class="menu-item-name">Dried Chili Beef</div><div class="menu-item-desc">Wok-fried beef with dried chili</div></div>
-          <div class="menu-item-price">RM 45.98</div>
+        <div class="fc-body">
+          <div class="fc-name">Sotong Gravy</div>
+          <div class="fc-desc">Soft squid simmered in a deep, dark spiced gravy with curry leaves, onion and tomato for rich, layered flavour.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 19.60 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Sotong Gravy')">Order</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- PASTA tab -->
-    <div class="menu-panel" id="pasta-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Pasta Pescatore">
-          <div class="menu-item-info"><div class="menu-item-name">Pasta Pescatore</div><div class="menu-item-desc">Seafood pasta in tomato sauce</div></div>
-          <div class="menu-item-price">RM 27.28</div>
+  <!-- FISH -->
+  <div id="tp-fish" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://media.timeout.com/images/105810586/750/422/image.jpg" alt="Fish Sattisorru" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Signature</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Seafood Aglio Olio">
-          <div class="menu-item-info"><div class="menu-item-name">Seafood Aglio Olio</div><div class="menu-item-desc">Olive oil, garlic &amp; mixed seafood</div></div>
-          <div class="menu-item-price">RM 27.58</div>
+        <div class="fc-body">
+          <div class="fc-name">Fish Sattisorru</div>
+          <div class="fc-desc">Fresh fish claypot-simmered with aromatic South Indian spices, tangy tamarind and a thick, coconut-enriched curry sauce.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Fish Sattisorru')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Chicken Carbonara">
-          <div class="menu-item-info"><div class="menu-item-name">Creamy Chicken Carbonara</div><div class="menu-item-desc">Rich creamy carbonara with chicken</div></div>
-          <div class="menu-item-price">RM 27.58</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="100">
+        <div class="fc-img">
+          <img src="https://media.timeout.com/images/105810587/750/422/image.jpg" alt="Fish Gravy" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Spicy Seafood Marinara">
-          <div class="menu-item-info"><div class="menu-item-name">Spicy Seafood Marinara</div><div class="menu-item-desc">Spicy tomato-based seafood pasta</div></div>
-          <div class="menu-item-price">RM 32.18</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Succulent Steak Burger">
-          <div class="menu-item-info"><div class="menu-item-name">Succulent Steak Burger</div><div class="menu-item-desc">Thick beef patty gourmet burger</div></div>
-          <div class="menu-item-price">RM 34.48</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Juicy Chicken Burger">
-          <div class="menu-item-info"><div class="menu-item-name">Juicy Chicken Burger</div><div class="menu-item-desc">Crispy fried chicken gourmet burger</div></div>
-          <div class="menu-item-price">RM 22.98</div>
-        </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Soft Shell Crab Burger">
-          <div class="menu-item-info"><div class="menu-item-name">Soft Shell Crab Burger</div><div class="menu-item-desc">Crispy soft shell crab in a bun</div></div>
-          <div class="menu-item-price">RM 40.23</div>
+        <div class="fc-body">
+          <div class="fc-name">Fish Gravy</div>
+          <div class="fc-desc">Tender fish pieces slow-cooked in a bold, spiced gravy. A South Indian coastal classic that pairs beautifully with rice.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Fish Gravy')">Order</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- SIDES tab -->
-    <div class="menu-panel" id="sides-tab">
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Caesar Salad">
-          <div class="menu-item-info"><div class="menu-item-name">Caesar Salad</div><div class="menu-item-desc">Classic romaine Caesar</div></div>
-          <div class="menu-item-price">RM 14.93</div>
+  <!-- MIX -->
+  <div id="tp-mix" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg" alt="Chicken & Prawn Mix" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Popular</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Mixed Salad">
-          <div class="menu-item-info"><div class="menu-item-name">Mixed Salad</div><div class="menu-item-desc">Fresh garden mixed salad</div></div>
-          <div class="menu-item-price">RM 12.63</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken &amp; Prawn Mix</div>
+          <div class="fc-desc">The best of land and sea — succulent chicken and plump prawns cooked together in one spectacular claypot of South Indian spice.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 34.40 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Chicken & Prawn Mix')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" alt="Mushroom Soup">
-          <div class="menu-item-info"><div class="menu-item-name">Mushroom Soup</div><div class="menu-item-desc">Creamy button mushroom soup</div></div>
-          <div class="menu-item-price">RM 12.00</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="80">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4842/39660599363_b26ef90aeb_c.jpg" alt="Chicken & Mutton Mix" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="French Fries">
-          <div class="menu-item-info"><div class="menu-item-name">French Fries</div><div class="menu-item-desc">Golden crispy shoestring fries</div></div>
-          <div class="menu-item-price">RM 10.33</div>
+        <div class="fc-body">
+          <div class="fc-name">Chicken &amp; Mutton Mix</div>
+          <div class="fc-desc">A hearty double-protein claypot — tender chicken and slow-cooked mutton bathed in layers of fragrant whole spice masala.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 30.00 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Chicken & Mutton Mix')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="Potato Wedges">
-          <div class="menu-item-info"><div class="menu-item-name">Potato Wedges</div><div class="menu-item-desc">Seasoned crispy potato wedges</div></div>
-          <div class="menu-item-price">RM 11.48</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="160">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4809/39660599043_4d94f63963.jpg" alt="Prawn & Sotong Mix" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Wings">
-          <div class="menu-item-info"><div class="menu-item-name">Chicken Wings</div><div class="menu-item-desc">Crispy fried chicken wings</div></div>
-          <div class="menu-item-price">RM 11.48</div>
+        <div class="fc-body">
+          <div class="fc-name">Prawn &amp; Sotong Mix</div>
+          <div class="fc-desc">A seafood lover's dream — fresh prawns and tender squid together in one claypot with intense South Indian spice blend.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 38.70 <sub>from</sub></div>
+            <button class="fc-order" onclick="addOrder('Prawn & Sotong Mix')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Nugget">
-          <div class="menu-item-info"><div class="menu-item-name">Chicken Nuggets</div><div class="menu-item-desc">Crispy golden nuggets</div></div>
-          <div class="menu-item-price">RM 14.93</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALA CARTE -->
+  <div id="tp-alacarte" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/ala-carte-2.webp" alt="Goreng Chicken 65" loading="lazy"
+               onerror="this.src='https://live.staticflickr.com/4844/32751267538_cfbbdc26d1.jpg'">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Best Seller</span>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Kailan Garlic">
-          <div class="menu-item-info"><div class="menu-item-name">Kailan Garlic</div><div class="menu-item-desc">Stir-fried Chinese kale with garlic</div></div>
-          <div class="menu-item-price">RM 18.38</div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Chicken 65</div>
+          <div class="fc-desc">The legendary Chicken 65 — crispy marinated chicken bites tossed with curry leaves, green chilli and South Indian spices.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 11.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Chicken 65')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Kailan Oyster Sauce">
-          <div class="menu-item-info"><div class="menu-item-name">Kailan Oyster Sauce</div><div class="menu-item-desc">Wok-fried kailan in oyster sauce</div></div>
-          <div class="menu-item-price">RM 18.38</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="60">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4815/39660599113_b5f9bd943b.jpg" alt="Goreng Tenggiri" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Western Kids Meal">
-          <div class="menu-item-info"><div class="menu-item-name">Western Kids Meal</div><div class="menu-item-desc">Kid-sized western set</div></div>
-          <div class="menu-item-price">RM 20.68</div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Tenggiri</div>
+          <div class="fc-desc">Crispy golden-fried Spanish mackerel steaks, seasoned with turmeric, chilli powder and aromatic spices.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 24.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Tenggiri')">Order</button>
+          </div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Asian Kids Meal">
-          <div class="menu-item-info"><div class="menu-item-name">Asian Kids Meal</div><div class="menu-item-desc">Kid-sized Asian set</div></div>
-          <div class="menu-item-price">RM 19.53</div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="120">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4836/39660599323_6f4513efa7_c.jpg" alt="Goreng Sotong" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
         </div>
-        <div class="menu-item">
-          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Pasta Kids Meal">
-          <div class="menu-item-info"><div class="menu-item-name">Pasta Kids Meal</div><div class="menu-item-desc">Kid-sized pasta set</div></div>
-          <div class="menu-item-price">RM 19.53</div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Sotong</div>
+          <div class="fc-desc">Deep-fried squid rings in a light, well-seasoned coating — crispy outside, tender and succulent inside.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 32.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Sotong')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="180">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/7853/39660599273_4f1147d486_c.jpg" alt="Goreng Udang" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Udang</div>
+          <div class="fc-desc">Whole prawns fried to a perfect golden crisp — shell-on for maximum flavour, juicy and utterly irresistible.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 32.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Udang')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="240">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4830/32751267638_07925d2020.jpg" alt="Goreng Kadai" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+          <span class="fc-label">Spicy</span>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Kadai</div>
+          <div class="fc-desc">Wok-tossed in kadai style with capsicum, onion, tomato and a bold blend of whole roasted Indian spices.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 12.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Kadai')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="300">
+        <div class="fc-img">
+          <img src="https://live.staticflickr.com/4831/39660599183_bdd4997afb.jpg" alt="Goreng Fillet" loading="lazy">
+          <div class="steam"><div class="sl"></div><div class="sl"></div><div class="sl"></div></div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Goreng Fillet</div>
+          <div class="fc-desc">Boneless fish fillet fried to a golden crisp — light, flaky inside and coated in a fragrant spiced seasoning.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 16.00</div>
+            <button class="fc-order" onclick="addOrder('Goreng Fillet')">Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEVERAGES -->
+  <div id="tp-beverages" class="tab-panel">
+    <div class="menu-grid">
+      <div class="fc" data-aos="fade-up">
+        <div class="fc-img" style="background:linear-gradient(135deg,#1a2e10,#2d4a1a);">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/beverages-5.webp" alt="Beverages" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Teh O &amp; Teh O Limau</div>
+          <div class="fc-desc">Classic hot or iced black tea, or with fresh lime for a bright, tangy twist. A timeless Malaysian favourite.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 2.90 <sub>– RM 3.70</sub></div>
+            <button class="fc-order" onclick="addOrder('Teh O')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="70">
+        <div class="fc-img" style="background:linear-gradient(135deg,#1a1a2e,#2d1a3a);">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/beverages-5.webp" alt="Sirap" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Sirap &amp; Sirap Limau</div>
+          <div class="fc-desc">Chilled rose syrup drink — sweet and vibrant, or with fresh lime juice for a refreshing, tangy kick.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 2.90 <sub>– RM 3.70</sub></div>
+            <button class="fc-order" onclick="addOrder('Sirap')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="140">
+        <div class="fc-img" style="background:linear-gradient(135deg,#1a2a10,#2a3a15);">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/beverages-5.webp" alt="Barli" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Barli (Barley Water)</div>
+          <div class="fc-desc">Cooling, lightly sweet barley water — the perfect antidote to spicy South Indian dishes. Refreshing and soothing.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 2.90</div>
+            <button class="fc-order" onclick="addOrder('Barli')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="210">
+        <div class="fc-img" style="background:linear-gradient(135deg,#2a1a05,#3a2808);">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/beverages-5.webp" alt="Avaram Poo" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Avaram Poo (Flower Tea)</div>
+          <div class="fc-desc">Traditional Indian herbal tea brewed from senna flowers — delicate, aromatic and naturally beneficial for health.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 2.90</div>
+            <button class="fc-order" onclick="addOrder('Avaram Poo')">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc" data-aos="fade-up" data-aos-delay="280">
+        <div class="fc-img" style="background:linear-gradient(135deg,#1a1205,#2a1e08);">
+          <img src="https://sgmyfoodie.com/wp-content/uploads/2024/10/beverages-5.webp" alt="Jeera" loading="lazy"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Jeera (Cumin Water)</div>
+          <div class="fc-desc">Spiced cumin water — a traditional South Indian digestive that pairs perfectly with a generous claypot meal.</div>
+          <div class="fc-foot">
+            <div class="fc-price">RM 2.90</div>
+            <button class="fc-order" onclick="addOrder('Jeera')">Order</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery -->
+<!-- GALLERY -->
 <section id="gallery">
-  <div class="container">
-    <p class="sec-label reveal">Food Gallery</p>
-    <h2 class="sec-title reveal">Taste It <em>Visually</em></h2>
-    <div class="gallery-grid">
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Lamb Chop">
-        <div class="gal-overlay"><span class="gal-lbl">Lamb Chop</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=500&q=80" alt="Grilled Chicken">
-        <div class="gal-overlay"><span class="gal-lbl">Grilled Chicken</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80" alt="Steak">
-        <div class="gal-overlay"><span class="gal-lbl">Sizzling Steak</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=500&q=80" alt="Prawns">
-        <div class="gal-overlay"><span class="gal-lbl">Tiger Prawns</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=500&q=80" alt="Seafood">
-        <div class="gal-overlay"><span class="gal-lbl">Seafood</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80" alt="Pineapple Rice">
-        <div class="gal-overlay"><span class="gal-lbl">Pineapple Fried Rice</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" alt="Pasta">
-        <div class="gal-overlay"><span class="gal-lbl">Pasta</span></div>
-      </div>
-      <div class="gal-item reveal">
-        <img class="gal-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger">
-        <div class="gal-overlay"><span class="gal-lbl">Gourmet Burger</span></div>
-      </div>
+  <div class="sh" data-aos="fade-up">
+    <div class="sh-tag">Gallery</div>
+    <h2 class="sh-title">Real Food, <em>Real Flavour</em></h2>
+    <div class="sh-line"></div>
+    <p class="sh-sub">Every photo is an authentic shot of Seni Sattisorru food — piping hot, freshly cooked and served straight from the clay pot.</p>
+  </div>
+  <div class="gal-grid" data-aos="fade-up" data-aos-delay="100">
+    <div class="gi" onclick="openLB(this)">
+      <img src="https://live.staticflickr.com/4817/46625329841_66104b45dd.jpg" alt="Claypot curry rice — signature dish">
+      <i class="fas fa-search-plus gi-icon"></i>
+      <div class="gi-cap">Signature Claypot Curry Rice</div>
+    </div>
+    <div class="gi" onclick="openLB(this)">
+      <img src="https://live.staticflickr.com/4842/39660599363_b26ef90aeb_c.jpg" alt="Seni Sattisorru dish">
+      <i class="fas fa-search-plus gi-icon"></i>
+      <div class="gi-cap">Freshly Prepared</div>
+    </div>
+    <div class="gi" onclick="openLB(this)">
+      <img src="https://live.staticflickr.com/4836/39660599323_6f4513efa7_c.jpg" alt="Seni Sattisorru dish">
+      <i class="fas fa-search-plus gi-icon"></i>
+      <div class="gi-cap">Rich Curry Goodness</div>
+    </div>
+    <div class="gi" onclick="openLB(this)">
+      <img src="https://live.staticflickr.com/4830/32751267638_07925d2020.jpg" alt="Seni Sattisorru food">
+      <i class="fas fa-search-plus gi-icon"></i>
+      <div class="gi-cap">Aromatic Spice Base</div>
+    </div>
+    <div class="gi" onclick="openLB(this)">
+      <img src="https://live.staticflickr.com/7853/39660599273_4f1147d486_c.jpg" alt="Seni Sattisorru claypot">
+      <i class="fas fa-search-plus gi-icon"></i>
+      <div class="gi-cap">Seafood Special</div>
     </div>
   </div>
 </section>
 
-<!-- Reviews -->
+<!-- REVIEWS -->
 <section id="reviews">
-  <div class="container">
-    <p class="sec-label reveal">What Diners Say</p>
-    <h2 class="sec-title reveal">Guest <em>Reviews</em></h2>
+  <div class="sh" data-aos="fade-up">
+    <div class="sh-tag">Customer Reviews</div>
+    <h2 class="sh-title">What Our <em>Guests Say</em></h2>
+    <div class="sh-line"></div>
   </div>
-  <div class="reviews-track-wrap">
-    <div class="reviews-track" id="reviewsTrack">
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Years in, years out — Windmill keeps going strong and maintains its standards. The lamb chop is a must-order every single time."</p><div class="rev-author">— Tripadvisor Guest</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Best Western food in Klang. The sizzling plate arrived at the table and the smell alone was incredible. Portions are very generous!"</p><div class="rev-author">— Foodadvisor Review</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"The Windmill Chicken chop is special — crispy outside, juicy inside, and that sweet & sour sauce is addictive. Great value for money."</p><div class="rev-author">— Google Reviewer</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brought the whole family here for a birthday dinner. Staff were attentive, the food came out fast and tasted amazing. Will be back!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"One of the best Western meals I've had in a while. The ribeye steak was cooked perfectly and the mushroom sauce was rich and flavourful."</p><div class="rev-author">— Foodpanda Review</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"Underrated gem in Klang. The pineapple fried rice and tom yam are authentic Thai quality. Cozy ambiance and friendly service."</p><div class="rev-author">— YummyAdvisor</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Steady and sturdy — classic Western food done right. The Surf & Turf is a showstopper. The sizzle sound when it hits the table!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
-      <!-- duplicate for seamless loop -->
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Years in, years out — Windmill keeps going strong and maintains its standards. The lamb chop is a must-order every single time."</p><div class="rev-author">— Tripadvisor Guest</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Best Western food in Klang. The sizzling plate arrived at the table and the smell alone was incredible. Portions are very generous!"</p><div class="rev-author">— Foodadvisor Review</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"The Windmill Chicken chop is special — crispy outside, juicy inside, and that sweet & sour sauce is addictive. Great value for money."</p><div class="rev-author">— Google Reviewer</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brought the whole family here for a birthday dinner. Staff were attentive, the food came out fast and tasted amazing. Will be back!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"One of the best Western meals I've had in a while. The ribeye steak was cooked perfectly and the mushroom sauce was rich and flavourful."</p><div class="rev-author">— Foodpanda Review</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"Underrated gem in Klang. The pineapple fried rice and tom yam are authentic Thai quality. Cozy ambiance and friendly service."</p><div class="rev-author">— YummyAdvisor</div></div>
-      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Steady and sturdy — classic Western food done right. The Surf & Turf is a showstopper. The sizzle sound when it hits the table!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
+  <div class="rev-grid">
+    <div class="rv" data-aos="fade-up">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"The curry is thick, robust and full of strong spices and aroma. The mutton is the best option — fall-off-the-bone tender. Highly recommended for anyone who loves authentic South Indian food!"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">T</div>
+        <div>
+          <div class="rv-name">TauFuLou Food Blog</div>
+          <div class="rv-src">Verified Visitor · Food Blogger</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv" data-aos="fade-up" data-aos-delay="100">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"The food was very delicious and fresh. The claypot rice was perfectly cooked with amazing spices. One of the best Indian restaurants in Klang — will definitely come back with the whole family!"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">R</div>
+        <div>
+          <div class="rv-name">Ramesh K.</div>
+          <div class="rv-src">TripAdvisor · Klang Local</div>
+        </div>
+      </div>
+    </div>
+    <div class="rv" data-aos="fade-up" data-aos-delay="200">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-text">"Seni spent nearly 10 years perfecting this recipe and it truly shows. The sautéed onion, tomato and curry leaf base sets this apart from any other claypot rice I've had. Absolutely outstanding!"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">S</div>
+        <div>
+          <div class="rv-name">Suria Nair</div>
+          <div class="rv-src">Google Review · Regular</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Visit Us -->
-<section id="visit">
-  <div class="container">
-    <p class="sec-label reveal">Find Us</p>
-    <h2 class="sec-title reveal">Visit <em>Windmill</em></h2>
-    <div class="visit-grid">
-      <div class="reveal-l">
-        <div class="info-blocks">
-          <div class="info-block">
-            <div class="info-icon">📍</div>
-            <div>
-              <h4>Address</h4>
-              <p>18–20, Lorong Tiara 1A<br>Bandar Baru Klang, 41150<br>Klang, Selangor, Malaysia</p>
-            </div>
+<!-- FEATURES -->
+<section id="features">
+  <div class="sh" data-aos="fade-up">
+    <div class="sh-tag">Why Choose Us</div>
+    <h2 class="sh-title">The <em>Sattisorru</em> Difference</h2>
+    <div class="sh-line"></div>
+  </div>
+  <div class="feat-grid">
+    <div class="fcard" data-aos="fade-up">
+      <div class="fcard-icon"><i class="fas fa-fire-alt"></i></div>
+      <h3>Authentic Clay Pot</h3>
+      <p>Traditional handcrafted clay pots that lock in moisture, intensify aromas and impart an earthy depth no other cooking vessel can replicate.</p>
+    </div>
+    <div class="fcard" data-aos="fade-up" data-aos-delay="80">
+      <div class="fcard-icon"><i class="fas fa-mortar-pestle"></i></div>
+      <h3>15+ Fresh Spices</h3>
+      <p>Over 15 spices ground fresh daily. No shortcuts, no powdered mixes — just pure, authentic South Indian flavour in every bite.</p>
+    </div>
+    <div class="fcard" data-aos="fade-up" data-aos-delay="160">
+      <div class="fcard-icon"><i class="fas fa-check-circle"></i></div>
+      <h3>100% Halal &amp; Pork Free</h3>
+      <p>Fully Halal certified. Every ingredient and preparation method meets the strictest standards. Enjoy with complete peace of mind.</p>
+    </div>
+    <div class="fcard" data-aos="fade-up" data-aos-delay="240">
+      <div class="fcard-icon"><i class="fas fa-clock"></i></div>
+      <h3>Open Daily</h3>
+      <p>We're open Monday through Sunday, 11:30 AM to 10:00 PM — so you can satisfy your Sattisorru craving any day of the week.</p>
+    </div>
+    <div class="fcard" data-aos="fade-up" data-aos-delay="320">
+      <div class="fcard-icon"><i class="fas fa-users"></i></div>
+      <h3>Family &amp; Group Friendly</h3>
+      <p>Our Thiruvila Saapadu banana leaf feast is perfect for sharing. Great for family dinners, celebrations and group gatherings.</p>
+    </div>
+    <div class="fcard" data-aos="fade-up" data-aos-delay="400">
+      <div class="fcard-icon"><i class="fas fa-trophy"></i></div>
+      <h3>10 Years of Mastery</h3>
+      <p>Founder Seni spent nearly a decade perfecting the recipe before opening. That dedication lives in every dish we serve today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="del-wrap" data-aos="fade-up">
+    <div class="sh-tag">Order Online</div>
+    <h2 class="sh-title">Can't Come In? <em>Order Delivery</em></h2>
+    <div class="sh-line"></div>
+    <p class="sh-sub" style="margin-top:16px;">Get your Sattisorru fix delivered hot to your door, or call us directly for takeaway.</p>
+    <div class="del-platforms">
+      <a href="https://wa.me/60333820872" target="_blank" rel="noopener" class="del-card wa">
+        <div class="del-icon">💬</div>
+        <div class="del-name">WhatsApp Order</div>
+        <div class="del-sub">+60 3-3382 0872</div>
+      </a>
+      <a href="https://www.foodpanda.my/chain/co4bo/seni-sattisorru" target="_blank" rel="noopener" class="del-card fp">
+        <div class="del-icon">🐼</div>
+        <div class="del-name">Foodpanda</div>
+        <div class="del-sub">Order online now</div>
+      </a>
+      <a href="https://senisattisorruklang.beepit.com/" target="_blank" rel="noopener" class="del-card bp">
+        <div class="del-icon">🛵</div>
+        <div class="del-name">Beep Delivery</div>
+        <div class="del-sub">Direct from restaurant</div>
+      </a>
+      <a href="tel:+60333820872" class="del-card ph">
+        <div class="del-icon">📞</div>
+        <div class="del-name">Call to Order</div>
+        <div class="del-sub">Takeaway &amp; delivery</div>
+      </a>
+    </div>
+    <div class="del-or">Or dine in with us anytime — walk-ins always welcome!</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sh" data-aos="fade-up">
+    <div class="sh-tag">Find Us</div>
+    <h2 class="sh-title">Visit <em>Klang Branch</em></h2>
+    <div class="sh-line"></div>
+  </div>
+  <div class="ct-grid">
+    <div class="ct-info" data-aos="fade-right">
+      <h2>Come <em>Dine</em> With Us</h2>
+      <p>Walk in, pull up a chair and let us take you on a South Indian culinary journey. Our Klang team is ready to welcome you with warmth and great food.</p>
+      <div class="ct-items">
+        <div class="ci">
+          <div class="ci-ic"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="ci-tx">
+            <h4>Address</h4>
+            <p>Menara A &amp; M, Unit G-05<br>No. 3 Jalan Istana, 41000 Klang<br>Selangor, Malaysia</p>
           </div>
-          <div class="info-block">
-            <div class="info-icon">🕐</div>
-            <div>
-              <h4>Opening Hours</h4>
-              <p>Daily: 10:30 AM – 10:30 PM<br>Open 7 days a week<br><em style="color:var(--gold);font-size:.78rem;">Hours may vary on public holidays</em></p>
-            </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ic"><i class="fas fa-phone-alt"></i></div>
+          <div class="ci-tx">
+            <h4>Phone</h4>
+            <a href="tel:+60333820872">+60 3-3382 0872</a>
           </div>
-          <div class="info-block">
-            <div class="info-icon">📞</div>
-            <div>
-              <h4>Phone</h4>
-              <p><a href="tel:+60333449780" style="color:var(--gold2);text-decoration:none;">+60 3-3344 9780</a></p>
-            </div>
-          </div>
-          <div class="info-block">
-            <div class="info-icon">✅</div>
-            <div>
-              <h4>Facilities</h4>
-              <p>Halal Certified · Free Parking<br>Dine-in · Takeaway · Delivery<br>Wheelchair Accessible · Kids Menu</p>
-            </div>
-          </div>
-          <div class="info-block">
-            <div class="info-icon">🚗</div>
-            <div>
-              <h4>Delivery</h4>
-              <p>Available on <strong style="color:var(--gold2);">GrabFood</strong> &amp; <strong style="color:var(--gold2);">Foodpanda</strong></p>
+        </div>
+        <div class="ci">
+          <div class="ci-ic"><i class="fas fa-clock"></i></div>
+          <div class="ci-tx">
+            <h4>Opening Hours</h4>
+            <div class="hr-table">
+              <span class="hr-day">Mon – Sun</span>
+              <span class="hr-time">11:30 AM – 10:00 PM</span>
             </div>
           </div>
         </div>
+        <div class="ci">
+          <div class="ci-ic"><i class="fab fa-facebook-f"></i></div>
+          <div class="ci-tx">
+            <h4>Facebook</h4>
+            <a href="https://www.facebook.com/senisattisorrubypilihanramai" target="_blank" rel="noopener">Seni Sattisorru Klang</a>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-ic"><i class="fas fa-concierge-bell"></i></div>
+          <div class="ci-tx">
+            <h4>Services</h4>
+            <p>Dine-in &nbsp;·&nbsp; Takeaway &nbsp;·&nbsp; Delivery</p>
+          </div>
+        </div>
       </div>
-      <div class="map-embed reveal-r">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.0!2d101.4456!3d3.0445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f5aa8b3e8e7%3A0x2b8a5d6c4a3f1e9b!2sRestoran%20Windmill%2C%20Lorong%20Tiara%201A%2C%20Bandar%20Baru%20Klang!5e0!3m2!1sen!2smy!4v1685000000000!5m2!1sen!2smy"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Restoran Windmill location map">
-        </iframe>
-      </div>
+    </div>
+    <div class="map-box" data-aos="fade-left">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.29!2d101.4489!3d3.0330!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4c8f5b5a9cf9%3A0x0!2sJalan+Istana%2C+41000+Klang%2C+Selangor!5e0!3m2!1sen!2smy!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Seni Sattisorru Klang Branch Location">
+      </iframe>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Restoran <span>Windmill</span></div>
-  <p class="footer-tag">Western &amp; Asian Dining · Bandar Baru Klang · Est. 1999</p>
-  <ul class="footer-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#specials">Specials</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#visit">Visit Us</a></li>
-  </ul>
-  <div class="footer-hr"></div>
-  <p class="footer-copy">© 2026 Restoran Windmill · 18–20 Lorong Tiara 1A, Bandar Baru Klang · +60 3-3344 9780</p>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="logo">Seni Sattisorru</div>
+      <div class="sub">Klang Branch</div>
+      <p>The House of Claypot Rice, Curry &amp; Soup. Born in Brickfields, beloved across Malaysia. Seven branches and one mission — the most authentic South Indian claypot you've ever tasted.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/senisattisorrubypilihanramai" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/seni_sattisorru_brickfields/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="tel:+60333820872" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#menu">Our Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#features">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Menu</h5>
+      <ul>
+        <li><a href="#menu" onclick="goTab('chicken')">🍗 Chicken</a></li>
+        <li><a href="#menu" onclick="goTab('mutton')">🥩 Mutton</a></li>
+        <li><a href="#menu" onclick="goTab('prawn')">🦐 Prawn</a></li>
+        <li><a href="#menu" onclick="goTab('sotong')">🦑 Sotong</a></li>
+        <li><a href="#menu" onclick="goTab('fish')">🐟 Fish</a></li>
+        <li><a href="#menu" onclick="goTab('alacarte')">🍳 Ala Carte</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Opening Hours</h5>
+      <div class="ft-hr">
+        <div class="ft-hr-row"><span>Monday</span><span>11:30 – 22:00</span></div>
+        <div class="ft-hr-row"><span>Tuesday</span><span>11:30 – 22:00</span></div>
+        <div class="ft-hr-row"><span>Wednesday</span><span>11:30 – 22:00</span></div>
+        <div class="ft-hr-row"><span>Thursday</span><span>11:30 – 22:00</span></div>
+        <div class="ft-hr-row"><span>Friday</span><span>11:30 – 22:00</span></div>
+        <div class="ft-hr-row"><span>Sat – Sun</span><span>11:30 – 22:00</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2025 Seni Sattisorru Klang Branch. All rights reserved.</p>
+    <div class="halal-mini"><i class="fas fa-check-circle"></i> Halal Certified &amp; Pork Free</div>
+  </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<div id="wa-float">
+  <div class="wa-bubble">Chat with us on<br><strong>WhatsApp</strong> to order! 🍛</div>
+  <a href="https://wa.me/60333820872?text=Hi%2C%20I'd%20like%20to%20order%20from%20Seni%20Sattisorru%20Klang!"
+     target="_blank" rel="noopener" class="wa-float-btn" aria-label="Order via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="closeLB()">
+  <button id="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="Gallery">
+</div>
+
+<!-- SCROLL TOP -->
+<button id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- TOAST -->
+<div id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg"></span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
+  // AOS
+  AOS.init({ duration: 680, once: true, easing: 'ease-out-quad' });
+
+  // Animated number counters
+  function animateCount(el, target, suffix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      const val = Number.isInteger(target) ? Math.floor(start) : start.toFixed(1);
+      el.textContent = val + suffix;
+    }, 16);
+  }
+  const countEls = document.querySelectorAll('.stat-num');
+  const countTargets = [7, 5.0, 100, 15];
+  const countSuffixes = ['+', '.0', '%', '+'];
+  let counted = false;
+  const countObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      countEls.forEach((el, i) => animateCount(el, countTargets[i], countSuffixes[i], 1200));
+    }
+  }, { threshold: .5 });
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) countObs.observe(statsBar);
+
   // Preloader
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('preloader').classList.add('hide');
-      setTimeout(() => document.getElementById('preloader').remove(), 700);
-    }, 900);
+    setTimeout(() => document.getElementById('preloader').classList.add('hide'), 700);
   });
 
-  // Particles
-  const ptCont = document.getElementById('particles');
-  for (let i = 0; i < 45; i++) {
-    const p = document.createElement('div');
-    p.className = 'pt';
-    const size = Math.random() * 3 + 1;
-    p.style.cssText = `
-      left:${Math.random()*100}%;
-      width:${size}px; height:${size}px;
-      animation-duration:${Math.random()*12+8}s;
-      animation-delay:${Math.random()*12}s;
-    `;
-    ptCont.appendChild(p);
-  }
-
-  // Sticky nav
+  // Nav scroll
+  const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+    document.getElementById('st').classList.toggle('show', window.scrollY > 380);
   });
+
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navMenu.classList.remove('open');
+  }));
 
   // Menu tabs
-  document.getElementById('menuTabs').addEventListener('click', e => {
-    const tab = e.target.closest('.mtab');
-    if (!tab) return;
-    document.querySelectorAll('.mtab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById(tab.dataset.tab).classList.add('active');
-  });
-
-  // Scroll reveal
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 70);
-        revealObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => revealObs.observe(el));
-
-  // Counter animation
-  function animateVal(el) {
-    const target = parseFloat(el.dataset.count);
-    const isFloat = target % 1 !== 0;
-    const duration = 1800;
-    const start = performance.now();
-    function step(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const val = target * eased;
-      el.textContent = isFloat ? val.toFixed(1) : (Math.floor(val) + (target >= 100 ? '+' : ''));
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+    document.getElementById('tp-' + id).classList.add('on');
+    btn.classList.add('on');
+    AOS.refresh();
   }
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { animateVal(e.target); counterObs.unobserve(e.target); } });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+  function goTab(id) {
+    const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.textContent.trim().toLowerCase().includes(id));
+    if (btn) showTab(id, btn);
+  }
 
-  // Hero parallax
+  // Lightbox
+  function openLB(el) {
+    document.getElementById('lb-img').src = el.querySelector('img').src;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+
+  // Toast order
+  function addOrder(name) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = name + ' — call +60 3-3382 0872 to order!';
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    t._tid = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // Active nav highlight on scroll
+  const secs = [...document.querySelectorAll('section[id]')];
+  const links = document.querySelectorAll('.nav-menu a');
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    const heroContent = document.querySelector('.hero-content');
-    const heroBg = document.querySelector('.hero-bg');
-    if (y < window.innerHeight) {
-      if (heroContent) { heroContent.style.transform = `translateY(${y * 0.25}px)`; heroContent.style.opacity = 1 - y / (window.innerHeight * 0.75); }
-      if (heroBg) heroBg.style.transform = `translateY(${y * 0.4}px) scale(1.06)`;
-    }
+    const pos = window.scrollY + 140;
+    let cur = '';
+    secs.forEach(s => { if (s.offsetTop <= pos) cur = s.id; });
+    links.forEach(a => {
+      const isActive = a.getAttribute('href') === '#' + cur;
+      a.style.color = isActive ? 'var(--gold2)' : '';
+    });
   });
 </script>
 </body>
