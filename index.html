@@ -3,1212 +3,1100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KH Beauty Nail Art</title>
+  <title>Seni Sattisorru – Klang Branch | House of Claypot Rice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #c9a96e;
-      --gold-light: #e8d5b0;
-      --gold-dark: #9c7a3c;
-      --rose: #e8b4b8;
-      --rose-dark: #c47a82;
-      --cream: #fdf8f3;
-      --dark: #1a1118;
-      --dark2: #2d1f2b;
-      --text: #4a3545;
-      --text-light: #7a6570;
+      --crimson:      #8B1A1A;
+      --crimson-dark: #5C0F0F;
+      --gold:         #D4A017;
+      --gold-light:   #F0C040;
+      --gold-dark:    #A07800;
+      --cream:        #FFF8EE;
+      --cream2:       #FFF2D8;
+      --brown:        #2C1008;
+      --brown2:       #4A1E0A;
+      --text:         #3D1C02;
+      --text-light:   #7A4A20;
+      --orange:       #E85D04;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--cream);
       color: var(--text);
       overflow-x: hidden;
     }
 
-    /* ── CURSOR ── */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, opacity 0.3s;
-      mix-blend-mode: multiply;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 40px; height: 40px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
-    }
-
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      transition: all 0.4s ease;
     }
     nav.scrolled {
-      background: rgba(253, 248, 243, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1rem 4rem;
-      box-shadow: 0 1px 20px rgba(201,169,110,0.15);
+      background: rgba(28,10,0,0.96);
+      backdrop-filter: blur(14px);
+      padding: 0.9rem 4rem;
+      box-shadow: 0 2px 30px rgba(212,160,23,0.18);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: 0.05em;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.9rem;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(212,160,23,0.4);
     }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-logo small {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,248,238,0.55);
+      margin-top: 1px;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
     .nav-links a {
       text-decoration: none;
-      font-size: 0.75rem;
+      color: rgba(255,248,238,0.75);
+      font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text);
-      position: relative;
+      font-weight: 500;
       transition: color 0.3s;
+      position: relative;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--gold);
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
       transition: width 0.3s;
     }
-    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--gold); color: var(--brown);
+      padding: 0.6rem 1.6rem; font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3d1f35 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--brown);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.25;
+      animation: heroPan 25s ease-in-out infinite alternate;
+    }
+    @keyframes heroPan {
+      from { transform: scale(1) translateX(0); }
+      to   { transform: scale(1.1) translateX(-3%); }
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(44,16,8,0.3) 0%, rgba(28,10,0,0.8) 100%);
     }
 
-    /* Animated glitter particles */
-    .particles { position: absolute; inset: 0; overflow: hidden; }
+    /* Spice particles */
+    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     .particle {
-      position: absolute;
-      width: 3px; height: 3px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: float linear infinite;
-      opacity: 0;
+      position: absolute; border-radius: 50%;
+      animation: particleFloat linear infinite; opacity: 0;
     }
-    @keyframes float {
-      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    @keyframes particleFloat {
+      0%   { transform: translateY(105vh) rotate(0deg);   opacity: 0; }
+      8%   { opacity: 0.8; }
+      92%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(540deg); opacity: 0; }
     }
 
-    /* Animated rings */
-    .ring {
-      position: absolute;
+    /* Steam wisps */
+    .hero-steam { position: absolute; bottom: 0; left: 0; right: 0; height: 280px; pointer-events: none; }
+    .wisp {
+      position: absolute; bottom: 0;
+      width: 80px; height: 200px;
+      background: radial-gradient(ellipse at bottom, rgba(255,220,150,0.07) 0%, transparent 70%);
       border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.15);
-      animation: expand 6s ease-out infinite;
+      animation: wispRise 4s ease-out infinite;
     }
-    .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
-    .ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 2s; }
-    .ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 4s; }
-    @keyframes expand {
-      0%   { transform: scale(0.8); opacity: 0.5; }
-      100% { transform: scale(1.4); opacity: 0; }
+    @keyframes wispRise {
+      0%   { transform: translateY(0) scaleX(1);   opacity: 0; }
+      15%  { opacity: 0.6; }
+      100% { transform: translateY(-250px) scaleX(2.5); opacity: 0; }
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem;
-    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; }
     .hero-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201,169,110,0.4);
-      padding: 0.5rem 1.5rem;
-      margin-bottom: 2rem;
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(212,160,23,0.35);
+      padding: 0.55rem 2rem; margin-bottom: 1.8rem;
       animation: fadeInDown 1s ease 0.3s both;
     }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 0.3em;
+    .hero-badge::before, .hero-badge::after { content: '✦'; }
+    .hero-pre {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: rgba(240,192,64,0.75);
+      margin-bottom: 0.3rem;
       animation: fadeInUp 1s ease 0.5s both;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      display: block;
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+      font-weight: 700; color: var(--cream); line-height: 0.95;
+      margin-bottom: 0.15em;
+      animation: fadeInUp 1s ease 0.65s both;
     }
-    .hero-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(232,213,176,0.7);
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease 0.7s both;
+    .hero-title .gold { color: var(--gold); font-style: italic; display: block; }
+    .hero-sub {
+      font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(255,248,238,0.55); margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.8s both;
     }
-    .hero-cta {
-      display: inline-flex;
-      gap: 1.5rem;
+    .hero-halal {
+      display: inline-block;
+      border: 1px solid rgba(212,160,23,0.4); border-radius: 2px;
+      padding: 0.35rem 1.1rem; font-size: 0.62rem; letter-spacing: 0.18em;
+      color: var(--gold); margin-bottom: 2.5rem;
       animation: fadeInUp 1s ease 0.9s both;
     }
+    .hero-cta { display: inline-flex; gap: 1.4rem; animation: fadeInUp 1s ease 1.05s both; }
     .btn {
-      display: inline-block;
-      padding: 0.9rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.4s;
-      cursor: pointer;
-      border: none;
+      display: inline-block; padding: 0.95rem 2.4rem;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; text-decoration: none; transition: all 0.35s;
+      cursor: pointer; border: none; font-family: 'Poppins', sans-serif;
+      border-radius: 2px;
     }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--dark);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
-    .btn-outline {
-      border: 1px solid rgba(201,169,110,0.5);
-      color: var(--gold-light);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .btn-outline:hover {
-      background: rgba(201,169,110,0.1);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
+    .btn-gold { background: var(--gold); color: var(--brown); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 12px 35px rgba(212,160,23,0.4); }
+    .btn-outline { border: 1px solid rgba(212,160,23,0.55); color: var(--gold-light); }
+    .btn-outline:hover { background: rgba(212,160,23,0.12); border-color: var(--gold); transform: translateY(-3px); }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      animation: fadeIn 1s ease 1.5s both;
+    .scroll-hint {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      animation: fadeIn 1s ease 2s both;
     }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
-      animation: scrollPulse 1.5s ease infinite;
+    .scroll-mouse {
+      width: 22px; height: 36px; border: 1px solid rgba(212,160,23,0.4);
+      border-radius: 12px; display: flex; justify-content: center; padding-top: 6px;
     }
-    .scroll-text {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(201,169,110,0.6);
-      text-transform: uppercase;
+    .scroll-wheel {
+      width: 3px; height: 8px; background: var(--gold); border-radius: 2px;
+      animation: scrollWheel 1.8s ease infinite;
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+    @keyframes scrollWheel {
+      0%,100% { transform: translateY(0); opacity: 1; }
+      60%      { transform: translateY(10px); opacity: 0; }
+    }
+    .scroll-txt { font-size: 0.55rem; letter-spacing: 0.25em; color: rgba(212,160,23,0.45); text-transform: uppercase; }
+
+    /* ── TICKER ── */
+    .ticker { background: var(--crimson); padding: 0.75rem 0; overflow: hidden; white-space: nowrap; }
+    .ticker-track {
+      display: inline-flex;
+      animation: tickerRoll 22s linear infinite;
+    }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 1.5rem;
+      padding: 0 1.8rem; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold-light); font-weight: 500;
+    }
+    .ticker-item::after { content: '✦'; color: rgba(212,160,23,0.6); font-size: 0.55rem; }
+    @keyframes tickerRoll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* ── SECTION BASE ── */
-    section { padding: 7rem 0; }
+    section { padding: 6.5rem 0; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .section-tag {
+      font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold-dark); display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 0.9rem;
     }
-    .section-label::before {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--gold);
-    }
+    .section-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold-dark); }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1.2;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; color: var(--brown); line-height: 1.18;
       margin-bottom: 1.5rem;
     }
-    .section-title em { font-style: italic; color: var(--gold-dark); }
+    .section-title em { font-style: italic; color: var(--crimson); }
+    .section-title.lt { color: var(--cream); }
+    .section-title.lt em { color: var(--gold); }
+    .section-tag.lt { color: var(--gold); }
+    .section-tag.lt::before { background: var(--gold); }
 
     /* ── ABOUT ── */
     #about { background: var(--cream); }
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5.5rem; align-items: center;
     }
-    .about-visual {
-      position: relative;
-      height: 520px;
-    }
+    .about-visual { position: relative; height: 520px; }
     .about-img-main {
-      width: 75%;
-      height: 420px;
-      background: linear-gradient(135deg, var(--dark2), #5c3050);
-      position: absolute;
-      top: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      position: absolute; top: 0; right: 0;
+      width: 78%; height: 430px;
+      background-image: url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80');
+      background-size: cover; background-position: center;
+      border-radius: 4px; overflow: hidden;
     }
     .about-img-main::after {
-      content: '💅';
-      font-size: 5rem;
-      animation: pulse 3s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(139,26,26,0.2) 0%, transparent 60%);
     }
     .about-img-accent {
-      width: 50%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      position: absolute;
-      bottom: 0; left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--dark);
-      font-style: italic;
+      position: absolute; bottom: 0; left: 0;
+      width: 50%; height: 195px;
+      background: linear-gradient(135deg, var(--crimson-dark), var(--crimson));
+      border-radius: 4px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.4rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
     }
+    .accent-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .accent-text {
+      font-size: 0.62rem; letter-spacing: 0.22em;
+      color: rgba(255,248,238,0.65); text-transform: uppercase;
+    }
+    .halal-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid var(--crimson); border-radius: 3px;
+      padding: 0.35rem 1rem; font-size: 0.68rem; letter-spacing: 0.14em;
+      color: var(--crimson); font-weight: 600; margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+    .about-text p { font-size: 0.88rem; line-height: 1.95; color: var(--text-light); margin-bottom: 1.1rem; }
     .about-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(201,169,110,0.2);
+      display: flex; gap: 2.8rem;
+      padding-top: 2rem; margin-top: 1.5rem;
+      border-top: 1px solid rgba(139,26,26,0.14);
     }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--gold-dark);
-      line-height: 1;
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--crimson); line-height: 1; }
+    .stat-lbl { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-light); margin-top: 0.3rem; text-transform: uppercase; }
+
+    /* ── SIGNATURE ── */
+    #signature {
+      background: linear-gradient(135deg, var(--brown) 0%, #3D0A00 50%, var(--brown2) 100%);
+      position: relative; overflow: hidden;
     }
-    .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-light); margin-top: 0.3rem; }
-    .about-text p {
-      font-size: 0.9rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      margin-bottom: 1.2rem;
+    /* Subtle pattern overlay */
+    #signature::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(212,160,23,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .pot-stage { display: flex; align-items: center; justify-content: center; position: relative; }
+    .pot-wrap { position: relative; display: inline-block; }
+    .pot-ring {
+      width: 380px; height: 380px; border-radius: 50%;
+      border: 1px solid rgba(212,160,23,0.25);
+      display: flex; align-items: center; justify-content: center;
+      animation: ringRotate 12s linear infinite;
+      position: relative;
+    }
+    @keyframes ringRotate { to { transform: rotate(360deg); } }
+    .pot-ring::before {
+      content: '';
+      position: absolute; inset: 12px; border-radius: 50%;
+      border: 1px dashed rgba(212,160,23,0.12);
+    }
+    .pot-inner {
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #6B3015 0%, #2C1008 65%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7.5rem;
+      animation: counterRotate 12s linear infinite;
+      box-shadow: 0 0 80px rgba(212,160,23,0.12), inset 0 0 40px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    @keyframes counterRotate { to { transform: rotate(-360deg); } }
+    .pot-steam {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 18px; padding-bottom: 8px;
+    }
+    .steam-w {
+      width: 10px; height: 65px;
+      background: linear-gradient(to top, rgba(255,240,200,0.4), transparent);
+      border-radius: 50%;
+      animation: steamWave 2.4s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+    .steam-w:nth-child(2) { animation-delay: 0.5s; height: 85px; }
+    .steam-w:nth-child(3) { animation-delay: 1s; }
+    @keyframes steamWave {
+      0%,100% { transform: scaleX(1) translateY(0); opacity: 0; }
+      18%     { opacity: 0.75; }
+      55%     { transform: scaleX(1.8) translateY(-18px); }
+      100%    { transform: scaleX(0.4) translateY(-65px); opacity: 0; }
+    }
+    .features { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2rem; }
+    .feat {
+      display: flex; gap: 1rem; align-items: flex-start;
+      opacity: 0; transform: translateX(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .feat.visible { opacity: 1; transform: translateX(0); }
+    .feat-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(212,160,23,0.1);
+      border: 1px solid rgba(212,160,23,0.25); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+    }
+    .feat-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.25rem; }
+    .feat-desc { font-size: 0.76rem; line-height: 1.7; color: rgba(255,248,238,0.48); }
+
+    /* ── MENU ── */
+    #menu { background: var(--cream2); }
+    .tab-bar {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      border-bottom: 1px solid rgba(139,26,26,0.14);
+      margin-bottom: 2.8rem;
+    }
+    .tab-btn {
+      padding: 0.65rem 1.4rem; font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 500;
+      color: var(--text-light); background: transparent; border: none;
+      cursor: pointer; font-family: 'Poppins', sans-serif;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .tab-btn:hover { color: var(--crimson); }
+    .tab-btn.active { color: var(--crimson); border-bottom-color: var(--crimson); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: panelIn 0.4s ease; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 1.6rem;
     }
 
-    /* ── SERVICES ── */
-    #services { background: var(--dark); }
-    #services .section-title { color: var(--cream); }
-    #services .section-label { color: var(--gold); }
-    .services-intro {
-      font-size: 0.9rem;
-      color: rgba(232,213,176,0.6);
-      max-width: 500px;
-      line-height: 1.8;
-      margin-bottom: 4rem;
+    /* ── FOOD CARD ── */
+    .food-card {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: white; cursor: default;
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(201,169,110,0.15);
+    .food-card:hover { transform: translateY(-9px); box-shadow: 0 24px 60px rgba(0,0,0,0.18); }
+
+    .food-img-box {
+      height: 195px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
-    .service-card {
-      background: var(--dark);
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s;
-      cursor: default;
+    .food-img-box img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s ease;
     }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
+    .food-card:hover .food-img-box img { transform: scale(1.1); }
+    .food-emoji {
+      font-size: 4.5rem; z-index: 1; position: relative;
+      animation: emojiFloat 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
     }
-    .service-card:hover { background: #221a20; }
-    .service-card:hover::before { transform: translateX(0); }
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      display: block;
-      transition: transform 0.3s;
+    @keyframes emojiFloat {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-10px) rotate(2deg); }
     }
-    .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
-    .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
+    /* Shimmer sweep */
+    .food-shimmer {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.16) 50%, transparent 60%);
+      background-size: 200% 100%;
+      animation: shimmerSweep 2.8s ease-in-out infinite;
     }
-    .service-desc {
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-      margin-bottom: 1.5rem;
+    @keyframes shimmerSweep {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
-    .service-price {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold);
+    /* Card steam */
+    .card-steam {
+      position: absolute; top: 8px; right: 12px; z-index: 3;
+      display: flex; gap: 5px;
     }
+    .cs {
+      width: 6px; border-radius: 4px;
+      background: linear-gradient(to top, rgba(255,255,255,0.45), transparent);
+      animation: csPuff 2.2s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+    .cs:nth-child(1) { height: 28px; }
+    .cs:nth-child(2) { height: 38px; animation-delay: 0.4s; }
+    .cs:nth-child(3) { height: 22px; animation-delay: 0.8s; }
+    @keyframes csPuff {
+      0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+      25%  { opacity: 0.7; }
+      100% { transform: translateY(-30px) scaleX(2); opacity: 0; }
+    }
+
+    /* Card gradient themes */
+    .gc-chicken { background: linear-gradient(140deg,#C14B1A,#7A2600); }
+    .gc-varuval  { background: linear-gradient(140deg,#D45C00,#8B3200); }
+    .gc-gravy    { background: linear-gradient(140deg,#B8560A,#7A3400); }
+    .gc-soup     { background: linear-gradient(140deg,#C89600,#8A6200); }
+    .gc-mutton   { background: linear-gradient(140deg,#8B1A1A,#4A0808); }
+    .gc-mutv     { background: linear-gradient(140deg,#7A1010,#3D0505); }
+    .gc-mutg     { background: linear-gradient(140deg,#6B1818,#380A0A); }
+    .gc-muts     { background: linear-gradient(140deg,#7A2A1A,#3D1008); }
+    .gc-prawn    { background: linear-gradient(140deg,#D46020,#9C3A00); }
+    .gc-prawv    { background: linear-gradient(140deg,#E06B1A,#A04000); }
+    .gc-prawg    { background: linear-gradient(140deg,#C85520,#8A3410); }
+    .gc-sotong   { background: linear-gradient(140deg,#1A4A7C,#0A2848); }
+    .gc-sotg     { background: linear-gradient(140deg,#1A3A6B,#0A1E3D); }
+    .gc-fish     { background: linear-gradient(140deg,#1A6B8A,#0A3D52); }
+    .gc-fishg    { background: linear-gradient(140deg,#1A5C7A,#0A3044); }
+    .gc-mix      { background: linear-gradient(140deg,#8B1A4A,#5C0A28); }
+    .gc-goreng   { background: linear-gradient(140deg,#B85C1A,#7A3800); }
+    .gc-drink    { background: linear-gradient(140deg,#4A8A3C,#1E5212); }
+    .gc-drinkh   { background: linear-gradient(140deg,#3A6A8A,#1A3A5C); }
+
+    .food-meta { padding: 1.2rem 1.4rem 1.4rem; }
+    .food-tag {
+      display: inline-block; font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 20px;
+      background: rgba(139,26,26,0.09); color: var(--crimson);
+      margin-bottom: 0.5rem; font-weight: 500;
+    }
+    .food-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--brown); margin-bottom: 0.35rem; }
+    .food-desc { font-size: 0.72rem; line-height: 1.65; color: var(--text-light); margin-bottom: 0.9rem; }
+    .food-price { font-size: 0.95rem; font-weight: 600; color: var(--crimson); }
+    .food-price small { font-size: 0.65rem; color: var(--text-light); font-weight: 400; }
 
     /* ── GALLERY ── */
-    #gallery { background: var(--cream); }
-    .gallery-grid {
+    #gallery { background: var(--brown); padding-bottom: 0; }
+    .gallery-head { padding-bottom: 3rem; }
+    .gallery-mosaic {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      gap: 1rem;
+      grid-template-rows: 260px 260px;
+      gap: 5px;
     }
-    .gallery-item {
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--dark2), #4a2040);
+    .gal-item {
+      overflow: hidden; position: relative; cursor: zoom-in;
     }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gallery-item:nth-child(4) { grid-column: span 2; }
-    .gallery-placeholder {
-      width: 100%;
-      padding-top: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+    .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gal-item:nth-child(5) { grid-column: span 2; }
+    .gal-bg {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      transition: transform 0.7s ease;
     }
-    .gallery-item:nth-child(1) .gallery-placeholder { padding-top: 70%; }
-    .gallery-item:nth-child(4) .gallery-placeholder { padding-top: 50%; }
-    .gallery-emoji {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(2rem, 5vw, 4rem);
-      background: linear-gradient(135deg, var(--dark2) 0%, #5c3050 50%, var(--dark2) 100%);
-      background-size: 200% 200%;
-      animation: shimmer 4s ease infinite;
-      transition: transform 0.5s;
+    .gal-item:hover .gal-bg { transform: scale(1.09); }
+    .gal-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,10,0,0.48);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.4s;
     }
-    .gallery-item:hover .gallery-emoji { transform: scale(1.08); }
-    @keyframes shimmer {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26,17,24,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay-text {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+    .gal-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); text-align: center; padding: 0 1rem; }
 
-    /* ── PROCESS ── */
-    #process { background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%); }
-    #process .section-title { color: var(--cream); }
-    #process .section-label { color: var(--gold); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 4rem;
-      position: relative;
-    }
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 2.5rem;
-      left: 12.5%;
-      right: 12.5%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
-      opacity: 0.3;
-    }
-    .step { text-align: center; }
-    .step-num {
-      width: 50px; height: 50px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      position: relative;
-      z-index: 1;
-      background: var(--dark);
-      transition: background 0.3s, transform 0.3s;
-    }
-    .step:hover .step-num {
-      background: var(--gold);
-      color: var(--dark);
-      transform: scale(1.1);
-    }
-    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .step-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-    }
-    .step-desc {
-      font-size: 0.75rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-    }
+    /* Gallery fallback gradient tiles */
+    .gf1 { background: linear-gradient(135deg,#6B2810,#2C0A00); }
+    .gf2 { background: linear-gradient(135deg,#1A3A6B,#0A1A3D); }
+    .gf3 { background: linear-gradient(135deg,#4A2A10,#1C0A00); }
+    .gf4 { background: linear-gradient(135deg,#6B1818,#2C0808); }
+    .gf5 { background: linear-gradient(135deg,#1A6B4A,#083020); }
+    .gf6 { background: linear-gradient(135deg,#5C3A10,#281400); }
+    .gal-emoji { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+    .gal-item:nth-child(1) .gal-emoji { font-size: 6rem; }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--cream); overflow: hidden; }
-    .testimonials-track-wrapper {
-      overflow: hidden;
-      margin: 3rem -2rem 0;
-      padding: 0 2rem;
-    }
-    .testimonials-track {
-      display: flex;
-      gap: 1.5rem;
-      animation: scroll-left 30s linear infinite;
+    /* ── REVIEWS ── */
+    #reviews { background: var(--cream); overflow: hidden; }
+    .reviews-wrap { overflow: hidden; margin: 3rem -2rem 0; padding: 1rem 0; }
+    .reviews-track {
+      display: flex; gap: 1.5rem;
+      animation: reviewScroll 30s linear infinite;
       width: max-content;
     }
-    .testimonials-track:hover { animation-play-state: paused; }
-    @keyframes scroll-left {
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes reviewScroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .testimonial-card {
-      width: 340px;
-      flex-shrink: 0;
-      padding: 2.5rem;
-      background: white;
-      border: 1px solid rgba(201,169,110,0.15);
-      position: relative;
+    .rev-card {
+      width: 310px; flex-shrink: 0;
+      background: white; padding: 2rem;
+      border-left: 3px solid var(--crimson);
+      box-shadow: 0 4px 22px rgba(0,0,0,0.07);
+      border-radius: 0 8px 8px 0;
     }
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: rgba(201,169,110,0.1);
-      line-height: 1;
-    }
-    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-    .testimonial-text {
-      font-size: 0.82rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .testimonial-author {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold-dark);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
+    .rev-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.06em; margin-bottom: 0.8rem; }
+    .rev-txt { font-size: 0.8rem; line-height: 1.82; color: var(--text-light); font-style: italic; margin-bottom: 1.1rem; }
+    .rev-author { font-size: 0.68rem; font-weight: 600; color: var(--brown); letter-spacing: 0.1em; text-transform: uppercase; }
+    .rev-date { font-size: 0.62rem; color: var(--text-light); margin-top: 0.2rem; }
 
-    /* ── BOOKING ── */
-    #booking { background: var(--dark); }
-    #booking .section-title { color: var(--cream); }
-    #booking .section-label { color: var(--gold); }
-    .booking-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(175deg, var(--brown) 0%, #160500 100%); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .info-block { margin-bottom: 2rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+    .info-ico {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.22);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
     }
-    .booking-info p {
-      font-size: 0.85rem;
-      line-height: 1.9;
-      color: rgba(232,213,176,0.6);
-      margin-bottom: 2.5rem;
+    .info-lbl { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .info-val { font-size: 0.84rem; color: rgba(255,248,238,0.68); line-height: 1.75; }
+    .hours-rows { display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 1.2rem; }
+    .hr-day { font-size: 0.72rem; color: rgba(255,248,238,0.38); }
+    .hr-time { font-size: 0.72rem; color: rgba(255,248,238,0.62); }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: #25D366; color: white; padding: 0.95rem 2rem;
+      border-radius: 4px; text-decoration: none; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.06em;
+      margin-top: 1.8rem; transition: all 0.3s;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.3);
     }
-    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: rgba(232,213,176,0.7);
-    }
-    .contact-icon {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(201,169,110,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .booking-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.6);
-    }
-    .form-input, .form-select, .form-textarea {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,169,110,0.15);
-      color: var(--cream);
-      padding: 0.85rem 1rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      transition: border-color 0.3s;
-      outline: none;
-      width: 100%;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--gold);
-    }
-    .form-select option { background: var(--dark2); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      background: var(--gold);
-      color: var(--dark);
-      padding: 1rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      margin-top: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .form-submit:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .wa-btn:hover { background: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 35px rgba(37,211,102,0.4); }
+    .map-box { border-radius: 8px; overflow: hidden; height: 390px; border: 1px solid rgba(212,160,23,0.18); }
+    .map-box iframe { width: 100%; height: 100%; border: none; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #110c10;
-      padding: 4rem 0 2rem;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--gold-light);
-      margin-bottom: 1rem;
-    }
-    .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: rgba(201,169,110,0.4);
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      list-style: none;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links a {
-      text-decoration: none;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.5);
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-divider {
-      width: 60px; height: 1px;
-      background: rgba(201,169,110,0.2);
-      margin: 0 auto 2rem;
-    }
-    .footer-copy {
-      font-size: 0.65rem;
-      color: rgba(201,169,110,0.3);
-      letter-spacing: 0.1em;
-    }
+    footer { background: #080200; padding: 3.5rem 0 2rem; text-align: center; }
+    .ft-logo { font-family: 'Dancing Script', cursive; font-size: 2.4rem; color: var(--gold); margin-bottom: 0.4rem; }
+    .ft-tag { font-size: 0.62rem; letter-spacing: 0.32em; color: rgba(212,160,23,0.38); text-transform: uppercase; margin-bottom: 2rem; }
+    .ft-links { display: flex; justify-content: center; gap: 2.2rem; list-style: none; margin-bottom: 2rem; }
+    .ft-links a { text-decoration: none; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(212,160,23,0.38); transition: color 0.3s; }
+    .ft-links a:hover { color: var(--gold); }
+    .ft-div { width: 50px; height: 1px; background: rgba(212,160,23,0.18); margin: 0 auto 2rem; }
+    .ft-copy { font-size: 0.62rem; color: rgba(212,160,23,0.22); letter-spacing: 0.1em; }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    /* ── REVEALS ── */
+    .reveal      { opacity:0; transform:translateY(28px);  transition:opacity .7s ease,transform .7s ease; }
+    .reveal-l    { opacity:0; transform:translateX(-38px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-r    { opacity:0; transform:translateX(38px);  transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible, .reveal-l.visible, .reveal-r.visible { opacity:1; transform:none; }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none} }
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(18px)}  to{opacity:1;transform:none} }
+    @keyframes fadeIn     { from{opacity:0} to{opacity:1} }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      nav.scrolled { padding: 0.8rem 2rem; }
-      .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(4) { grid-column: span 2; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .steps::before { display: none; }
-      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
+    @media(max-width:900px) {
+      nav { padding:1.2rem 1.5rem; }
+      nav.scrolled { padding:.8rem 1.5rem; }
+      .nav-links { display:none; }
+      .about-grid, .sig-grid, .contact-grid { grid-template-columns:1fr; gap:3rem; }
+      .about-visual { height:320px; }
+      .about-img-main { width:85%; height:300px; }
+      .gallery-mosaic { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .gal-item:nth-child(1) { grid-column:span 2; grid-row:span 1; }
+      .gal-item:nth-child(5) { grid-column:span 2; }
+      .pot-ring { width:280px; height:280px; }
+      .pot-inner { width:230px; height:230px; font-size:5.5rem; }
+    }
+    @media(max-width:600px) {
+      .hero-title { font-size:3.2rem; }
+      .menu-grid { grid-template-columns:1fr; }
+      .gallery-mosaic { grid-template-columns:1fr; }
+      .gal-item:nth-child(1), .gal-item:nth-child(5) { grid-column:span 1; }
+      nav { padding:1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<!-- ▓▓ NAVIGATION ▓▓ -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    Seni Sattisorru
+    <small>Klang Branch</small>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#signature">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/60338200872" target="_blank" class="nav-cta">Order Now</a>
+</nav>
 
-  <!-- Navigation -->
-  <nav id="nav">
-    <div class="nav-logo">KH <span>Beauty</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-  </nav>
+<!-- ▓▓ HERO ▓▓ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-steam" id="heroSteam"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Klang Branch &nbsp;·&nbsp; Taman Teluk Pulai</div>
+    <p class="hero-pre">The House of</p>
+    <h1 class="hero-title">
+      Seni
+      <span class="gold">Sattisorru</span>
+    </h1>
+    <p class="hero-sub">Claypot Rice &nbsp;·&nbsp; Curry &nbsp;·&nbsp; Soup &nbsp;·&nbsp; Banana Leaf</p>
+    <div class="hero-halal">🌙 &nbsp; Halal Certified</div>
+    <div class="hero-cta">
+      <a href="#menu" class="btn btn-gold">View Menu</a>
+      <a href="#contact" class="btn btn-outline">Find Us</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span class="scroll-txt">Scroll</span>
+  </div>
+</section>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="particles" id="particles"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="hero-content">
-      <div class="hero-badge">✦ Taman Putra, Malaysia ✦</div>
-      <h1 class="hero-title">
-        KH Beauty
-        <em>Nail Art</em>
-      </h1>
-      <p class="hero-subtitle">Where Every Nail Tells a Story</p>
-      <div class="hero-cta">
-        <a href="#booking" class="btn btn-primary">Book Appointment</a>
-        <a href="#services" class="btn btn-outline">Our Services</a>
+<!-- ▓▓ TICKER ▓▓ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ▓▓ ABOUT ▓▓ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-l">
+        <div class="about-img-main"></div>
+        <div class="about-img-accent">
+          <span class="accent-num">100%</span>
+          <span class="accent-text">Halal Certified</span>
+        </div>
+      </div>
+      <div>
+        <div class="halal-pill reveal">🌙 Halal &nbsp;·&nbsp; Bersih &nbsp;·&nbsp; Sedap</div>
+        <p class="section-tag reveal">Our Story</p>
+        <h2 class="section-title reveal">Authentic South Indian<br><em>Claypot Experience</em></h2>
+        <div class="reveal">
+          <p>Welcome to Seni Sattisorru Klang Branch — where tradition meets flavour. <em>"Satti Sorru"</em> means claypot rice in Tamil, and we have perfected this ancient cooking method to deliver an unmatched dining experience.</p>
+          <p>Every dish is freshly cooked in a traditional clay pot, infused with aromatic herbs and hand-ground spices. From our piping hot claypot sets to our legendary <em>Thiruvila Saapadu</em> banana leaf feast — every bite is a celebration of South Indian heritage.</p>
+        </div>
+        <div class="about-stats reveal">
+          <div>
+            <div class="stat-num" data-count="7">0</div>
+            <div class="stat-lbl">Branches Nationwide</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="30">0</div>
+            <div class="stat-lbl">Menu Items</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="10">0</div>
+            <div class="stat-lbl">Years of Flavour</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <span class="scroll-text">Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal-left">
-          <div class="about-img-main"></div>
-          <div class="about-img-accent">Est. 2020</div>
-        </div>
-        <div class="about-text">
-          <p class="section-label reveal">Our Story</p>
-          <h2 class="section-title reveal">Crafting Beauty,<br><em>One Nail at a Time</em></h2>
-          <div class="reveal">
-            <p>Welcome to KH Beauty Nail Art — your premier destination for exquisite nail artistry in Taman Putra. We believe that beautiful nails are a form of self-expression, and our talented artists are dedicated to bringing your vision to life.</p>
-            <p>From classic manicures to elaborate nail art designs, every service is performed with precision, care, and the highest quality products. Your comfort and satisfaction are our top priorities.</p>
+<!-- ▓▓ SIGNATURE ▓▓ -->
+<section id="signature">
+  <div class="container">
+    <div class="sig-grid">
+      <div class="pot-stage reveal-l">
+        <div class="pot-wrap">
+          <div class="pot-steam">
+            <div class="steam-w"></div>
+            <div class="steam-w"></div>
+            <div class="steam-w"></div>
           </div>
-          <div class="about-stats reveal">
+          <div class="pot-ring">
+            <div class="pot-inner">🍲</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-tag lt reveal">Our Signature</p>
+        <h2 class="section-title lt reveal">What Makes Us<br><em>Special</em></h2>
+        <div class="features">
+          <div class="feat">
+            <div class="feat-icon">🏺</div>
             <div>
-              <div class="stat-num" data-count="500">0</div>
-              <div class="stat-label">Happy Clients</div>
+              <div class="feat-title">Authentic Clay Pot Cooking</div>
+              <p class="feat-desc">Slow-cooked in traditional clay pots that lock in natural flavours, nutrients, and a warmth no other method can replicate.</p>
             </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🌿</div>
             <div>
-              <div class="stat-num" data-count="50">0</div>
-              <div class="stat-label">Nail Designs</div>
+              <div class="feat-title">Fresh Herbs & Spices Daily</div>
+              <p class="feat-desc">We hand-grind our spice blends every morning — turmeric, curry leaves, coriander, and secret aromatics — for maximum vibrancy.</p>
             </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🍃</div>
             <div>
-              <div class="stat-num" data-count="5">0</div>
-              <div class="stat-label">Years Experience</div>
+              <div class="feat-title">Banana Leaf Thiruvila Saapadu</div>
+              <p class="feat-desc">Our signature banana leaf feast — a generous spread of rice, curries, and sides perfect for sharing with family and friends.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🌙</div>
+            <div>
+              <div class="feat-title">100% Halal Certified</div>
+              <p class="feat-desc">Every ingredient and cooking process is Halal certified, ensuring everyone dines with full confidence and peace of mind.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <p class="section-label reveal">What We Offer</p>
-      <h2 class="section-title reveal">Our <em>Services</em></h2>
-      <p class="services-intro reveal">Indulge in our comprehensive range of nail and beauty services, each tailored to perfection.</p>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <span class="service-icon">💅</span>
-          <h3 class="service-name">Classic Manicure</h3>
-          <p class="service-desc">A timeless treatment including nail shaping, cuticle care, hand massage, and your choice of polish.</p>
-          <span class="service-price">FROM RM 35</span>
+<!-- ▓▓ MENU ▓▓ -->
+<section id="menu">
+  <div class="container">
+    <p class="section-tag reveal">What We Serve</p>
+    <h2 class="section-title reveal">Our <em>Full Menu</em></h2>
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="chicken">🍗 Chicken</button>
+      <button class="tab-btn" data-tab="mutton">🐑 Mutton</button>
+      <button class="tab-btn" data-tab="seafood">🦐 Seafood</button>
+      <button class="tab-btn" data-tab="mix">🍱 Mix SattiSorru</button>
+      <button class="tab-btn" data-tab="goreng">🍳 Ala Carte</button>
+      <button class="tab-btn" data-tab="drinks">🥤 Beverages</button>
+    </div>
+    <div id="menuPanels"></div>
+  </div>
+</section>
+
+<!-- ▓▓ GALLERY ▓▓ -->
+<section id="gallery">
+  <div class="container gallery-head">
+    <p class="section-tag lt reveal">Visual Feast</p>
+    <h2 class="section-title lt reveal">A Glimpse of Our <em>Kitchen</em></h2>
+  </div>
+  <div class="gallery-mosaic">
+    <div class="gal-item reveal">
+      <div class="gal-bg gf1"><div class="gal-emoji">🍲</div></div>
+      <div class="gal-overlay"><span class="gal-label">Signature Claypot</span></div>
+    </div>
+    <div class="gal-item reveal">
+      <div class="gal-bg gf2"><div class="gal-emoji">🦐</div></div>
+      <div class="gal-overlay"><span class="gal-label">Prawn Sattisorru</span></div>
+    </div>
+    <div class="gal-item reveal">
+      <div class="gal-bg gf3"><div class="gal-emoji">🍗</div></div>
+      <div class="gal-overlay"><span class="gal-label">Chicken Varuval</span></div>
+    </div>
+    <div class="gal-item reveal">
+      <div class="gal-bg gf4"><div class="gal-emoji">🐑</div></div>
+      <div class="gal-overlay"><span class="gal-label">Mutton Gravy</span></div>
+    </div>
+    <div class="gal-item reveal">
+      <div class="gal-bg gf5"><div class="gal-emoji">🌿</div></div>
+      <div class="gal-overlay"><span class="gal-label">Banana Leaf Feast</span></div>
+    </div>
+    <div class="gal-item reveal">
+      <div class="gal-bg gf6"><div class="gal-emoji">🐟</div></div>
+      <div class="gal-overlay"><span class="gal-label">Fish Sattisorru</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ▓▓ REVIEWS ▓▓ -->
+<section id="reviews">
+  <div class="container">
+    <p class="section-tag reveal">What Guests Say</p>
+    <h2 class="section-title reveal">Customer <em>Reviews</em></h2>
+  </div>
+  <div class="reviews-wrap">
+    <div class="reviews-track" id="reviewsTrack"></div>
+  </div>
+</section>
+
+<!-- ▓▓ CONTACT ▓▓ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="section-tag lt reveal">Find Us</p>
+        <h2 class="section-title lt reveal">Visit Our<br><em>Klang Branch</em></h2>
+        <div class="info-block reveal">
+          <div class="info-ico">📍</div>
+          <div>
+            <div class="info-lbl">Address</div>
+            <div class="info-val">Taman Teluk Pulai, 41250 Klang,<br>Selangor, Malaysia</div>
+          </div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">✨</span>
-          <h3 class="service-name">Gel Nails</h3>
-          <p class="service-desc">Long-lasting gel polish that stays chip-free for up to 3 weeks, available in hundreds of shades.</p>
-          <span class="service-price">FROM RM 60</span>
+        <div class="info-block reveal">
+          <div class="info-ico">📞</div>
+          <div>
+            <div class="info-lbl">Phone</div>
+            <div class="info-val">+60 3-3382 0872</div>
+          </div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌸</span>
-          <h3 class="service-name">Nail Art Design</h3>
-          <p class="service-desc">Custom hand-painted designs, patterns, florals, gems, and 3D art — limited only by your imagination.</p>
-          <span class="service-price">FROM RM 80</span>
+        <div class="info-block reveal">
+          <div class="info-ico">🕐</div>
+          <div>
+            <div class="info-lbl">Opening Hours</div>
+            <div class="hours-rows">
+              <span class="hr-day">Mon – Sun</span>
+              <span class="hr-time">11:30 AM – 10:00 PM</span>
+            </div>
+          </div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">👑</span>
-          <h3 class="service-name">Acrylic Extensions</h3>
-          <p class="service-desc">Add length and strength with our premium acrylic nail extensions, perfectly sculpted to your desired shape.</p>
-          <span class="service-price">FROM RM 100</span>
+        <div class="info-block reveal">
+          <div class="info-ico">🌙</div>
+          <div>
+            <div class="info-lbl">Certification</div>
+            <div class="info-val">100% Halal Certified<br>Dine-in &amp; Takeaway Available</div>
+          </div>
         </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌿</span>
-          <h3 class="service-name">Pedicure Spa</h3>
-          <p class="service-desc">Luxurious foot soak, exfoliation, callus removal, and nail care for beautifully pampered feet.</p>
-          <span class="service-price">FROM RM 50</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">💎</span>
-          <h3 class="service-name">Luxury Nail Set</h3>
-          <p class="service-desc">Our premium package combining extensions, gel, and bespoke nail art for a complete transformation.</p>
-          <span class="service-price">FROM RM 180</span>
+        <a href="https://wa.me/60338200872" target="_blank" class="wa-btn reveal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.054 23.487a.5.5 0 00.612.612l5.624-1.477A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.77-.525-5.337-1.44l-.382-.226-3.962 1.04 1.04-3.907-.245-.393A9.957 9.957 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp Order
+        </a>
+      </div>
+      <div class="reveal-r">
+        <div class="map-box">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.264!2d101.444!3d3.035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdafb0b4c5a5a5%3A0x1234567890abcdef!2sTaman%20Teluk%20Pulai%2C%2041250%20Klang%2C%20Selangor!5e0!3m2!1sen!2smy!4v1716000000000"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <p class="section-label reveal">Our Work</p>
-      <h2 class="section-title reveal">Nail Art <em>Gallery</em></h2>
-      <div class="gallery-grid">
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💅✨</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Floral Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌸</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Soft Pink</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💎</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Crystal Set</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌟💅</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Glam Edition</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🦋</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Butterfly Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌙</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Moon &amp; Stars</span></div>
-        </div>
+<!-- ▓▓ FOOTER ▓▓ -->
+<footer>
+  <div class="ft-logo">Seni Sattisorru</div>
+  <p class="ft-tag">Klang Branch &nbsp;·&nbsp; The House of Claypot Rice</p>
+  <ul class="ft-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="ft-div"></div>
+  <p class="ft-copy">© 2026 Seni Sattisorru Klang Branch &nbsp;·&nbsp; Taman Teluk Pulai, 41250 Klang, Selangor &nbsp;·&nbsp; All Rights Reserved</p>
+</footer>
+
+<script>
+/* ── MENU DATA ── */
+const menuData = {
+  chicken: [
+    { emoji:'🍗', grad:'gc-chicken', tag:'Claypot Rice',   name:'Chicken Sattisorru', desc:'Fragrant rice slow-cooked with succulent chicken in a traditional clay pot, bursting with aromatic spices.',                   price:'from RM 15.30' },
+    { emoji:'🍗', grad:'gc-varuval', tag:'Dry Fry',        name:'Chicken Varuval',    desc:'Crispy dry-fried chicken coated in fiery South Indian masala — bold, fragrant and irresistibly crunchy.',                   price:'RM 19.60' },
+    { emoji:'🍛', grad:'gc-gravy',   tag:'Curry',          name:'Chicken Gravy',      desc:'Tender chicken simmered in a rich, spiced coconut-tomato curry with freshly ground herbs.',                                   price:'from RM 15.30' },
+    { emoji:'🍵', grad:'gc-soup',    tag:'Soup',           name:'Chicken Soup',       desc:'Light, comforting bone broth with tender chicken pieces, warming ginger, garlic and fragrant curry leaves.',                  price:'from RM 15.30' },
+  ],
+  mutton: [
+    { emoji:'🍲', grad:'gc-mutton', tag:'Claypot Rice', name:'Mutton Sattisorru', desc:'Rich clay pot rice slow-braised with premium mutton and deeply fragrant spice blend — a hearty South Indian classic.',       price:'from RM 19.60' },
+    { emoji:'🥩', grad:'gc-mutv',   tag:'Dry Fry',      name:'Mutton Varuval',    desc:'Bold, crispy pan-fried mutton seasoned with South Indian spices, curry leaves and dried chillies.',                         price:'RM 24.00' },
+    { emoji:'🍛', grad:'gc-mutg',   tag:'Curry',        name:'Mutton Gravy',      desc:'Hearty mutton curry with aromatic curry leaves, tomatoes and slow-cooked spices for depth and richness.',                   price:'from RM 19.60' },
+    { emoji:'🍵', grad:'gc-muts',   tag:'Soup',         name:'Mutton Soup',       desc:'Deep, rich bone broth with tender mutton, star anise, cinnamon and warming herbs — a soul-soothing classic.',               price:'from RM 19.60' },
+  ],
+  seafood: [
+    { emoji:'🦐', grad:'gc-prawn',  tag:'Claypot Rice', name:'Prawn Sattisorru', desc:'Plump, juicy prawns nestled in fragrant clay pot rice infused with coconut and spice.',                                       price:'from RM 24.00' },
+    { emoji:'🦐', grad:'gc-prawv',  tag:'Dry Fry',      name:'Prawn Varuval',    desc:'Wok-tossed tiger prawns coated in fiery South Indian spices with curry leaves and dried chilli.',                            price:'RM 38.70' },
+    { emoji:'🍛', grad:'gc-prawg',  tag:'Curry',        name:'Prawn Gravy',      desc:'Succulent prawns in a tangy, aromatic masala curry — rich, spiced and utterly satisfying.',                                  price:'from RM 24.00' },
+    { emoji:'🦑', grad:'gc-sotong', tag:'Claypot Rice', name:'Sotong Sattisorru',desc:'Tender squid slow-cooked in fragrant clay pot rice with aromatic herbs and South Indian spice.',                             price:'from RM 19.60' },
+    { emoji:'🦑', grad:'gc-sotg',   tag:'Curry',        name:'Sotong Gravy',     desc:'Squid rings simmered in a rich, spiced curry sauce with a perfectly balanced heat and depth.',                               price:'from RM 19.60' },
+    { emoji:'🐟', grad:'gc-fish',   tag:'Claypot Rice', name:'Fish Sattisorru',  desc:'Flaky, fresh fish in aromatic clay pot rice seasoned with South Indian spice and curry leaves.',                             price:'from RM 24.00' },
+    { emoji:'🐟', grad:'gc-fishg',  tag:'Curry',        name:'Fish Gravy',       desc:'Fish in a tangy tamarind-based curry (kari ikan) — bold, sour and deeply flavourful.',                                      price:'from RM 24.00' },
+  ],
+  mix: [
+    { emoji:'🍱', grad:'gc-mix', tag:'Mix Claypot', name:'Chicken & Prawn',   desc:'The ultimate combo — tender chicken and plump prawns together in one fragrant, steaming clay pot.',                           price:'from RM 34.40' },
+    { emoji:'🍱', grad:'gc-mix', tag:'Mix Claypot', name:'Chicken & Mutton',  desc:'For the indecisive — both succulent chicken and rich mutton slow-cooked together in aromatic claypot rice.',                   price:'from RM 30.00' },
+    { emoji:'🍱', grad:'gc-mix', tag:'Mix Claypot', name:'Prawn & Sotong',    desc:'A double seafood delight — juicy prawns and tender squid in fragrant, spiced clay pot rice.',                                  price:'from RM 38.70' },
+  ],
+  goreng: [
+    { emoji:'🍗', grad:'gc-goreng', tag:'Ala Carte', name:'Goreng Chicken 65', desc:'Crispy, spicy deep-fried chicken bites marinated in a tangy South Indian-style batter — addictive and fiery.',                price:'RM 11.00' },
+    { emoji:'🐟', grad:'gc-goreng', tag:'Ala Carte', name:'Goreng Tenggiri',   desc:'Golden-fried Spanish mackerel with a crispy, flavourful crust — a classic Malaysian fish fry.',                              price:'RM 24.00' },
+    { emoji:'🦑', grad:'gc-sotg',   tag:'Ala Carte', name:'Goreng Sotong',     desc:'Crispy golden fried squid rings seasoned with spices — light, crunchy and delicious.',                                       price:'RM 32.00' },
+    { emoji:'🦐', grad:'gc-prawv',  tag:'Ala Carte', name:'Goreng Udang',      desc:'Crunchy golden-fried tiger prawns, perfectly seasoned — great as a starter or side.',                                         price:'RM 32.00' },
+    { emoji:'🍳', grad:'gc-goreng', tag:'Ala Carte', name:'Goreng Kadai',      desc:'Stir-fried in traditional kadai style with bold aromatics, onions and peppers.',                                               price:'RM 12.00' },
+    { emoji:'🐟', grad:'gc-fishg',  tag:'Ala Carte', name:'Goreng Fillet',     desc:'Crispy, golden-fried fish fillet with a light, crunchy coating — tender and flaky inside.',                                   price:'RM 16.00' },
+  ],
+  drinks: [
+    { emoji:'🌾', grad:'gc-drink',  tag:'Beverage', name:'Barli',       desc:'Chilled pearl barley water — light, refreshing and naturally sweet. Great for cooling down.',   price:'RM 2.90' },
+    { emoji:'🍹', grad:'gc-drink',  tag:'Beverage', name:'Sirap',       desc:'Classic sweet rose syrup drink — vibrant, refreshing and a favourite with the kids.',            price:'RM 2.90' },
+    { emoji:'🍋', grad:'gc-drink',  tag:'Beverage', name:'Sirap Limau', desc:'Sweet rose syrup with a squeeze of fresh lime — refreshing balance of sweet and tangy.',         price:'RM 3.70' },
+    { emoji:'☕', grad:'gc-drinkh', tag:'Beverage', name:'Teh O',       desc:'Traditional South Indian black tea, brewed strong and served hot — the perfect companion.',      price:'RM 2.90' },
+    { emoji:'🍋', grad:'gc-drinkh', tag:'Beverage', name:'Teh O Limau', desc:'Black tea with a squeeze of fresh lime — bright, tangy and wonderfully refreshing.',            price:'RM 3.70' },
+    { emoji:'🌸', grad:'gc-drink',  tag:'Herbal',   name:'Avaram Poo',  desc:'Traditional herbal flower tea brewed from Senna auriculata — calming, cooling and aromatic.',    price:'RM 2.90' },
+    { emoji:'🌿', grad:'gc-drink',  tag:'Herbal',   name:'Jeera',       desc:'Cumin-infused cooling drink — aids digestion and is wonderfully refreshing after a spicy meal.', price:'RM 2.90' },
+  ],
+};
+
+const tabLabels = {
+  chicken:'🍗 Chicken', mutton:'🐑 Mutton', seafood:'🦐 Seafood',
+  mix:'🍱 Mix SattiSorru', goreng:'🍳 Ala Carte', drinks:'🥤 Beverages'
+};
+
+function buildCard(item) {
+  return `
+    <div class="food-card">
+      <div class="food-img-box ${item.grad}">
+        <div class="food-emoji">${item.emoji}</div>
+        <div class="food-shimmer"></div>
+        <div class="card-steam"><div class="cs"></div><div class="cs"></div><div class="cs"></div></div>
       </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section id="process">
-    <div class="container">
-      <p class="section-label reveal">The Experience</p>
-      <h2 class="section-title reveal">Your Journey<br><em>With Us</em></h2>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-icon">📱</div>
-          <h3 class="step-name">Book Online</h3>
-          <p class="step-desc">Choose your service and preferred time slot through our booking form or WhatsApp.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <div class="step-icon">🎨</div>
-          <h3 class="step-name">Design Consult</h3>
-          <p class="step-desc">Discuss your vision with our nail artist. Browse our look-book for inspiration.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <div class="step-icon">✨</div>
-          <h3 class="step-name">The Treatment</h3>
-          <p class="step-desc">Sit back and relax while our expert transforms your nails with precision and care.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <div class="step-icon">💅</div>
-          <h3 class="step-name">Show It Off</h3>
-          <p class="step-desc">Leave with stunning nails and share your look — tag us on Facebook!</p>
-        </div>
+      <div class="food-meta">
+        <span class="food-tag">${item.tag}</span>
+        <h3 class="food-name">${item.name}</h3>
+        <p class="food-desc">${item.desc}</p>
+        <div class="food-price">${item.price}</div>
       </div>
-    </div>
-  </section>
+    </div>`;
+}
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <div class="container">
-      <p class="section-label reveal">Client Love</p>
-      <h2 class="section-title reveal">What They <em>Say</em></h2>
-    </div>
-    <div class="testimonials-track-wrapper">
-      <div class="testimonials-track" id="testimonialsTrack">
-        <!-- Cards duplicated for seamless loop -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-        <!-- Duplicate set for seamless scroll -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-      </div>
-    </div>
-  </section>
+function buildPanels() {
+  const wrap = document.getElementById('menuPanels');
+  let first = true;
+  for (const [key, items] of Object.entries(menuData)) {
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel' + (first ? ' active' : '');
+    panel.id = 'tab-' + key;
+    panel.innerHTML = `<div class="menu-grid">${items.map(buildCard).join('')}</div>`;
+    wrap.appendChild(panel);
+    first = false;
+  }
+}
+buildPanels();
 
-  <!-- Booking -->
-  <section id="booking">
-    <div class="container">
-      <div class="booking-grid">
-        <div class="booking-info">
-          <p class="section-label reveal">Get In Touch</p>
-          <h2 class="section-title reveal">Book Your<br><em>Appointment</em></h2>
-          <p class="reveal">Ready for beautiful nails? Book your appointment today and let our expert nail artists create something stunning just for you. Walk-ins are welcome, but appointments are recommended.</p>
-          <div class="contact-items reveal">
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <span>Taman Putra, Malaysia</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📘</div>
-              <span>Nail Art KH (Facebook)</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🕐</div>
-              <span>Mon – Sat: 10:00am – 8:00pm<br>Sunday: 11:00am – 6:00pm</span>
-            </div>
-          </div>
-        </div>
-        <div class="reveal-right">
-          <form class="booking-form" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Jane Smith" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Phone / WhatsApp</label>
-                <input type="tel" class="form-input" placeholder="+60 1X-XXX XXXX" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Service</label>
-              <select class="form-select">
-                <option value="">Select a service...</option>
-                <option>Classic Manicure — from RM 35</option>
-                <option>Gel Nails — from RM 60</option>
-                <option>Nail Art Design — from RM 80</option>
-                <option>Acrylic Extensions — from RM 100</option>
-                <option>Pedicure Spa — from RM 50</option>
-                <option>Luxury Nail Set — from RM 180</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Preferred Date</label>
-                <input type="date" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Preferred Time</label>
-                <input type="time" class="form-input" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Special Requests</label>
-              <textarea class="form-textarea" placeholder="Any design ideas or special requests..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Send Booking Request ✦</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ── TABS ── */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-logo">KH <span>Beauty</span> Nail Art</div>
-    <p class="footer-tagline">Where Every Nail Tells a Story</p>
-    <ul class="footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-    <div class="footer-divider"></div>
-    <p class="footer-copy">© 2026 KH Beauty Nail Art · Taman Putra, Malaysia · All Rights Reserved</p>
-  </footer>
+/* ── TICKER ── */
+const tickerItems = ['Claypot Rice', 'Chicken Sattisorru', 'Mutton Varuval', 'Prawn Sattisorru', 'Banana Leaf Feast', 'Fish Gravy', 'Sotong Gravy', 'Goreng Chicken 65', 'Halal Certified', 'Klang Branch Open Daily 11:30 AM – 10 PM'];
+const track = document.getElementById('tickerTrack');
+const doubled = [...tickerItems, ...tickerItems];
+track.innerHTML = doubled.map(t => `<span class="ticker-item">${t}</span>`).join('');
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+/* ── REVIEWS ── */
+const reviewsData = [
+  { text: '"The Chicken Sattisorru here is absolutely amazing — the claypot gives it such a unique smoky aroma. I come here every week!"', author: 'Priya R.', date: 'Klang Branch · Google Review' },
+  { text: '"Best mutton varuval in Selangor. Crispy, spiced perfectly, and the portion is generous. Highly recommended!"', author: 'Rajan K.', date: 'Klang Branch · Google Review' },
+  { text: '"We ordered the Prawn Sattisorru and Sotong Gravy for a family dinner. Both were piping hot and incredibly flavourful."', author: 'Farah A.', date: 'Klang Branch · Google Review' },
+  { text: '"The banana leaf feast here is on another level. So much food and all of it delicious. Will definitely be back!"', author: 'Kumari S.', date: 'Klang Branch · Google Review' },
+  { text: '"Goreng Chicken 65 was crispy and spicy — exactly how I love it. The Jeera drink was perfect to cool things down."', author: 'Ahmad Z.', date: 'Klang Branch · Google Review' },
+  { text: '"Friendly staff, great food, reasonable prices. The Fish Sattisorru is a must-try — so flavourful and fresh."', author: 'Mei Lin T.', date: 'Klang Branch · Google Review' },
+  { text: '"Authentic South Indian taste that takes me back to my grandmother\'s cooking. The mutton soup is outstanding!"', author: 'Suresh N.', date: 'Klang Branch · TripAdvisor' },
+];
+const revTrack = document.getElementById('reviewsTrack');
+const doubledRevs = [...reviewsData, ...reviewsData];
+revTrack.innerHTML = doubledRevs.map(r => `
+  <div class="rev-card">
+    <div class="rev-stars">★★★★★</div>
+    <p class="rev-txt">${r.text}</p>
+    <div class="rev-author">${r.author}</div>
+    <div class="rev-date">${r.date}</div>
+  </div>`).join('');
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
+/* ── PARTICLES ── */
+const pContainer = document.getElementById('particles');
+const colors = ['#D4A017','#E85D04','#C41E3A','#F0C040','#FF6B35'];
+for (let i = 0; i < 50; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 5 + 2;
+  p.style.cssText = `
+    left:${Math.random()*100}%;
+    width:${size}px; height:${size}px;
+    background:${colors[Math.floor(Math.random()*colors.length)]};
+    animation-duration:${Math.random()*14+8}s;
+    animation-delay:${Math.random()*12}s;
+  `;
+  pContainer.appendChild(p);
+}
 
-    function animateCursorRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateCursorRing);
+/* ── HERO STEAM ── */
+const steamCont = document.getElementById('heroSteam');
+for (let i = 0; i < 8; i++) {
+  const w = document.createElement('div');
+  w.className = 'wisp';
+  w.style.cssText = `
+    left:${10 + Math.random()*80}%;
+    width:${60+Math.random()*80}px;
+    animation-duration:${3+Math.random()*4}s;
+    animation-delay:${Math.random()*5}s;
+  `;
+  steamCont.appendChild(w);
+}
+
+/* ── STICKY NAV ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 70);
+});
+
+/* ── SCROLL REVEAL ── */
+const revObserver = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      revObserver.unobserve(e.target);
     }
-    animateCursorRing();
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .feat').forEach(el => revObserver.observe(el));
 
-    document.querySelectorAll('a, button, .service-card, .gallery-item').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorRing.style.width = '60px';
-        cursorRing.style.height = '60px';
-        cursorRing.style.borderColor = 'var(--gold)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorRing.style.width = '40px';
-        cursorRing.style.height = '40px';
-      });
-    });
+/* ── COUNTER ── */
+function animCount(el) {
+  const target = +el.dataset.count;
+  const suffix = target >= 10 ? '+' : '';
+  let cur = 0;
+  const step = target / 55;
+  const timer = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur) + suffix;
+    if (cur >= target) clearInterval(timer);
+  }, 22);
+}
+new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); } });
+}, { threshold: 0.6 }).observe ?? (() => {})();
+document.querySelectorAll('[data-count]').forEach(el => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); new IntersectionObserver(()=>{}).disconnect(); } });
+  }, { threshold: 0.6 }).observe(el);
+});
 
-    // Sticky nav
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
-    });
-
-    // Floating particles
-    const particleContainer = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.cssText = `
-        left: ${Math.random() * 100}%;
-        width: ${Math.random() * 4 + 1}px;
-        height: ${Math.random() * 4 + 1}px;
-        animation-duration: ${Math.random() * 10 + 8}s;
-        animation-delay: ${Math.random() * 10}s;
-        opacity: ${Math.random() * 0.5 + 0.2};
-      `;
-      particleContainer.appendChild(p);
-    }
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // Counter animation
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.count);
-      const suffix = target >= 100 ? '+' : target >= 10 ? '+' : '';
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current) + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 25);
-    }
-
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-    // Form submit handler
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Request Sent! We\'ll contact you soon ✓';
-      btn.style.background = 'var(--gold-dark)';
-      btn.disabled = true;
-    }
-
-    // Smooth parallax on hero
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroContent = document.querySelector('.hero-content');
-      if (heroContent && scrollY < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-        heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
-      }
-    });
-  </script>
+/* ── HERO PARALLAX ── */
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const hc = document.querySelector('.hero-content');
+  if (hc && y < window.innerHeight) {
+    hc.style.transform = `translateY(${y * 0.28}px)`;
+    hc.style.opacity = 1 - y / (window.innerHeight * 0.75);
+  }
+});
+</script>
 </body>
 </html>
