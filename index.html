@@ -1,1214 +1,1224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KH Beauty Nail Art</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Restoran Windmill – Premium Western & Asian Dining in Bandar Baru Klang since 1999. Sizzling steaks, lamb chops, seafood & more.">
+  <title>Restoran Windmill | Bandar Baru Klang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --gold: #c9a96e;
-      --gold-light: #e8d5b0;
-      --gold-dark: #9c7a3c;
-      --rose: #e8b4b8;
-      --rose-dark: #c47a82;
-      --cream: #fdf8f3;
-      --dark: #1a1118;
-      --dark2: #2d1f2b;
-      --text: #4a3545;
-      --text-light: #7a6570;
+      --bg:    #0b0804;
+      --bg2:   #141009;
+      --bg3:   #1d160f;
+      --gold:  #c8902e;
+      --gold2: #e8c06a;
+      --gold3: #9c6c1a;
+      --cream: #f4e8d0;
+      --txt:   #c8b49a;
+      --muted: #7a6550;
+      --border: rgba(200,144,46,.18);
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--txt); overflow-x: hidden; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
+    /* ── PRELOADER ── */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity .6s ease;
     }
-
-    /* ── CURSOR ── */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, opacity 0.3s;
-      mix-blend-mode: multiply;
+    #preloader.hide { opacity: 0; pointer-events: none; }
+    .pre-windmill { width: 80px; height: 80px; position: relative; margin-bottom: 1.5rem; }
+    .pre-blades {
+      position: absolute; top: 50%; left: 50%; width: 70px; height: 70px;
+      transform: translate(-50%,-50%);
+      animation: spin 1.4s linear infinite;
+      transform-origin: 35px 35px;
     }
-    .cursor-ring {
-      position: fixed;
-      width: 40px; height: 40px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
-    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .pre-label { font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: .3em; color: var(--gold2); text-transform: uppercase; }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      transition: background .4s, padding .4s, box-shadow .4s;
     }
     nav.scrolled {
-      background: rgba(253, 248, 243, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1rem 4rem;
-      box-shadow: 0 1px 20px rgba(201,169,110,0.15);
+      background: rgba(11,8,4,.92); backdrop-filter: blur(14px);
+      padding: .9rem 4rem;
+      box-shadow: 0 2px 30px rgba(0,0,0,.5);
     }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: 0.05em;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-logo { display: flex; align-items: center; gap: .8rem; text-decoration: none; }
+    .nav-logo-svg { width: 38px; height: 38px; }
+    .nav-logo-blade { transform-origin: 19px 19px; animation: spin 4s linear infinite; }
+    .nav-logo-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold2); letter-spacing: .05em; }
+    .nav-logo-text span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text);
-      position: relative;
-      transition: color 0.3s;
+      text-decoration: none; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--txt); position: relative; transition: color .3s;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--gold);
-      transition: width 0.3s;
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width .3s;
     }
-    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover { color: var(--gold2); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: .55rem 1.5rem; border: 1px solid var(--gold); color: var(--gold);
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none;
+      transition: all .3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
 
     /* ── HERO ── */
     #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 60%, #3d1f35 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-
-    /* Animated glitter particles */
-    .particles { position: absolute; inset: 0; overflow: hidden; }
-    .particle {
-      position: absolute;
-      width: 3px; height: 3px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: float linear infinite;
-      opacity: 0;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover; background-position: center;
+      animation: heroZoom 20s ease-in-out infinite alternate;
     }
-    @keyframes float {
-      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.06); }
     }
-
-    /* Animated rings */
-    .ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.15);
-      animation: expand 6s ease-out infinite;
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(5,3,1,.88) 0%,rgba(10,7,3,.75) 60%,rgba(20,12,5,.82) 100%); }
+    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .pt {
+      position: absolute; border-radius: 50%; background: var(--gold);
+      animation: ptFloat linear infinite; opacity: 0;
     }
-    .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
-    .ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 2s; }
-    .ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 4s; }
-    @keyframes expand {
-      0%   { transform: scale(0.8); opacity: 0.5; }
-      100% { transform: scale(1.4); opacity: 0; }
+    @keyframes ptFloat {
+      0%   { transform: translateY(100vh) scale(.5); opacity: 0; }
+      8%   { opacity: .7; }
+      92%  { opacity: .3; }
+      100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem;
-    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 860px; }
     .hero-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201,169,110,0.4);
-      padding: 0.5rem 1.5rem;
-      margin-bottom: 2rem;
-      animation: fadeInDown 1s ease 0.3s both;
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(200,144,46,.35); padding: .5rem 1.6rem; margin-bottom: 2rem;
+      animation: fadeUp 1s .2s both;
     }
+    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); animation: blink 1.4s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .hero-windmill { width: 90px; height: 90px; margin: 0 auto 1.5rem; animation: fadeUp 1s .3s both; }
+    .hero-wm-blade { transform-origin: 45px 45px; animation: spin 3s linear infinite; }
     .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 0.3em;
-      animation: fadeInUp 1s ease 0.5s both;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 700;
+      color: var(--cream); line-height: 1.05; margin-bottom: .4em;
+      animation: fadeUp 1s .45s both;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      display: block;
+    .hero-title em { font-style: italic; color: var(--gold2); display: block; font-weight: 400; }
+    .hero-sub {
+      font-size: .78rem; letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(244,232,208,.6); margin-bottom: .8rem;
+      animation: fadeUp 1s .6s both;
     }
-    .hero-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(232,213,176,0.7);
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease 0.7s both;
-    }
-    .hero-cta {
-      display: inline-flex;
-      gap: 1.5rem;
-      animation: fadeInUp 1s ease 0.9s both;
-    }
+    .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 1.2rem auto; animation: fadeUp 1s .65s both; }
+    .hero-desc { font-size: .92rem; line-height: 1.8; color: rgba(244,232,208,.7); max-width: 520px; margin: 0 auto 2.5rem; animation: fadeUp 1s .75s both; }
+    .hero-btns { display: flex; gap: 1.2rem; justify-content: center; animation: fadeUp 1s .9s both; flex-wrap: wrap; }
     .btn {
-      display: inline-block;
-      padding: 0.9rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.4s;
-      cursor: pointer;
-      border: none;
+      display: inline-block; padding: .9rem 2.4rem; font-size: .7rem; letter-spacing: .2em;
+      text-transform: uppercase; text-decoration: none; transition: all .35s; cursor: pointer;
+      font-family: 'Raleway', sans-serif; border: none;
     }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--dark);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    .btn-gold { background: var(--gold); color: var(--bg); }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(200,144,46,.4); }
+    .btn-outline { border: 1px solid rgba(200,144,46,.5); color: var(--gold2); }
+    .btn-outline:hover { background: rgba(200,144,46,.12); border-color: var(--gold); transform: translateY(-3px); }
+    .scroll-down {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      animation: fadeUp 1s 1.3s both; z-index: 2;
     }
-    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
-    .btn-outline {
-      border: 1px solid rgba(201,169,110,0.5);
-      color: var(--gold-light);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-    .btn-outline:hover {
-      background: rgba(201,169,110,0.1);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom,transparent,var(--gold)); animation: scrollBob 1.6s ease infinite; }
+    @keyframes scrollBob { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+    .scroll-lbl { font-size: .55rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(200,144,46,.55); }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      animation: fadeIn 1s ease 1.5s both;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
-      animation: scrollPulse 1.5s ease infinite;
-    }
-    .scroll-text {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(201,169,110,0.6);
-      text-transform: uppercase;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* ── SECTION BASE ── */
+    /* ── SHARED SECTION ── */
     section { padding: 7rem 0; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .sec-label {
+      font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: .9rem; margin-bottom: .8rem;
     }
-    .section-label::before {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--gold);
+    .sec-label::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 600;
+      color: var(--cream); line-height: 1.2; margin-bottom: 1.4rem;
     }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    .section-title em { font-style: italic; color: var(--gold-dark); }
+    .sec-title em { font-style: italic; color: var(--gold2); }
+    .sec-title.dark { color: var(--bg2); }
+    .sec-label.dark { color: var(--gold3); }
+    .sec-label.dark::before { background: var(--gold3); }
 
     /* ── ABOUT ── */
-    #about { background: var(--cream); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-visual { position: relative; }
+    .about-main-img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      display: block; position: relative; z-index: 1;
     }
-    .about-visual {
-      position: relative;
-      height: 520px;
+    .about-accent {
+      position: absolute; bottom: -2rem; right: -2rem; z-index: 2;
+      width: 55%; background: var(--gold); padding: 2rem;
+      font-family: 'Playfair Display', serif;
     }
-    .about-img-main {
-      width: 75%;
-      height: 420px;
-      background: linear-gradient(135deg, var(--dark2), #5c3050);
-      position: absolute;
-      top: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .about-img-main::after {
-      content: '💅';
-      font-size: 5rem;
-      animation: pulse 3s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    .about-img-accent {
-      width: 50%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      position: absolute;
-      bottom: 0; left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--dark);
-      font-style: italic;
-    }
-    .about-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(201,169,110,0.2);
-    }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--gold-dark);
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-light); margin-top: 0.3rem; }
-    .about-text p {
-      font-size: 0.9rem;
-      line-height: 1.9;
-      color: var(--text-light);
-      margin-bottom: 1.2rem;
-    }
+    .about-accent-num { font-size: 3rem; font-weight: 700; color: var(--bg); line-height: 1; }
+    .about-accent-lbl { font-size: .72rem; letter-spacing: .15em; color: rgba(11,8,4,.7); text-transform: uppercase; margin-top: .3rem; }
+    .about-text p { font-size: .88rem; line-height: 1.95; color: var(--muted); margin-bottom: 1.2rem; }
+    .about-text p strong { color: var(--gold2); font-weight: 600; }
+    .about-stats { display: flex; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .astat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .astat-lbl { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
 
-    /* ── SERVICES ── */
-    #services { background: var(--dark); }
-    #services .section-title { color: var(--cream); }
-    #services .section-label { color: var(--gold); }
-    .services-intro {
-      font-size: 0.9rem;
-      color: rgba(232,213,176,0.6);
-      max-width: 500px;
-      line-height: 1.8;
-      margin-bottom: 4rem;
+    /* ── SPECIALS (6 signature dishes) ── */
+    #specials { background: var(--bg); }
+    .specials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .dish-card {
+      position: relative; overflow: hidden; cursor: default;
+      border: 1px solid var(--border);
+      transition: border-color .4s, transform .4s;
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(201,169,110,0.15);
+    .dish-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .dish-img-wrap {
+      position: relative; overflow: hidden; aspect-ratio: 4/3;
     }
-    .service-card {
-      background: var(--dark);
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s;
-      cursor: default;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    .service-card:hover { background: #221a20; }
-    .service-card:hover::before { transform: translateX(0); }
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+    .dish-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .8s cubic-bezier(.25,.46,.45,.94);
       display: block;
-      transition: transform 0.3s;
     }
-    .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
-    .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
+    .dish-card:hover .dish-img { transform: scale(1.08); }
+    /* Steam animation */
+    .steam-wrap {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 10px; pointer-events: none;
     }
-    .service-desc {
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-      margin-bottom: 1.5rem;
+    .steam-wisp {
+      width: 6px; border-radius: 50% 50% 30% 30%;
+      background: linear-gradient(to top, rgba(255,255,255,.35), transparent);
+      animation: steamRise 2.2s ease-in-out infinite;
     }
-    .service-price {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold);
+    .steam-wisp:nth-child(1) { height: 45px; animation-delay: 0s; }
+    .steam-wisp:nth-child(2) { height: 60px; animation-delay: .5s; }
+    .steam-wisp:nth-child(3) { height: 40px; animation-delay: 1s; }
+    @keyframes steamRise {
+      0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+      20%  { opacity: .8; }
+      80%  { opacity: .3; }
+      100% { transform: translateY(-50px) scaleX(1.6); opacity: 0; }
     }
-
-    /* ── GALLERY ── */
-    #gallery { background: var(--cream); }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      gap: 1rem;
+    /* Sizzle shimmer on card */
+    .dish-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg,rgba(200,144,46,.0) 40%,rgba(200,144,46,.18) 60%,rgba(200,144,46,.0) 80%);
+      background-size: 200% 200%; opacity: 0;
+      animation: sizzle 3s ease infinite;
+      transition: opacity .4s;
     }
-    .gallery-item {
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--dark2), #4a2040);
-    }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gallery-item:nth-child(4) { grid-column: span 2; }
-    .gallery-placeholder {
-      width: 100%;
-      padding-top: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-item:nth-child(1) .gallery-placeholder { padding-top: 70%; }
-    .gallery-item:nth-child(4) .gallery-placeholder { padding-top: 50%; }
-    .gallery-emoji {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(2rem, 5vw, 4rem);
-      background: linear-gradient(135deg, var(--dark2) 0%, #5c3050 50%, var(--dark2) 100%);
-      background-size: 200% 200%;
-      animation: shimmer 4s ease infinite;
-      transition: transform 0.5s;
-    }
-    .gallery-item:hover .gallery-emoji { transform: scale(1.08); }
-    @keyframes shimmer {
+    .dish-card:hover .dish-img-wrap::after { opacity: 1; }
+    @keyframes sizzle {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26,17,24,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.4s;
+    .dish-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--gold); color: var(--bg);
+      font-size: .58rem; letter-spacing: .15em; text-transform: uppercase;
+      padding: .3rem .8rem;
     }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay-text {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-    }
+    .dish-body { padding: 1.5rem; background: var(--bg3); }
+    .dish-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--cream); margin-bottom: .5rem; }
+    .dish-desc { font-size: .76rem; line-height: 1.7; color: var(--muted); margin-bottom: 1rem; }
+    .dish-footer { display: flex; align-items: center; justify-content: space-between; }
+    .dish-price { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
+    .dish-tag { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: .2rem .6rem; }
 
-    /* ── PROCESS ── */
-    #process { background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%); }
-    #process .section-title { color: var(--cream); }
-    #process .section-label { color: var(--gold); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 4rem;
-      position: relative;
+    /* ── MENU ── */
+    #menu { background: var(--bg2); }
+    .menu-tabs { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 3rem; border-bottom: 1px solid var(--border); }
+    .mtab {
+      padding: .85rem 1.6rem; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent;
+      transition: all .3s; background: none; border-top: none; border-left: none; border-right: none;
+      font-family: 'Raleway', sans-serif;
     }
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 2.5rem;
-      left: 12.5%;
-      right: 12.5%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
-      opacity: 0.3;
+    .mtab:hover { color: var(--gold2); }
+    .mtab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .menu-item {
+      display: flex; gap: 1rem; align-items: center;
+      padding: 1rem; border: 1px solid var(--border);
+      transition: border-color .3s, background .3s; background: var(--bg3);
     }
-    .step { text-align: center; }
-    .step-num {
-      width: 50px; height: 50px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      position: relative;
-      z-index: 1;
-      background: var(--dark);
-      transition: background 0.3s, transform 0.3s;
+    .menu-item:hover { border-color: var(--gold); background: rgba(200,144,46,.04); }
+    .menu-item-img {
+      width: 72px; height: 72px; object-fit: cover; flex-shrink: 0;
+      transition: transform .5s;
     }
-    .step:hover .step-num {
-      background: var(--gold);
-      color: var(--dark);
-      transform: scale(1.1);
-    }
-    .step-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .step-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-    }
-    .step-desc {
-      font-size: 0.75rem;
-      line-height: 1.8;
-      color: rgba(232,213,176,0.5);
-    }
+    .menu-item:hover .menu-item-img { transform: scale(1.06); }
+    .menu-item-info { flex: 1; min-width: 0; }
+    .menu-item-name { font-size: .84rem; color: var(--cream); font-weight: 600; margin-bottom: .25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .menu-item-desc { font-size: .7rem; color: var(--muted); line-height: 1.5; }
+    .menu-item-price { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); flex-shrink: 0; }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--cream); overflow: hidden; }
-    .testimonials-track-wrapper {
+    /* ── GALLERY ── */
+    #gallery { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: auto; gap: .7rem; margin-top: 2.5rem; }
+    .gal-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gal-item:nth-child(6) { grid-column: span 2; }
+    .gal-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.25,.46,.45,.94); }
+    .gal-item:hover .gal-img { transform: scale(1.1); }
+    .gal-item:nth-child(1) .gal-img { min-height: 380px; }
+    .gal-item:not(:nth-child(1)) .gal-img { min-height: 185px; }
+    .gal-overlay {
+      position: absolute; inset: 0;
+      background: rgba(5,3,1,.65);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .4s;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+    .gal-lbl { font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold2); border: 1px solid rgba(232,192,106,.4); padding: .4rem 1rem; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--bg2); overflow: hidden; }
+    .reviews-track-wrap { overflow: hidden; margin-top: 3rem; }
+    .reviews-track { display: flex; gap: 1.4rem; animation: scrollLeft 35s linear infinite; width: max-content; }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes scrollLeft { to { transform: translateX(-50%); } }
+    .rev-card { width: 340px; flex-shrink: 0; padding: 2.2rem; background: var(--bg3); border: 1px solid var(--border); position: relative; }
+    .rev-card::before { content: '"'; position: absolute; top: .8rem; right: 1.2rem; font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(200,144,46,.08); line-height: 1; }
+    .rev-stars { color: var(--gold); font-size: .85rem; letter-spacing: .1em; margin-bottom: .8rem; }
+    .rev-text { font-size: .8rem; line-height: 1.85; color: var(--muted); font-style: italic; margin-bottom: 1.2rem; }
+    .rev-author { font-size: .68rem; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
+
+    /* ── VISIT ── */
+    #visit { background: var(--bg3); }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .info-blocks { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+    .info-block { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .info-icon { width: 44px; height: 44px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .info-block h4 { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+    .info-block p { font-size: .84rem; line-height: 1.75; color: var(--muted); }
+    .map-embed {
+      width: 100%; aspect-ratio: 4/3;
+      border: 1px solid var(--border);
       overflow: hidden;
-      margin: 3rem -2rem 0;
-      padding: 0 2rem;
     }
-    .testimonials-track {
-      display: flex;
-      gap: 1.5rem;
-      animation: scroll-left 30s linear infinite;
-      width: max-content;
-    }
-    .testimonials-track:hover { animation-play-state: paused; }
-    @keyframes scroll-left {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .testimonial-card {
-      width: 340px;
-      flex-shrink: 0;
-      padding: 2.5rem;
-      background: white;
-      border: 1px solid rgba(201,169,110,0.15);
-      position: relative;
-    }
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: rgba(201,169,110,0.1);
-      line-height: 1;
-    }
-    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-    .testimonial-text {
-      font-size: 0.82rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .testimonial-author {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--gold-dark);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    /* ── BOOKING ── */
-    #booking { background: var(--dark); }
-    #booking .section-title { color: var(--cream); }
-    #booking .section-label { color: var(--gold); }
-    .booking-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-    .booking-info p {
-      font-size: 0.85rem;
-      line-height: 1.9;
-      color: rgba(232,213,176,0.6);
-      margin-bottom: 2.5rem;
-    }
-    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: rgba(232,213,176,0.7);
-    }
-    .contact-icon {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(201,169,110,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .booking-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.6);
-    }
-    .form-input, .form-select, .form-textarea {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,169,110,0.15);
-      color: var(--cream);
-      padding: 0.85rem 1rem;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      transition: border-color 0.3s;
-      outline: none;
-      width: 100%;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--gold);
-    }
-    .form-select option { background: var(--dark2); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      background: var(--gold);
-      color: var(--dark);
-      padding: 1rem 2.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      margin-top: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .form-submit:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(80%) invert(5%); }
 
     /* ── FOOTER ── */
-    footer {
-      background: #110c10;
-      padding: 4rem 0 2rem;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--gold-light);
-      margin-bottom: 1rem;
-    }
+    footer { background: #060402; padding: 4rem 0 2rem; text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold2); margin-bottom: .6rem; }
     .footer-logo span { color: var(--gold); }
-    .footer-tagline {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: rgba(201,169,110,0.4);
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      list-style: none;
-      margin-bottom: 2.5rem;
-    }
-    .footer-links a {
-      text-decoration: none;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(201,169,110,0.5);
-      transition: color 0.3s;
-    }
+    .footer-tag { font-size: .62rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-links a { text-decoration: none; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
     .footer-links a:hover { color: var(--gold); }
-    .footer-divider {
-      width: 60px; height: 1px;
-      background: rgba(201,169,110,0.2);
-      margin: 0 auto 2rem;
-    }
-    .footer-copy {
-      font-size: 0.65rem;
-      color: rgba(201,169,110,0.3);
-      letter-spacing: 0.1em;
-    }
+    .footer-hr { width: 50px; height: 1px; background: var(--border); margin: 0 auto 1.5rem; }
+    .footer-copy { font-size: .62rem; color: rgba(122,101,80,.5); letter-spacing: .1em; }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-l { opacity: 0; transform: translateX(-35px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-l.visible { opacity: 1; transform: none; }
+    .reveal-r { opacity: 0; transform: translateX(35px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-r.visible { opacity: 1; transform: none; }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      nav.scrolled { padding: 0.8rem 2rem; }
-      .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(4) { grid-column: span 2; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .steps::before { display: none; }
-      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: .7rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .about-grid, .visit-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-accent { right: 0; bottom: -1.5rem; }
+      .specials-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gal-item:nth-child(1) { grid-column: span 2; }
+      .gal-item:nth-child(6) { grid-column: span 2; }
+    }
+    @media (max-width: 580px) {
+      .specials-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<!-- Preloader -->
+<div id="preloader">
+  <div class="pre-windmill">
+    <svg class="pre-blades" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="35" cy="35" r="5" fill="#c8902e"/>
+      <!-- Blade 1 -->
+      <path d="M35 30 L30 8 L40 8 Z" fill="#c8902e" opacity=".9"/>
+      <!-- Blade 2 -->
+      <path d="M40 35 L62 30 L62 40 Z" fill="#c8902e" opacity=".9"/>
+      <!-- Blade 3 -->
+      <path d="M35 40 L40 62 L30 62 Z" fill="#c8902e" opacity=".9"/>
+      <!-- Blade 4 -->
+      <path d="M30 35 L8 40 L8 30 Z" fill="#c8902e" opacity=".9"/>
+    </svg>
+  </div>
+  <div class="pre-label">Restoran Windmill</div>
+</div>
 
-  <!-- Navigation -->
-  <nav id="nav">
-    <div class="nav-logo">KH <span>Beauty</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-  </nav>
+<!-- Navigation -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="3.5" fill="#c8902e"/>
+      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform-origin="19 19" transform="rotate(0 19 19)"/>
+      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(90 19 19)"/>
+      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(180 19 19)"/>
+      <rect x="18" y="6" width="2" height="8" rx="1" fill="#c8902e" class="nav-logo-blade" transform="rotate(270 19 19)"/>
+      <rect x="18.5" y="22" width="1" height="12" fill="#c8902e"/>
+    </svg>
+    <span class="nav-logo-text">Wind<span>mill</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specials">Specials</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+  </ul>
+  <a href="tel:+60333449780" class="nav-cta">Call Now</a>
+</nav>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="particles" id="particles"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="hero-content">
-      <div class="hero-badge">✦ Taman Putra, Malaysia ✦</div>
-      <h1 class="hero-title">
-        KH Beauty
-        <em>Nail Art</em>
-      </h1>
-      <p class="hero-subtitle">Where Every Nail Tells a Story</p>
-      <div class="hero-cta">
-        <a href="#booking" class="btn btn-primary">Book Appointment</a>
-        <a href="#services" class="btn btn-outline">Our Services</a>
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Halal Certified · Est. 1999 · Bandar Baru Klang <span class="hero-badge-dot"></span></div>
+    <svg class="hero-windmill" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="45" cy="45" r="7" fill="#c8902e"/>
+      <g class="hero-wm-blade">
+        <path d="M45 38 L39 10 L51 10 Z" fill="#e8c06a" opacity=".95"/>
+        <path d="M52 45 L80 39 L80 51 Z" fill="#e8c06a" opacity=".85"/>
+        <path d="M45 52 L51 80 L39 80 Z" fill="#e8c06a" opacity=".95"/>
+        <path d="M38 45 L10 51 L10 39 Z" fill="#e8c06a" opacity=".85"/>
+      </g>
+      <rect x="44" y="52" width="2" height="24" fill="#c8902e" opacity=".6"/>
+    </svg>
+    <h1 class="hero-title">
+      Restoran
+      <em>Windmill</em>
+    </h1>
+    <p class="hero-sub">Western &amp; Asian Fusion · Bandar Baru Klang</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Sizzling steaks, aromatic lamb chops, fresh seafood &amp; beloved Thai-Asian dishes. Over 25 years of flavour in every plate.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn btn-gold">Explore Menu</a>
+      <a href="#specials" class="btn btn-outline">Our Specials</a>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <span class="scroll-lbl">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-l">
+        <img class="about-main-img"
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80"
+          alt="Windmill Signature Lamb Chop"
+          onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80'">
+        <div class="about-accent">
+          <div class="about-accent-num">25+</div>
+          <div class="about-accent-lbl">Years of Flavour</div>
+        </div>
+      </div>
+      <div class="about-text reveal-r">
+        <p class="sec-label">Our Story</p>
+        <h2 class="sec-title">A Klang <em>Institution</em><br>Since 1999</h2>
+        <p>Restoran Windmill has been a beloved landmark in <strong>Bandar Baru Klang</strong> since 1999. What started as a classic Western grill has grown into a full dining experience — blending bold sizzling favourites with Thai-Asian comfort food.</p>
+        <p>Located at <strong>18–20, Lorong Tiara 1A</strong>, we serve generous portions of ribeye steak, aromatic lamb chops, tiger prawns, creamy pastas and more — all at accessible prices that keep families coming back.</p>
+        <p>With a <strong>4.4 ★ rating</strong> from over 700 diners, our kitchen has earned its place as the go-to sizzling house of Klang. Fully <strong>Halal certified</strong>.</p>
+        <div class="about-stats">
+          <div><div class="astat-num" data-count="25">0</div><div class="astat-lbl">Years Open</div></div>
+          <div><div class="astat-num" data-count="4.4">0</div><div class="astat-lbl">Star Rating</div></div>
+          <div><div class="astat-num" data-count="700">0</div><div class="astat-lbl">Reviews</div></div>
+          <div><div class="astat-num" data-count="80">0</div><div class="astat-lbl">Menu Items</div></div>
+        </div>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <span class="scroll-text">Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal-left">
-          <div class="about-img-main"></div>
-          <div class="about-img-accent">Est. 2020</div>
-        </div>
-        <div class="about-text">
-          <p class="section-label reveal">Our Story</p>
-          <h2 class="section-title reveal">Crafting Beauty,<br><em>One Nail at a Time</em></h2>
-          <div class="reveal">
-            <p>Welcome to KH Beauty Nail Art — your premier destination for exquisite nail artistry in Taman Putra. We believe that beautiful nails are a form of self-expression, and our talented artists are dedicated to bringing your vision to life.</p>
-            <p>From classic manicures to elaborate nail art designs, every service is performed with precision, care, and the highest quality products. Your comfort and satisfaction are our top priorities.</p>
+<!-- Signature Dishes -->
+<section id="specials">
+  <div class="container">
+    <p class="sec-label reveal">Chef's Favourites</p>
+    <h2 class="sec-title reveal">Our <em>Signature</em> Dishes</h2>
+    <div class="specials-grid">
+
+      <!-- Lamb Chop -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80"
+            alt="Aromatic Lamb Chop"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
           </div>
-          <div class="about-stats reveal">
+          <div class="dish-badge">⭐ Best Seller</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Aromatic Lamb Chop</div>
+          <div class="dish-desc">Tender lamb chops grilled to perfection on a sizzling hot plate, served with garlic butter sauce and seasonal sides.</div>
+          <div class="dish-footer">
+            <div class="dish-price">from RM 67.83</div>
+            <div class="dish-tag">Sizzling</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ribeye Steak -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=700&q=80"
+            alt="Sizzling Ribeye Steak"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+          </div>
+          <div class="dish-badge">🔥 Hot Plate</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Sizzling Beef Steak</div>
+          <div class="dish-desc">Premium beef cut grilled to your liking, served on a scorching iron plate with mushroom or black pepper sauce.</div>
+          <div class="dish-footer">
+            <div class="dish-price">from RM 45.98</div>
+            <div class="dish-tag">Grilled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grilled Chicken Chop -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=700&q=80"
+            alt="Windmill Chicken Chop"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+          </div>
+          <div class="dish-badge">🍗 Crowd Fave</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Windmill Grilled Chicken</div>
+          <div class="dish-desc">Deep-fried or grilled chicken chop with Windmill's signature sweet & sour sauce. Crispy outside, juicy inside.</div>
+          <div class="dish-footer">
+            <div class="dish-price">from RM 26.43</div>
+            <div class="dish-tag">Western</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Surf & Turf -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80"
+            alt="Windmill Surf & Turf"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+          </div>
+          <div class="dish-badge">👑 Premium</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Windmill's Surf &amp; Turf</div>
+          <div class="dish-desc">The best of land and sea — grilled beef with sizzling tiger prawns, sides included. A showstopper plate.</div>
+          <div class="dish-footer">
+            <div class="dish-price">RM 68.98</div>
+            <div class="dish-tag">Combo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seafood -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=700&q=80"
+            alt="Seafood Platter"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+          </div>
+          <div class="dish-badge">🦐 Fresh Daily</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Sizzling Seafood Platter</div>
+          <div class="dish-desc">A generous platter of mixed seafood — prawns, squid, fish — grilled and sizzled with Windmill's spice blend.</div>
+          <div class="dish-footer">
+            <div class="dish-price">RM 52.88</div>
+            <div class="dish-tag">Seafood</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pineapple Fried Rice -->
+      <div class="dish-card reveal">
+        <div class="dish-img-wrap">
+          <img class="dish-img"
+            src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=80"
+            alt="Pineapple Fried Rice"
+            onerror="this.style.background='#1d160f'">
+          <div class="steam-wrap">
+            <div class="steam-wisp"></div>
+            <div class="steam-wisp"></div>
+          </div>
+          <div class="dish-badge">🍍 Thai Style</div>
+        </div>
+        <div class="dish-body">
+          <div class="dish-name">Pineapple Fried Rice</div>
+          <div class="dish-desc">Fragrant Thai-style fried rice tossed with pineapple chunks, prawns and cashew nuts. A sweet-savoury classic.</div>
+          <div class="dish-footer">
+            <div class="dish-price">RM 21.83</div>
+            <div class="dish-tag">Asian</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Full Menu -->
+<section id="menu">
+  <div class="container">
+    <p class="sec-label reveal">Full Menu</p>
+    <h2 class="sec-title reveal">Browse Our <em>Menu</em></h2>
+    <div class="menu-tabs reveal" id="menuTabs">
+      <button class="mtab active" data-tab="specials-tab">⭐ Specials</button>
+      <button class="mtab" data-tab="grill-tab">🔥 Grills &amp; Western</button>
+      <button class="mtab" data-tab="seafood-tab">🦐 Seafood</button>
+      <button class="mtab" data-tab="asian-tab">🍜 Thai &amp; Asian</button>
+      <button class="mtab" data-tab="pasta-tab">🍝 Pasta &amp; Burgers</button>
+      <button class="mtab" data-tab="sides-tab">🥗 Sides &amp; Snacks</button>
+    </div>
+
+    <!-- SPECIALS tab -->
+    <div class="menu-panel active" id="specials-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=200&q=80" alt="Ultimate Mixed Grill">
+          <div class="menu-item-info"><div class="menu-item-name">Ultimate Mixed Grill</div><div class="menu-item-desc">Chicken, lamb &amp; beef with sides</div></div>
+          <div class="menu-item-price">RM 68.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80" alt="Surf & Turf">
+          <div class="menu-item-info"><div class="menu-item-name">Windmill's Surf &amp; Turf</div><div class="menu-item-desc">Grilled beef &amp; tiger prawns</div></div>
+          <div class="menu-item-price">RM 68.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Sizzling Phoenix Neptune">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Phoenix Neptune</div><div class="menu-item-desc">Premium land &amp; sea sizzler</div></div>
+          <div class="menu-item-price">RM 45.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=200&q=80" alt="Sizzling Favourites">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Favourites</div><div class="menu-item-desc">House special sizzling combo</div></div>
+          <div class="menu-item-price">RM 54.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Europe Delight">
+          <div class="menu-item-info"><div class="menu-item-name">Europe Delight</div><div class="menu-item-desc">Western classic platter</div></div>
+          <div class="menu-item-price">RM 29.88</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Golden Combo">
+          <div class="menu-item-info"><div class="menu-item-name">Golden Combo</div><div class="menu-item-desc">Chef's choice combination set</div></div>
+          <div class="menu-item-price">RM 36.78</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Sizzling Seafood Platter">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Seafood Platter</div><div class="menu-item-desc">Mixed seafood sizzler</div></div>
+          <div class="menu-item-price">RM 52.88</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Signature Platter">
+          <div class="menu-item-info"><div class="menu-item-name">Signature Platter</div><div class="menu-item-desc">Windmill's signature starter spread</div></div>
+          <div class="menu-item-price">RM 40.23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRILLS tab -->
+    <div class="menu-panel" id="grill-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Grilled Chicken Chop">
+          <div class="menu-item-info"><div class="menu-item-name">Grilled Chicken Chop</div><div class="menu-item-desc">Classic western grilled chicken</div></div>
+          <div class="menu-item-price">RM 26.43</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=200&q=80" alt="Sizzling Chicken Fillet">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Chicken Fillet</div><div class="menu-item-desc">Juicy fillet on hot plate</div></div>
+          <div class="menu-item-price">RM 29.88</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Windmill Chicken">
+          <div class="menu-item-info"><div class="menu-item-name">Windmill Chicken</div><div class="menu-item-desc">Signature deep-fried chicken chop</div></div>
+          <div class="menu-item-price">RM 29.88</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Cordon Bleu">
+          <div class="menu-item-info"><div class="menu-item-name">Chicken Cordon Bleu</div><div class="menu-item-desc">Stuffed with ham &amp; cheese</div></div>
+          <div class="menu-item-price">RM 31.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Sizzling Half Pepper Roaster">
+          <div class="menu-item-info"><div class="menu-item-name">Half Pepper Roaster</div><div class="menu-item-desc">Sizzling roast with pepper sauce</div></div>
+          <div class="menu-item-price">RM 31.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="BBQ Pepper Roaster">
+          <div class="menu-item-info"><div class="menu-item-name">BBQ Pepper Roaster</div><div class="menu-item-desc">BBQ glazed roast chicken</div></div>
+          <div class="menu-item-price">RM 31.18</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Aromatic Lamb Chop">
+          <div class="menu-item-info"><div class="menu-item-name">Aromatic Lamb Chop</div><div class="menu-item-desc">Herb-marinated lamb chops</div></div>
+          <div class="menu-item-price">RM 67.83</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Succulent Char-grilled Lamb">
+          <div class="menu-item-info"><div class="menu-item-name">Char-grilled Lamb</div><div class="menu-item-desc">Succulent char-grilled cuts</div></div>
+          <div class="menu-item-price">RM 87.38</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Lamb Shank">
+          <div class="menu-item-info"><div class="menu-item-name">Lamb Shank</div><div class="menu-item-desc">Slow-braised tender lamb shank</div></div>
+          <div class="menu-item-price">RM 80.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Sizzling Lamb">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Lamb</div><div class="menu-item-desc">Lamb on hot sizzling plate</div></div>
+          <div class="menu-item-price">RM 82.93</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Sizzling Beef">
+          <div class="menu-item-info"><div class="menu-item-name">Sizzling Beef</div><div class="menu-item-desc">Tender beef on hot plate</div></div>
+          <div class="menu-item-price">RM 45.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Beef Hot Basil">
+          <div class="menu-item-info"><div class="menu-item-name">Beef Hot Basil</div><div class="menu-item-desc">Spicy Thai basil beef stir-fry</div></div>
+          <div class="menu-item-price">RM 40.23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEAFOOD tab -->
+    <div class="menu-panel" id="seafood-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1562802378-063ec186a863?auto=format&fit=crop&w=200&q=80" alt="Classic Fish & Chips">
+          <div class="menu-item-info"><div class="menu-item-name">Classic Fish &amp; Chips</div><div class="menu-item-desc">Beer-battered fish with thick-cut chips</div></div>
+          <div class="menu-item-price">RM 31.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Captain's Grilled Tiger Prawns">
+          <div class="menu-item-info"><div class="menu-item-name">Grilled Tiger Prawns</div><div class="menu-item-desc">Captain's grilled tiger prawns</div></div>
+          <div class="menu-item-price">RM 57.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Sizzling Spanish Prawns">
+          <div class="menu-item-info"><div class="menu-item-name">Spanish Style Prawns</div><div class="menu-item-desc">Sizzling Spanish-style tiger prawns</div></div>
+          <div class="menu-item-price">RM 66.68</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Siakap Whole Fish">
+          <div class="menu-item-info"><div class="menu-item-name">Siakap Whole Fish</div><div class="menu-item-desc">Whole sea bass, steamed or fried</div></div>
+          <div class="menu-item-price">RM 74.73</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Green Curry Mixed Seafood">
+          <div class="menu-item-info"><div class="menu-item-name">Green Curry Seafood</div><div class="menu-item-desc">Aromatic Thai green curry</div></div>
+          <div class="menu-item-price">RM 37.93</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" alt="Chili Paste Seafood">
+          <div class="menu-item-info"><div class="menu-item-name">Chili Paste Seafood</div><div class="menu-item-desc">Spicy sambal mixed seafood</div></div>
+          <div class="menu-item-price">RM 37.93</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Steamed Prawn">
+          <div class="menu-item-info"><div class="menu-item-name">Steamed Prawn</div><div class="menu-item-desc">Fresh steamed prawns</div></div>
+          <div class="menu-item-price">RM 39.08</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=200&q=80" alt="Butter Prawn">
+          <div class="menu-item-info"><div class="menu-item-name">Butter Prawn</div><div class="menu-item-desc">Creamy butter-glazed prawns</div></div>
+          <div class="menu-item-price">RM 54.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?auto=format&fit=crop&w=200&q=80" alt="Crispy Honey Baby Squid">
+          <div class="menu-item-info"><div class="menu-item-name">Honey Baby Squid</div><div class="menu-item-desc">Crispy calamari with honey glaze</div></div>
+          <div class="menu-item-price">RM 26.43</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?auto=format&fit=crop&w=200&q=80" alt="Deep-fried Squid">
+          <div class="menu-item-info"><div class="menu-item-name">Deep-fried Squid</div><div class="menu-item-desc">Golden crispy calamari rings</div></div>
+          <div class="menu-item-price">RM 22.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Butter Soft Shell Crab">
+          <div class="menu-item-info"><div class="menu-item-name">Butter Soft Shell Crab</div><div class="menu-item-desc">Creamy buttered soft shell crab</div></div>
+          <div class="menu-item-price">RM 63.23</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Salted Egg Soft Shell Crab">
+          <div class="menu-item-info"><div class="menu-item-name">Salted Egg Soft Shell Crab</div><div class="menu-item-desc">Rich salted egg yolk crab</div></div>
+          <div class="menu-item-price">RM 57.48</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASIAN tab -->
+    <div class="menu-panel" id="asian-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Thai Seafood Tomyam">
+          <div class="menu-item-info"><div class="menu-item-name">Thai Seafood Tomyam</div><div class="menu-item-desc">Spicy &amp; sour Thai seafood soup</div></div>
+          <div class="menu-item-price">RM 16.08</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Seafood Tomyam Soup">
+          <div class="menu-item-info"><div class="menu-item-name">Seafood Tomyam Soup</div><div class="menu-item-desc">Classic Thai tomyam broth</div></div>
+          <div class="menu-item-price">RM 31.03</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Pineapple Fried Rice">
+          <div class="menu-item-info"><div class="menu-item-name">Pineapple Fried Rice</div><div class="menu-item-desc">Thai-style sweet &amp; savoury rice</div></div>
+          <div class="menu-item-price">RM 21.83</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Belacan Fried Rice">
+          <div class="menu-item-info"><div class="menu-item-name">Belacan Fried Rice</div><div class="menu-item-desc">Fragrant shrimp paste fried rice</div></div>
+          <div class="menu-item-price">RM 19.53</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Thai Fried Rice">
+          <div class="menu-item-info"><div class="menu-item-name">Thai Fried Rice</div><div class="menu-item-desc">Classic Thai-style wok fried rice</div></div>
+          <div class="menu-item-price">RM 19.53</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=200&q=80" alt="Phad Thai">
+          <div class="menu-item-info"><div class="menu-item-name">Phad Thai</div><div class="menu-item-desc">Stir-fried rice noodles Thai style</div></div>
+          <div class="menu-item-price">RM 24.13</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=200&q=80" alt="Thai Fried Glass Noodle">
+          <div class="menu-item-info"><div class="menu-item-name">Thai Fried Glass Noodle</div><div class="menu-item-desc">Wok-tossed glass noodles Thai style</div></div>
+          <div class="menu-item-price">RM 22.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=200&q=80" alt="Seafood Tomyam Mee Hoon">
+          <div class="menu-item-info"><div class="menu-item-name">Seafood Tomyam Mee Hoon</div><div class="menu-item-desc">Rice vermicelli in tomyam broth</div></div>
+          <div class="menu-item-price">RM 21.83</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=200&q=80" alt="Minced Chicken Hot Basil">
+          <div class="menu-item-info"><div class="menu-item-name">Minced Chicken Hot Basil</div><div class="menu-item-desc">Thai basil stir-fry over rice</div></div>
+          <div class="menu-item-price">RM 22.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Thai Roasted Spring Chicken">
+          <div class="menu-item-info"><div class="menu-item-name">Thai Roasted Spring Chicken</div><div class="menu-item-desc">Fragrant Thai herb roast chicken</div></div>
+          <div class="menu-item-price">RM 26.43</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=200&q=80" alt="Golden Chicken Salted Egg">
+          <div class="menu-item-info"><div class="menu-item-name">Salted Egg Chicken</div><div class="menu-item-desc">Crispy chicken in salted egg sauce</div></div>
+          <div class="menu-item-price">RM 34.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=200&q=80" alt="Dried Chili Beef">
+          <div class="menu-item-info"><div class="menu-item-name">Dried Chili Beef</div><div class="menu-item-desc">Wok-fried beef with dried chili</div></div>
+          <div class="menu-item-price">RM 45.98</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASTA tab -->
+    <div class="menu-panel" id="pasta-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Pasta Pescatore">
+          <div class="menu-item-info"><div class="menu-item-name">Pasta Pescatore</div><div class="menu-item-desc">Seafood pasta in tomato sauce</div></div>
+          <div class="menu-item-price">RM 27.28</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Seafood Aglio Olio">
+          <div class="menu-item-info"><div class="menu-item-name">Seafood Aglio Olio</div><div class="menu-item-desc">Olive oil, garlic &amp; mixed seafood</div></div>
+          <div class="menu-item-price">RM 27.58</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Chicken Carbonara">
+          <div class="menu-item-info"><div class="menu-item-name">Creamy Chicken Carbonara</div><div class="menu-item-desc">Rich creamy carbonara with chicken</div></div>
+          <div class="menu-item-price">RM 27.58</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Spicy Seafood Marinara">
+          <div class="menu-item-info"><div class="menu-item-name">Spicy Seafood Marinara</div><div class="menu-item-desc">Spicy tomato-based seafood pasta</div></div>
+          <div class="menu-item-price">RM 32.18</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Succulent Steak Burger">
+          <div class="menu-item-info"><div class="menu-item-name">Succulent Steak Burger</div><div class="menu-item-desc">Thick beef patty gourmet burger</div></div>
+          <div class="menu-item-price">RM 34.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Juicy Chicken Burger">
+          <div class="menu-item-info"><div class="menu-item-name">Juicy Chicken Burger</div><div class="menu-item-desc">Crispy fried chicken gourmet burger</div></div>
+          <div class="menu-item-price">RM 22.98</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1587764379873-97837921fd44?auto=format&fit=crop&w=200&q=80" alt="Soft Shell Crab Burger">
+          <div class="menu-item-info"><div class="menu-item-name">Soft Shell Crab Burger</div><div class="menu-item-desc">Crispy soft shell crab in a bun</div></div>
+          <div class="menu-item-price">RM 40.23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDES tab -->
+    <div class="menu-panel" id="sides-tab">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Caesar Salad">
+          <div class="menu-item-info"><div class="menu-item-name">Caesar Salad</div><div class="menu-item-desc">Classic romaine Caesar</div></div>
+          <div class="menu-item-price">RM 14.93</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Mixed Salad">
+          <div class="menu-item-info"><div class="menu-item-name">Mixed Salad</div><div class="menu-item-desc">Fresh garden mixed salad</div></div>
+          <div class="menu-item-price">RM 12.63</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" alt="Mushroom Soup">
+          <div class="menu-item-info"><div class="menu-item-name">Mushroom Soup</div><div class="menu-item-desc">Creamy button mushroom soup</div></div>
+          <div class="menu-item-price">RM 12.00</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="French Fries">
+          <div class="menu-item-info"><div class="menu-item-name">French Fries</div><div class="menu-item-desc">Golden crispy shoestring fries</div></div>
+          <div class="menu-item-price">RM 10.33</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="Potato Wedges">
+          <div class="menu-item-info"><div class="menu-item-name">Potato Wedges</div><div class="menu-item-desc">Seasoned crispy potato wedges</div></div>
+          <div class="menu-item-price">RM 11.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Wings">
+          <div class="menu-item-info"><div class="menu-item-name">Chicken Wings</div><div class="menu-item-desc">Crispy fried chicken wings</div></div>
+          <div class="menu-item-price">RM 11.48</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Chicken Nugget">
+          <div class="menu-item-info"><div class="menu-item-name">Chicken Nuggets</div><div class="menu-item-desc">Crispy golden nuggets</div></div>
+          <div class="menu-item-price">RM 14.93</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Kailan Garlic">
+          <div class="menu-item-info"><div class="menu-item-name">Kailan Garlic</div><div class="menu-item-desc">Stir-fried Chinese kale with garlic</div></div>
+          <div class="menu-item-price">RM 18.38</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Kailan Oyster Sauce">
+          <div class="menu-item-info"><div class="menu-item-name">Kailan Oyster Sauce</div><div class="menu-item-desc">Wok-fried kailan in oyster sauce</div></div>
+          <div class="menu-item-price">RM 18.38</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=200&q=80" alt="Western Kids Meal">
+          <div class="menu-item-info"><div class="menu-item-name">Western Kids Meal</div><div class="menu-item-desc">Kid-sized western set</div></div>
+          <div class="menu-item-price">RM 20.68</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=200&q=80" alt="Asian Kids Meal">
+          <div class="menu-item-info"><div class="menu-item-name">Asian Kids Meal</div><div class="menu-item-desc">Kid-sized Asian set</div></div>
+          <div class="menu-item-price">RM 19.53</div>
+        </div>
+        <div class="menu-item">
+          <img class="menu-item-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=200&q=80" alt="Pasta Kids Meal">
+          <div class="menu-item-info"><div class="menu-item-name">Pasta Kids Meal</div><div class="menu-item-desc">Kid-sized pasta set</div></div>
+          <div class="menu-item-price">RM 19.53</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="container">
+    <p class="sec-label reveal">Food Gallery</p>
+    <h2 class="sec-title reveal">Taste It <em>Visually</em></h2>
+    <div class="gallery-grid">
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Lamb Chop">
+        <div class="gal-overlay"><span class="gal-lbl">Lamb Chop</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=500&q=80" alt="Grilled Chicken">
+        <div class="gal-overlay"><span class="gal-lbl">Grilled Chicken</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=500&q=80" alt="Steak">
+        <div class="gal-overlay"><span class="gal-lbl">Sizzling Steak</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1625938146509-f94ec7e16f5b?auto=format&fit=crop&w=500&q=80" alt="Prawns">
+        <div class="gal-overlay"><span class="gal-lbl">Tiger Prawns</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=500&q=80" alt="Seafood">
+        <div class="gal-overlay"><span class="gal-lbl">Seafood</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80" alt="Pineapple Rice">
+        <div class="gal-overlay"><span class="gal-lbl">Pineapple Fried Rice</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=500&q=80" alt="Pasta">
+        <div class="gal-overlay"><span class="gal-lbl">Pasta</span></div>
+      </div>
+      <div class="gal-item reveal">
+        <img class="gal-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger">
+        <div class="gal-overlay"><span class="gal-lbl">Gourmet Burger</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews">
+  <div class="container">
+    <p class="sec-label reveal">What Diners Say</p>
+    <h2 class="sec-title reveal">Guest <em>Reviews</em></h2>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track" id="reviewsTrack">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Years in, years out — Windmill keeps going strong and maintains its standards. The lamb chop is a must-order every single time."</p><div class="rev-author">— Tripadvisor Guest</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Best Western food in Klang. The sizzling plate arrived at the table and the smell alone was incredible. Portions are very generous!"</p><div class="rev-author">— Foodadvisor Review</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"The Windmill Chicken chop is special — crispy outside, juicy inside, and that sweet & sour sauce is addictive. Great value for money."</p><div class="rev-author">— Google Reviewer</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brought the whole family here for a birthday dinner. Staff were attentive, the food came out fast and tasted amazing. Will be back!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"One of the best Western meals I've had in a while. The ribeye steak was cooked perfectly and the mushroom sauce was rich and flavourful."</p><div class="rev-author">— Foodpanda Review</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"Underrated gem in Klang. The pineapple fried rice and tom yam are authentic Thai quality. Cozy ambiance and friendly service."</p><div class="rev-author">— YummyAdvisor</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Steady and sturdy — classic Western food done right. The Surf & Turf is a showstopper. The sizzle sound when it hits the table!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Years in, years out — Windmill keeps going strong and maintains its standards. The lamb chop is a must-order every single time."</p><div class="rev-author">— Tripadvisor Guest</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Best Western food in Klang. The sizzling plate arrived at the table and the smell alone was incredible. Portions are very generous!"</p><div class="rev-author">— Foodadvisor Review</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"The Windmill Chicken chop is special — crispy outside, juicy inside, and that sweet & sour sauce is addictive. Great value for money."</p><div class="rev-author">— Google Reviewer</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Brought the whole family here for a birthday dinner. Staff were attentive, the food came out fast and tasted amazing. Will be back!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"One of the best Western meals I've had in a while. The ribeye steak was cooked perfectly and the mushroom sauce was rich and flavourful."</p><div class="rev-author">— Foodpanda Review</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★☆</div><p class="rev-text">"Underrated gem in Klang. The pineapple fried rice and tom yam are authentic Thai quality. Cozy ambiance and friendly service."</p><div class="rev-author">— YummyAdvisor</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Steady and sturdy — classic Western food done right. The Surf & Turf is a showstopper. The sizzle sound when it hits the table!"</p><div class="rev-author">— Tripadvisor Guest</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Visit Us -->
+<section id="visit">
+  <div class="container">
+    <p class="sec-label reveal">Find Us</p>
+    <h2 class="sec-title reveal">Visit <em>Windmill</em></h2>
+    <div class="visit-grid">
+      <div class="reveal-l">
+        <div class="info-blocks">
+          <div class="info-block">
+            <div class="info-icon">📍</div>
             <div>
-              <div class="stat-num" data-count="500">0</div>
-              <div class="stat-label">Happy Clients</div>
+              <h4>Address</h4>
+              <p>18–20, Lorong Tiara 1A<br>Bandar Baru Klang, 41150<br>Klang, Selangor, Malaysia</p>
             </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">🕐</div>
             <div>
-              <div class="stat-num" data-count="50">0</div>
-              <div class="stat-label">Nail Designs</div>
+              <h4>Opening Hours</h4>
+              <p>Daily: 10:30 AM – 10:30 PM<br>Open 7 days a week<br><em style="color:var(--gold);font-size:.78rem;">Hours may vary on public holidays</em></p>
             </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">📞</div>
             <div>
-              <div class="stat-num" data-count="5">0</div>
-              <div class="stat-label">Years Experience</div>
+              <h4>Phone</h4>
+              <p><a href="tel:+60333449780" style="color:var(--gold2);text-decoration:none;">+60 3-3344 9780</a></p>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">✅</div>
+            <div>
+              <h4>Facilities</h4>
+              <p>Halal Certified · Free Parking<br>Dine-in · Takeaway · Delivery<br>Wheelchair Accessible · Kids Menu</p>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">🚗</div>
+            <div>
+              <h4>Delivery</h4>
+              <p>Available on <strong style="color:var(--gold2);">GrabFood</strong> &amp; <strong style="color:var(--gold2);">Foodpanda</strong></p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <p class="section-label reveal">What We Offer</p>
-      <h2 class="section-title reveal">Our <em>Services</em></h2>
-      <p class="services-intro reveal">Indulge in our comprehensive range of nail and beauty services, each tailored to perfection.</p>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <span class="service-icon">💅</span>
-          <h3 class="service-name">Classic Manicure</h3>
-          <p class="service-desc">A timeless treatment including nail shaping, cuticle care, hand massage, and your choice of polish.</p>
-          <span class="service-price">FROM RM 35</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">✨</span>
-          <h3 class="service-name">Gel Nails</h3>
-          <p class="service-desc">Long-lasting gel polish that stays chip-free for up to 3 weeks, available in hundreds of shades.</p>
-          <span class="service-price">FROM RM 60</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌸</span>
-          <h3 class="service-name">Nail Art Design</h3>
-          <p class="service-desc">Custom hand-painted designs, patterns, florals, gems, and 3D art — limited only by your imagination.</p>
-          <span class="service-price">FROM RM 80</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">👑</span>
-          <h3 class="service-name">Acrylic Extensions</h3>
-          <p class="service-desc">Add length and strength with our premium acrylic nail extensions, perfectly sculpted to your desired shape.</p>
-          <span class="service-price">FROM RM 100</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">🌿</span>
-          <h3 class="service-name">Pedicure Spa</h3>
-          <p class="service-desc">Luxurious foot soak, exfoliation, callus removal, and nail care for beautifully pampered feet.</p>
-          <span class="service-price">FROM RM 50</span>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">💎</span>
-          <h3 class="service-name">Luxury Nail Set</h3>
-          <p class="service-desc">Our premium package combining extensions, gel, and bespoke nail art for a complete transformation.</p>
-          <span class="service-price">FROM RM 180</span>
-        </div>
+      <div class="map-embed reveal-r">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.0!2d101.4456!3d3.0445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f5aa8b3e8e7%3A0x2b8a5d6c4a3f1e9b!2sRestoran%20Windmill%2C%20Lorong%20Tiara%201A%2C%20Bandar%20Baru%20Klang!5e0!3m2!1sen!2smy!4v1685000000000!5m2!1sen!2smy"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Restoran Windmill location map">
+        </iframe>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <p class="section-label reveal">Our Work</p>
-      <h2 class="section-title reveal">Nail Art <em>Gallery</em></h2>
-      <div class="gallery-grid">
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💅✨</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Floral Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌸</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Soft Pink</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">💎</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Crystal Set</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌟💅</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Glam Edition</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🦋</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Butterfly Art</span></div>
-        </div>
-        <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <div class="gallery-emoji">🌙</div>
-          </div>
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Moon &amp; Stars</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Restoran <span>Windmill</span></div>
+  <p class="footer-tag">Western &amp; Asian Dining · Bandar Baru Klang · Est. 1999</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specials">Specials</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+  </ul>
+  <div class="footer-hr"></div>
+  <p class="footer-copy">© 2026 Restoran Windmill · 18–20 Lorong Tiara 1A, Bandar Baru Klang · +60 3-3344 9780</p>
+</footer>
 
-  <!-- Process -->
-  <section id="process">
-    <div class="container">
-      <p class="section-label reveal">The Experience</p>
-      <h2 class="section-title reveal">Your Journey<br><em>With Us</em></h2>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-icon">📱</div>
-          <h3 class="step-name">Book Online</h3>
-          <p class="step-desc">Choose your service and preferred time slot through our booking form or WhatsApp.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <div class="step-icon">🎨</div>
-          <h3 class="step-name">Design Consult</h3>
-          <p class="step-desc">Discuss your vision with our nail artist. Browse our look-book for inspiration.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <div class="step-icon">✨</div>
-          <h3 class="step-name">The Treatment</h3>
-          <p class="step-desc">Sit back and relax while our expert transforms your nails with precision and care.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <div class="step-icon">💅</div>
-          <h3 class="step-name">Show It Off</h3>
-          <p class="step-desc">Leave with stunning nails and share your look — tag us on Facebook!</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+  // Preloader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hide');
+      setTimeout(() => document.getElementById('preloader').remove(), 700);
+    }, 900);
+  });
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <div class="container">
-      <p class="section-label reveal">Client Love</p>
-      <h2 class="section-title reveal">What They <em>Say</em></h2>
-    </div>
-    <div class="testimonials-track-wrapper">
-      <div class="testimonials-track" id="testimonialsTrack">
-        <!-- Cards duplicated for seamless loop -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-        <!-- Duplicate set for seamless scroll -->
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Absolutely love my nails! The floral design came out even better than I imagined. Will definitely be coming back!"</p>
-          <span class="testimonial-author">— Sarah L.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Best nail salon in Taman Putra. The staff is so friendly and the gel manicure lasted over 3 weeks without chipping!"</p>
-          <span class="testimonial-author">— Michelle T.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"I get compliments on my nails everywhere I go. KH Beauty never disappoints — the attention to detail is amazing."</p>
-          <span class="testimonial-author">— Priya R.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"The pedicure spa is so relaxing! I love how they take their time to ensure every detail is perfect. 100% recommended."</p>
-          <span class="testimonial-author">— Aini B.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Finally found a nail salon that does exactly what I ask for! The nail art designs are so creative and unique."</p>
-          <span class="testimonial-author">— Jennifer K.</span>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Clean, professional, and talented. My acrylic extensions look so natural. This is now my go-to place!"</p>
-          <span class="testimonial-author">— Rachel W.</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  // Particles
+  const ptCont = document.getElementById('particles');
+  for (let i = 0; i < 45; i++) {
+    const p = document.createElement('div');
+    p.className = 'pt';
+    const size = Math.random() * 3 + 1;
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      animation-duration:${Math.random()*12+8}s;
+      animation-delay:${Math.random()*12}s;
+    `;
+    ptCont.appendChild(p);
+  }
 
-  <!-- Booking -->
-  <section id="booking">
-    <div class="container">
-      <div class="booking-grid">
-        <div class="booking-info">
-          <p class="section-label reveal">Get In Touch</p>
-          <h2 class="section-title reveal">Book Your<br><em>Appointment</em></h2>
-          <p class="reveal">Ready for beautiful nails? Book your appointment today and let our expert nail artists create something stunning just for you. Walk-ins are welcome, but appointments are recommended.</p>
-          <div class="contact-items reveal">
-            <div class="contact-item">
-              <div class="contact-icon">📍</div>
-              <span>Taman Putra, Malaysia</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">📘</div>
-              <span>Nail Art KH (Facebook)</span>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">🕐</div>
-              <span>Mon – Sat: 10:00am – 8:00pm<br>Sunday: 11:00am – 6:00pm</span>
-            </div>
-          </div>
-        </div>
-        <div class="reveal-right">
-          <form class="booking-form" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Jane Smith" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Phone / WhatsApp</label>
-                <input type="tel" class="form-input" placeholder="+60 1X-XXX XXXX" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Service</label>
-              <select class="form-select">
-                <option value="">Select a service...</option>
-                <option>Classic Manicure — from RM 35</option>
-                <option>Gel Nails — from RM 60</option>
-                <option>Nail Art Design — from RM 80</option>
-                <option>Acrylic Extensions — from RM 100</option>
-                <option>Pedicure Spa — from RM 50</option>
-                <option>Luxury Nail Set — from RM 180</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Preferred Date</label>
-                <input type="date" class="form-input" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Preferred Time</label>
-                <input type="time" class="form-input" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Special Requests</label>
-              <textarea class="form-textarea" placeholder="Any design ideas or special requests..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Send Booking Request ✦</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  // Sticky nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-logo">KH <span>Beauty</span> Nail Art</div>
-    <p class="footer-tagline">Where Every Nail Tells a Story</p>
-    <ul class="footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#booking">Book Now</a></li>
-    </ul>
-    <div class="footer-divider"></div>
-    <p class="footer-copy">© 2026 KH Beauty Nail Art · Taman Putra, Malaysia · All Rights Reserved</p>
-  </footer>
+  // Menu tabs
+  document.getElementById('menuTabs').addEventListener('click', e => {
+    const tab = e.target.closest('.mtab');
+    if (!tab) return;
+    document.querySelectorAll('.mtab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    function animateCursorRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateCursorRing);
-    }
-    animateCursorRing();
-
-    document.querySelectorAll('a, button, .service-card, .gallery-item').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorRing.style.width = '60px';
-        cursorRing.style.height = '60px';
-        cursorRing.style.borderColor = 'var(--gold)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorRing.style.width = '40px';
-        cursorRing.style.height = '40px';
-      });
-    });
-
-    // Sticky nav
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
-    });
-
-    // Floating particles
-    const particleContainer = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.cssText = `
-        left: ${Math.random() * 100}%;
-        width: ${Math.random() * 4 + 1}px;
-        height: ${Math.random() * 4 + 1}px;
-        animation-duration: ${Math.random() * 10 + 8}s;
-        animation-delay: ${Math.random() * 10}s;
-        opacity: ${Math.random() * 0.5 + 0.2};
-      `;
-      particleContainer.appendChild(p);
-    }
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // Counter animation
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.count);
-      const suffix = target >= 100 ? '+' : target >= 10 ? '+' : '';
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current) + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 25);
-    }
-
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-    // Form submit handler
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Request Sent! We\'ll contact you soon ✓';
-      btn.style.background = 'var(--gold-dark)';
-      btn.disabled = true;
-    }
-
-    // Smooth parallax on hero
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroContent = document.querySelector('.hero-content');
-      if (heroContent && scrollY < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-        heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
+  // Scroll reveal
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        revealObs.unobserve(entry.target);
       }
     });
-  </script>
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => revealObs.observe(el));
+
+  // Counter animation
+  function animateVal(el) {
+    const target = parseFloat(el.dataset.count);
+    const isFloat = target % 1 !== 0;
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const val = target * eased;
+      el.textContent = isFloat ? val.toFixed(1) : (Math.floor(val) + (target >= 100 ? '+' : ''));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animateVal(e.target); counterObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+  // Hero parallax
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const heroContent = document.querySelector('.hero-content');
+    const heroBg = document.querySelector('.hero-bg');
+    if (y < window.innerHeight) {
+      if (heroContent) { heroContent.style.transform = `translateY(${y * 0.25}px)`; heroContent.style.opacity = 1 - y / (window.innerHeight * 0.75); }
+      if (heroBg) heroBg.style.transform = `translateY(${y * 0.4}px) scale(1.06)`;
+    }
+  });
+</script>
 </body>
 </html>
